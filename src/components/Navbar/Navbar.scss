@@ -1,0 +1,95 @@
+ .app {
+     &__navbar {
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         background-color: var(--color-black);
+         align-items: center;
+         padding: 1rem;
+
+         &-logo {
+             display: flex;
+             justify-content: flex-start;
+
+             img {
+                 width: 150px;
+             }
+         }
+
+         &-links {
+             flex: 1;
+
+             display: flex;
+
+             li {
+                 cursor: pointer;
+                 margin: 0 1rem;
+                 transition: .5s ease;
+
+                 &:hover {
+                     color: var(--color-grey);
+                 }
+             }
+         }
+
+         &-login {
+             display: flex;
+             justify-content: flex-end;
+             align-items: center;
+
+             a {
+                 margin: 0 1rem;
+                 transition: .9s ease;
+
+                 &:hover {
+                     border-bottom: 1px solid var(--color-golden);
+                 }
+             }
+
+             div {
+                 width: 1px;
+                 height: 30px;
+                 background-color: var(--color-grey);
+             }
+         }
+
+         &-mobile {
+
+             //  display: none;
+             &_overlay {
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 position: fixed;
+                 width: 100%;
+                 left: 0;
+                 top: 0;
+                 height: 100vh;
+                 z-index: 5;
+                 background-color: var(--color-black);
+
+                 .overlay-close {
+                     display: flex;
+                     position: absolute;
+                     right: 1rem;
+                     top: 1rem;
+                     cursor: pointer;
+                 }
+             }
+
+             &-links {
+                 li {
+                     margin: 1rem 0;
+                     transition: .4s ease-in-out;
+                     font-size: 1.3rem;
+
+                     &:hover {
+                         color: var(--color-golden);
+                         transform: translateX(10px);
+                     }
+                 }
+             }
+
+         }
+     }
+ }
