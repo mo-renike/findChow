@@ -1,95 +1,116 @@
- .app {
-     &__navbar {
-         width: 100%;
-         display: flex;
-         justify-content: space-between;
-         background-color: var(--color-black);
-         align-items: center;
-         padding: 1rem;
+@import '../../../Stylesheets/main.scss';
 
-         &-logo {
-             display: flex;
-             justify-content: flex-start;
+.app {
+    &__navbar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--color-black);
+        align-items: center;
+        padding: 1rem;
 
-             img {
-                 width: 150px;
-             }
-         }
+        &-logo {
+            display: flex;
+            justify-content: flex-start;
 
-         &-links {
-             flex: 1;
+            img {
+                width: 150px;
 
-             display: flex;
+                @include respond(phone) {
+                    width: 100px;
+                }
+            }
+        }
 
-             li {
-                 cursor: pointer;
-                 margin: 0 1rem;
-                 transition: .5s ease;
+        &-links {
+            flex: 1;
 
-                 &:hover {
-                     color: var(--color-grey);
-                 }
-             }
-         }
+            @include respond(tab) {
+                display: none;
+            }
 
-         &-login {
-             display: flex;
-             justify-content: flex-end;
-             align-items: center;
+            display: flex;
 
-             a {
-                 margin: 0 1rem;
-                 transition: .9s ease;
+            li {
+                cursor: pointer;
+                margin: 0 1rem;
+                transition: .5s ease;
 
-                 &:hover {
-                     border-bottom: 1px solid var(--color-golden);
-                 }
-             }
+                &:hover {
+                    color: var(--color-grey);
+                }
+            }
+        }
 
-             div {
-                 width: 1px;
-                 height: 30px;
-                 background-color: var(--color-grey);
-             }
-         }
+        &-login {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
 
-         &-mobile {
+            @include respond(phone) {
+                display: none;
+            }
 
-             //  display: none;
-             &_overlay {
-                 display: flex;
-                 justify-content: center;
-                 align-items: center;
-                 position: fixed;
-                 width: 100%;
-                 left: 0;
-                 top: 0;
-                 height: 100vh;
-                 z-index: 5;
-                 background-color: var(--color-black);
+            a {
+                margin: 0 1rem;
+                transition: .9s ease;
 
-                 .overlay-close {
-                     display: flex;
-                     position: absolute;
-                     right: 1rem;
-                     top: 1rem;
-                     cursor: pointer;
-                 }
-             }
+                &:hover {
+                    border-bottom: 1px solid var(--color-golden);
+                }
+            }
 
-             &-links {
-                 li {
-                     margin: 1rem 0;
-                     transition: .4s ease-in-out;
-                     font-size: 1.3rem;
+            div {
+                width: 1px;
+                height: 20px;
+                background-color: var(--color-grey);
+            }
+        }
 
-                     &:hover {
-                         color: var(--color-golden);
-                         transform: translateX(10px);
-                     }
-                 }
-             }
+        &-mobile {
+            display: none;
 
-         }
-     }
- }
+            @include respond(tab) {
+                display: flex;
+            }
+
+            &_overlay {
+                background-color: var(--color-black);
+                transition: .5s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                width: 100%;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                z-index: 5;
+
+                .overlay-close {
+                    display: flex;
+                    position: absolute;
+                    right: 1rem;
+                    top: 1rem;
+                    cursor: pointer;
+                }
+            }
+
+            &-links {
+                li {
+                    margin: 1.4rem 0;
+                    transition: .3s ease-in-out;
+                    font-size: 1.9rem;
+                    text-align: center;
+                    color: var(--color-golden);
+                    font-family: var(--font-base);
+
+                    &:hover {
+                        color: var(--color-grey);
+                        transform: translateX(10px);
+                    }
+                }
+            }
+        }
+    }
+}
