@@ -4,8 +4,8 @@
   --font-base: "Cormorant Upright", serif;
   --font-alt: "Open Sans", sans-serif;
 
-  --color-golden: #dcca87;
-  --color-black: #0c0c0c;
+  --color-golden: #b59410 ;
+  --color-black: #715b0a;
   --color-gray: #545454;
   --color-crimson: #f5efdb;
   --color-grey: #aaaaaa;
@@ -18,7 +18,6 @@
   margin: 0;
   scroll-behavior: smooth;
 }
-
 a {
   color: unset;
   text-decoration: none;
@@ -27,6 +26,7 @@ a {
 li {
   list-style: none;
 }
+
 .slide-bottom {
   -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;

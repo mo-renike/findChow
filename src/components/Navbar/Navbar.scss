@@ -5,25 +5,29 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        background-color: var(--color-black);
+        background: transparent;
         align-items: center;
         padding: 1rem;
+        z-index: 5;
+        position: absolute;
+        top:0;
 
         &-logo {
-            display: flex;
-            justify-content: flex-start;
+            font-family: var(--font-base);
+            color: var(--color-black);
+            letter-spacing: 0.24em;
+            font-size: 2rem;
+            font-weight: 700;
+            font-style: italic;
+            cursor: pointer;
+            transition: .5s ease;
 
-            img {
-                width: 150px;
-
-                @include respond(phone) {
-                    width: 100px;
-                }
+            &:hover {
+                transform: translateX(9px);
             }
         }
 
         &-links {
-            flex: 1;
 
             @include respond(tab) {
                 display: none;
@@ -34,36 +38,13 @@
             li {
                 cursor: pointer;
                 margin: 0 1rem;
+                color: var(--color-black);
+                font-weight: bold;
                 transition: .5s ease;
 
                 &:hover {
                     color: var(--color-grey);
                 }
-            }
-        }
-
-        &-login {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-
-            @include respond(phone) {
-                display: none;
-            }
-
-            a {
-                margin: 0 1rem;
-                transition: .9s ease;
-
-                &:hover {
-                    border-bottom: 1px solid var(--color-golden);
-                }
-            }
-
-            div {
-                width: 1px;
-                height: 20px;
-                background-color: var(--color-grey);
             }
         }
 
@@ -98,9 +79,9 @@
 
             &-links {
                 li {
-                    margin: 1.4rem 0;
+                    margin: 2rem 0;
                     transition: .3s ease-in-out;
-                    font-size: 1.9rem;
+                    font-size: 2.5rem;
                     text-align: center;
                     color: var(--color-golden);
                     font-family: var(--font-base);

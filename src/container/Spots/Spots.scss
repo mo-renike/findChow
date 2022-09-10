@@ -1,0 +1,56 @@
+.spots {
+    background-color: #f5f5f5;
+    padding: 3rem;
+
+    .subHeading {
+        font-size: 3rem;
+    }
+
+    &__wrapper {
+        display: grid;
+        grid-gap: 1rem;
+        margin-top: 1rem;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        &_item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #ededed;
+            box-shadow: 2px 3px 3px #dedede;
+            cursor: pointer;
+            transition: .9s ease;
+            padding-top: 1rem;
+
+            &:hover {
+                box-shadow: 3px 4px 10px #dedede;
+            }
+
+            h2 {
+                font-family: var(--font-base);
+                font-weight: 600;
+                font-size: 1.5rem;
+                margin: 1.3rem auto;
+                text-transform: capitalize;
+            }
+
+            &-dets {
+                color: var(--color-golden);
+                border-radius: inherit;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                padding: 3px 7px;
+                font-weight: bold;
+
+                p {
+                    text-transform: uppercase !important;
+                    font-size: .9rem;
+                }
+            }
+        }
+    }
+}
