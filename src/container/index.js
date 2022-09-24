@@ -1,7 +1,7 @@
 import Spots from "./Spots/Spots";
 import Footer from "./Footer/Footer";
-import Gallery from "./Gallery/Gallery";
+import Tweet from "./Tweet/Tweet";
 import Header from "./Header/Header";
 import Video from "./Video/Video";
 
-export { Footer, Gallery, Header, Video, Spots };
+export { Footer, Tweet, Header, Video, Spots };

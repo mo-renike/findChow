@@ -1,24 +1,19 @@
 import React from "react";
-import { SubHeading } from "../../components/Headings/Headings";
-//import { SubHeading, Heading } from "../../components/Headings/Headings";
-import images from "../../constants/images";
+import { HashLink } from "react-router-hash-link";
+import { SubHeading, Heading } from "../../components/Headings/Headings";
 import "./Header.scss";
 
 const Header = () => {
   return (
     <div className="header" id="home">
       <div className="header__info">
-        <SubHeading title="Do You Like Amala?" />
-        <h1 className="heading">
-          How many wraps of Hot, fluffy, light, amala can you finish?
-        </h1>
+        <Heading title="How many wraps of Hot, fluffy, amala can you finish?" />
         <SubHeading
-          title="  Enable location *** and let us Hook you up with the best amala spots
-          near you..."
+          title="Everything you need to know about Amala"
         />
-        <button type="button" className="pry__button">
-          Explore Spots
-        </button>
+        <HashLink to="/#spots" className="pry__button">
+          Explore Amala Spots
+        </HashLink>
       </div>
       <div className="header__img">
         {/* <img src={images.amala} alt="intro_img" /> */}

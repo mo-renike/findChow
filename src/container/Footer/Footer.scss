@@ -1,0 +1,47 @@
+.footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: var(--font-base);
+    background-color: darken(#2d2d2d, 13);
+
+    &__copy {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 7px;
+        font-size: .8rem;
+        background-color: darken(#2d2d2d, 35);
+
+        a {
+            color: var(--color-accent);
+            margin-left: 8px;
+            transition: .5s ease;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__address {
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .subHeading {
+            color: inherit;
+        }
+    }
+
+    a {
+        transition: .3s ease-in-out;
+        font-family: var(--font-base);
+
+        &:hover {
+            transform: scale(1.1);
+            color: var(--color-accent);
+        }
+    }
+}

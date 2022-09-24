@@ -10,14 +10,20 @@
     position: relative;
     background-repeat: no-repeat;
     background-position: center;
-    height: 90vh;
+    height: 100vh;
 
     // background-color: var(--color-black);
     // display: grid;
     // grid-template-columns: 45% 45%;
     // grid-gap: 1rem;
+    @include respond(tab) {
+        padding: 1rem;
+        height: 85vh;
+    }
+
     @include respond(phone) {
         padding: 1rem;
+        height: 75vh;
     }
 
     &__info {
@@ -27,42 +33,35 @@
         width: 50%;
 
         @include respond(tab) {
+            width: 70%;
+        }
+
+        @include respond(phone) {
             width: 100%;
+            margin-top: 4rem;
         }
 
-        .subHeading {
-            color: var(--color-black);
-        }
-
-        .heading {
-            font-family: var(--font-base);
-            color: var(--color-golden);
-            letter-spacing: 0.04em;
-            text-transform: capitalize;
-            font-size: 3rem;
-            margin: 1rem 0;
-            line-height: 2.7rem;
-
-            @include respond(tab) {
-                font-size: 1.6rem;
-            }
-        }
 
         .pry__button {
             width: fit-content;
             margin: 1rem 0;
             padding: .6rem 1.5rem;
-            border: 1px solid var(--color-golden);
+            border: 1px solid var(--color-accent);
             border-radius: 4px;
-            color: var(--color-golden);
+            color: var(--color-accent);
             font-weight: bold;
             background: none;
             transition: .5s ease;
             cursor: pointer;
 
             &:hover {
-                background-color: var(--color-golden);
+                background-color: var(--color-accent);
                 color: #fff;
+            }
+
+            @include respond(sm) {
+                font-size: .9rem;
+                padding: .4rem 1.1rem;
             }
         }
     }

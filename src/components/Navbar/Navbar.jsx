@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
-
+import { HashLink } from "react-router-hash-link";
 
 import "./Navbar.scss";
 
@@ -10,13 +10,13 @@ const Navbar = () => {
 
   return (
     <nav className="app__navbar">
-      <div className="app__navbar-logo">Amala</div>
+      <div className="app__navbar-logo">Everything Amala</div>
       <ul className="app__navbar-links">
         <li className="p__opensans">
-          <a href="#home">Home</a>
+          <HashLink to="/#spots">Find Amala Spots</HashLink>
         </li>
         <li className="p__opensans">
-          <a href="#search">Find Amala Spots</a>
+          <HashLink to="/#tweets">See Tweets</HashLink>
         </li>
         <li className="p__opensans">
           <a href="#contact">Contact</a>
@@ -26,7 +26,7 @@ const Navbar = () => {
         <GiHamburgerMenu
           className="ham"
           fontSize={27}
-          color="#715b0a"
+          color="#ff2a00"
           cursor="pointer"
           onClick={() => {
             setToggle(true);
@@ -43,13 +43,20 @@ const Navbar = () => {
               }}
             />
             <ul className="app__navbar-mobile-links">
-              <li className="p__opensans">
-                <a href="#home">Home</a>
+
+              <li className="p__opensans" onClick={() => {
+                setToggle(false);
+              }}>
+                <a href="#spots">Find Amala Spots</a>
               </li>
-              <li className="p__opensans">
-                <a href="#search">Find Amala Spots</a>
+              <li className="p__opensans" onClick={() => {
+                setToggle(false);
+              }}>
+                <a href="#tweets">See Tweets</a>
               </li>
-              <li className="p__opensans">
+              <li className="p__opensans" onClick={() => {
+                setToggle(false);
+              }}>
                 <a href="#contact">Contact</a>
               </li>
             </ul>

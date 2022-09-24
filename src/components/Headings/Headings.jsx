@@ -1,5 +1,12 @@
 import React from "react";
 //import images from "../../constants/images";
+import './Headings.scss'
+
+
+export const Heading = ({ title }) => (
+  <div>  <h1 className="heading">{title}</h1>
+  </div>
+);
 
 export const SubHeading = ({ title }) => (
   <div>
@@ -8,6 +15,3 @@ export const SubHeading = ({ title }) => (
   </div>
 );
 
-export const Heading = ({ name }) => {
-  <h1 className="heading">{name}</h1>;
-};

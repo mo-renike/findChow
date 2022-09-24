@@ -1,0 +1,19 @@
+@import '../../../Stylesheets/main.scss';
+
+.video {
+    padding: .4rem 2rem;
+}
+
+iframe {
+    width: 100%;
+    object-fit: cover;
+    height: 100vh;
+
+    @include respond(tab) {
+        height: 65vh;
+    }
+
+    @include respond(phone) {
+        height: 35vh;
+    }
+}
