@@ -26,7 +26,7 @@ const Tweet = () => {
 
 
   return (
-    <div className="tweets">
+    <div id="tweets" className="tweets">
       <SubHeading title="Some Amala conversations on twitter" />
       <div className="tweets__wrapper">
         {tweets.length ? tweets.map(tweet => <SingleTweet key={tweet.id} tweet={tweet} />)

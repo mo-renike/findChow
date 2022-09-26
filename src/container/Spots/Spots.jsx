@@ -17,14 +17,13 @@ const Spots = () => {
 
 
   const setModalContent = (spot) => {
-    console.log("open")
     setModal([spot])
+    console.log(spot)
     setIsOpen(!isOpen)
   };
 
   const toggleModal = () => {
-    console.log("close")
-    setIsOpen(isOpen)
+    setIsOpen(false)
   }
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const Spots = () => {
           spots.map((spot) => (
             <div key={spot.id} className="spots__wrapper_item">
               <img
-                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${spot.photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
+                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
                 alt=""
               />
               <SubHeading title={spot.name.length < 20
@@ -83,7 +82,7 @@ const Spots = () => {
 
             </div>
           )) : <Loader />}
-        {modal.map(spot => {
+        {isOpen && modal.map(spot => {
           return (<Modal spot={spot} toggleModal={toggleModal} />)
         })}
       </div>

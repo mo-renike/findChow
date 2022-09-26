@@ -13,6 +13,7 @@
     overflow-y: hidden;
     align-items: center;
     flex-direction: column;
+    transition: .5s ease;
 
     .close {
         position: absolute;
