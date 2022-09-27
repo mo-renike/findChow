@@ -23,8 +23,12 @@
         color: #fff;
         font-size: 3rem;
         cursor: pointer;
+@include respond(phone) {
+top: 0;
+        right: 0;
+color:black;
     }
-
+}
     &__dets {
         height: 80%;
         position: relative;
