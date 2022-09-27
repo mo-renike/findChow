@@ -54,11 +54,11 @@ const Spots = () => {
     showCurrentLocation();
   }, []);
 
-  //name, business_status, geometry.location{}, opening_hours{open_now}, rating, user_ratings_total, vicinity, photos[0].html_attributions
+
 
   return (
     <div className="spots" id="spots" >
-      <SubHeading title="Showing Amala Spots Near You" />
+      <SubHeading title="Amala Spots in your area" />
       <div className="spots__wrapper">
         {spots.length ?
           spots.map((spot) => (
@@ -86,6 +86,7 @@ const Spots = () => {
           return (<Modal spot={spot} toggleModal={toggleModal} />)
         })}
       </div>
+
     </div>
   );
 };

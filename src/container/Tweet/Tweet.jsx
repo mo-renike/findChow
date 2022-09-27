@@ -23,11 +23,9 @@ const Tweet = () => {
     };
     fetchData();
   }, []);
-
-
   return (
     <div id="tweets" className="tweets">
-      <SubHeading title="Some Amala conversations on twitter" />
+      <SubHeading title="The Gospel of amala according to twitter." />
       <div className="tweets__wrapper">
         {tweets.length ? tweets.map(tweet => <SingleTweet key={tweet.id} tweet={tweet} />)
           : <Loader />}
