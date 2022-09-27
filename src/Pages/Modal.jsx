@@ -7,7 +7,7 @@ import Loader from '../components/Loader';
 
 //name, business_status, geometry.location{}, opening_hours{open_now}, rating, user_ratings_total, vicinity, photos[0].html_attributions
 const Modal = ({ spot, toggleModal }) => {
-    console.log(spot);
+    console.log(spot.geometry);
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyDCtHM9zzEmpTMx-fS9h6JviXPwyEUNq4c"
     })
