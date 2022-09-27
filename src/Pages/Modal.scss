@@ -27,7 +27,7 @@
     @include respond(phone) {
       top: 0;
       right: 0;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: black;
     }
   }
@@ -49,7 +49,7 @@
 
     @include respond(phone) {
       width: 90%;
-      padding:1rem;
+      padding: 1rem;
     }
 
     .button {
