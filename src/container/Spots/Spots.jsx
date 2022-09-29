@@ -18,7 +18,6 @@ const Spots = () => {
 
   const setModalContent = (spot) => {
     setModal([spot])
-    //console.log(spot)
     setIsOpen(!isOpen)
   };
 
@@ -64,7 +63,7 @@ const Spots = () => {
 
   return (
     <div className="spots" id="spots">
-      <SubHeading title="Amala Spots in your area" />
+      <SubHeading title="Amala Spots In your area" />
       <div className="spots__wrapper">
         {spots.length ?
           spots.map((spot) => (
