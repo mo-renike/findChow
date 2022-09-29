@@ -26,7 +26,7 @@ const Modal = ({ spot, toggleModal }) => {
         <div className="modal">
             <div className="modal__dets">
                 <GoogleMap
-                    zoom={10}
+                    zoom={15}
                     center={center}
                     mapContainerClassName="modal__dets-map"
                 >
