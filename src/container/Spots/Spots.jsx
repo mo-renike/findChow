@@ -18,7 +18,7 @@ const Spots = () => {
 
   const setModalContent = (spot) => {
     setModal([spot])
-    console.log(spot)
+    //console.log(spot)
     setIsOpen(!isOpen)
   };
 
@@ -48,16 +48,22 @@ const Spots = () => {
           //console.log(latitude, longitude);
         });
       } else {
-        window.alert("Current location not available..");
+        window.alert("Geolocation is not supported by this browser.");
       }
     };
     showCurrentLocation();
-  }, []);
 
+    //prevent background scrolling when modal is open
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [latitude, longitude, isOpen]);
 
 
   return (
-    <div className="spots" id="spots" >
+    <div className="spots" id="spots">
       <SubHeading title="Amala Spots in your area" />
       <div className="spots__wrapper">
         {spots.length ?
@@ -67,9 +73,9 @@ const Spots = () => {
                 src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
                 alt=""
               />
-              <SubHeading title={spot.name.length < 20
+              <SubHeading title={spot.name.length < 16
                 ? `${spot.name}`
-                : `${spot.name.substring(0, 20)}...`} />
+                : `${spot.name.substring(0, 16)}...`} />
 
               <div className="spots__wrapper_item-dets">
                 <p>{spot.business_status}</p>
@@ -86,6 +92,7 @@ const Spots = () => {
           return (<Modal spot={spot} toggleModal={toggleModal} />)
         })}
       </div>
+
 
     </div>
   );
