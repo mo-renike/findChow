@@ -33,7 +33,6 @@ const Spots = () => {
         `https://google-maps28.p.rapidapi.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=5000&language=en&keyword=amala&name=amala`,
         spotOptions
       );
-      // console.log(spotsData.results);
       setSpots(spotsData.results);
     };
     fetchData();
@@ -68,21 +67,22 @@ const Spots = () => {
         {spots.length ?
           spots.map((spot) => (
             <div key={spot.id} className="spots__wrapper_item">
-              <img
+              {/* <img
                 src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
                 alt={spot.name}
-              />
+              /> */}
               <SubHeading title={spot.name.length < 16
                 ? `${spot.name}`
                 : `${spot.name.substring(0, 16)}...`} />
 
               <div className="spots__wrapper_item-dets">
-                <p>{spot.business_status}</p>
+                <p> {spot.opening_hours && spot.opening_hours.open_now === true ? "Currently Open" : "Currently Closed"}
+                </p>
                 <p>&#9733; {spot.rating}</p>
               </div>
 
               <button className="button" onClick={() => setModalContent(spot)}>
-                View More Details &rarr;
+                More Details &rarr;
               </button>
 
             </div>

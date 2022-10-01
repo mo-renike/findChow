@@ -10,15 +10,19 @@
   position: relative;
   // background-repeat: no-repeat;
   // background-position: center;
+  max-width: 1350px;
   height: 85vh;
-
+  margin: auto;
   // background-color: var(--color-black);
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-gap: 2rem;
+  grid-template-columns: 48% 48%;
+
   // grid-gap: 1rem;
   @include respond(tab) {
     padding: 1rem;
-    height: 75vh;
+    height: 65vh;
+    grid-template-columns: 100%;
   }
 
   @include respond(phone) {
@@ -32,9 +36,11 @@
     padding: 2rem;
     flex-direction: column;
 
-    // @include respond(tab) {
-    //   width: 70%;
-    // }
+    @include respond(tab) {
+      width: 70%;
+      justify-content: center;
+      margin: auto;
+    }
 
     @include respond(phone) {
       //   width: 100%;
@@ -66,10 +72,26 @@
   }
 
   &__img {
+    overflow: hidden;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 100px;
     img {
       height: 100%;
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
+      cursor: pointer;
+      transition: all 0.6s ease-in-out;
+      border-radius: inherit;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    @include respond(tab) {
+      display: none;
     }
   }
 }
