@@ -69,8 +69,8 @@ const Spots = () => {
           spots.map((spot) => (
             <div key={spot.id} className="spots__wrapper_item">
               <img
-                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
-                alt=""
+                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
+                alt={spot.name}
               />
               <SubHeading title={spot.name.length < 16
                 ? `${spot.name}`

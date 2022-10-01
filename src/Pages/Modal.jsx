@@ -52,7 +52,7 @@ const Modal = ({ spot, toggleModal }) => {
                     {extraData.photos &&
                         extraData.photos.map((photo) => (
                             <img
-                                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
+                                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photo.photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
                                 alt=""
                             />
                         ))}
