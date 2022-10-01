@@ -3,6 +3,7 @@
 .spots {
   background-color: #f5f5f5;
   padding: 3rem;
+  margin-top: 3rem;
 
   @include respond(phone) {
     padding: 1rem;
@@ -47,7 +48,7 @@
 
       .subHeading {
         margin: 1.3rem 0;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
       }
 
       &-dets {

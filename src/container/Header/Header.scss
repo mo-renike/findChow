@@ -1,76 +1,75 @@
-@import '../../../Stylesheets/main.scss';
+@import "../../../Stylesheets/main.scss";
 
 .header {
-    padding: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("https://images.unsplash.com/photo-1587334207810-4915c4e40c67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80");
-    background-size: cover;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //background-image: url("https://getreliancehealth.com/blog/wp-content/uploads/2020/09/Amala-On-the-Spot.jpg");
+  // background-size: cover;
+  position: relative;
+  // background-repeat: no-repeat;
+  // background-position: center;
+  height: 85vh;
 
-    // background-color: var(--color-black);
-    // display: grid;
-    // grid-template-columns: 45% 45%;
-    // grid-gap: 1rem;
-    @include respond(tab) {
-        padding: 1rem;
-        height: 85vh;
-    }
+  // background-color: var(--color-black);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  // grid-gap: 1rem;
+  @include respond(tab) {
+    padding: 1rem;
+    height: 75vh;
+  }
+
+  @include respond(phone) {
+    padding: 1rem;
+    height: 55vh;
+    grid-template-columns: 100%;
+  }
+
+  &__info {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+
+    // @include respond(tab) {
+    //   width: 70%;
+    // }
 
     @include respond(phone) {
-        padding: 1rem;
-        height: 75vh;
+      //   width: 100%;
+      //   margin-top: 4rem;
     }
 
-    &__info {
-        display: flex;
-        padding: 2rem;
-        flex-direction: column;
-        width: 50%;
+    .pry__button {
+      width: fit-content;
+      margin: 1rem 0;
+      padding: 0.6rem 1.5rem;
+      border: 1px solid var(--color-accent);
+      border-radius: 4px;
+      color: var(--color-accent);
+      font-weight: bold;
+      background: none;
+      transition: 0.5s ease;
+      cursor: pointer;
 
-        @include respond(tab) {
-            width: 70%;
-        }
+      &:hover {
+        background-color: var(--color-accent);
+        color: #fff;
+      }
 
-        @include respond(phone) {
-            width: 100%;
-            margin-top: 4rem;
-        }
-
-
-        .pry__button {
-            width: fit-content;
-            margin: 1rem 0;
-            padding: .6rem 1.5rem;
-            border: 1px solid var(--color-accent);
-            border-radius: 4px;
-            color: var(--color-accent);
-            font-weight: bold;
-            background: none;
-            transition: .5s ease;
-            cursor: pointer;
-
-            &:hover {
-                background-color: var(--color-accent);
-                color: #fff;
-            }
-
-            @include respond(sm) {
-                font-size: .9rem;
-                padding: .4rem 1.1rem;
-            }
-        }
+      @include respond(sm) {
+        font-size: 0.9rem;
+        padding: 0.4rem 1.1rem;
+      }
     }
+  }
 
-    &__img {
-        img {
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-        }
+  &__img {
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
     }
+  }
 }

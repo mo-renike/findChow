@@ -5,9 +5,9 @@ import { Tweet, Video, Spots, Footer, Header } from "../container";
 const App = () => (
   <div>
     <Header />
-    <Tweet />
     <Video />
     <Spots />
+    <Tweet />
     <Footer />
   </div>
 );
