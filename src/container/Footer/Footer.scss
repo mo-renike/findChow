@@ -1,65 +1,71 @@
 .footer {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    font-family: var(--font-base);
-    background-color: darken(#2d2d2d, 13);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-base);
+  background-color: darken(#2d2d2d, 13);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__copy {
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
-
-    &__copy {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 7px;
-        width: 100%;
-        font-size: .8rem;
-        background-color: darken(#2d2d2d, 35);
-
-        a {
-            color: var(--color-accent);
-            margin-left: 8px;
-            transition: .5s ease;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-
-    &__address {
-        padding: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-
-        a {
-            margin: 0;
-        }
-
-        .subHeading {
-            color: inherit;
-        }
-    }
-
-    &__socials {
-        padding: 1rem 0;
-
-        a {
-            font-size: 1.5rem;
-            margin-right: .7rem;
-        }
-    }
+    padding: 7px;
+    width: 100%;
+    font-size: 0.8rem;
+    background-color: darken(#2d2d2d, 35);
 
     a {
-        transition: .3s ease-in-out;
-        font-family: var(--font-base);
+      color: var(--color-accent);
+      margin-left: 8px;
+      transition: 0.5s ease;
 
-        &:hover {
-            transform: scale(1.1);
-            color: var(--color-accent);
-        }
+      &:hover {
+        text-decoration: underline;
+      }
     }
+  }
+
+  &__address {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    a {
+      margin: 0;
+      display: flex;
+      align-items: center;
+
+      > * {
+        margin-right: 3px;
+      }
+    }
+
+    .subHeading {
+      color: inherit;
+    }
+  }
+
+  &__socials {
+    padding: 1rem 0;
+
+    a {
+      font-size: 1.5rem;
+      margin-right: 0.7rem;
+    }
+  }
+
+  a {
+    transition: 0.3s ease-in-out;
+    font-family: var(--font-base);
+
+    &:hover {
+      transform: scale(1.1);
+      color: var(--color-accent);
+    }
+  }
 }

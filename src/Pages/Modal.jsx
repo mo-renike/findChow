@@ -23,7 +23,6 @@ const Modal = ({ spot, toggleModal }) => {
         fetchData();
     }, [spot.place_id]);
 
-
     //load googlemap
     // const { isLoaded } = useLoadScript({
     //     googleMapsApiKey: "AIzaSyDCtHM9zzEmpTMx-fS9h6JviXPwyEUNq4c",
@@ -50,12 +49,14 @@ const Modal = ({ spot, toggleModal }) => {
                 <SubHeading title={spot.name} />
                 <div className="modal__photos">
                     {extraData.photos &&
-                        extraData.photos.map((photo) => (
-                            <img
-                                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photo.photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
-                                alt="img"
-                            />
-                        ))}
+                        extraData.photos
+                            .slice(0, 9)
+                            .map((photo) => (
+                                <img
+                                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photo.photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
+                                    alt="img"
+                                />
+                            ))}
                 </div>
                 <SubHeading title="Description:" />
                 <p>
@@ -64,17 +65,19 @@ const Modal = ({ spot, toggleModal }) => {
                     <strong>{spot.rating}</strong> out of{" "}
                     <strong>{spot.user_ratings_total} </strong> total ratings. <br />{" "}
                     <br />
-                    They are located at{" "}
-                    <strong>{extraData.formatted_address}</strong> and is currently{" "}
+                    They are located at <strong>{extraData.formatted_address}</strong> and
+                    is currently{" "}
                     <strong>
                         {" "}
                         {spot.opening_hours.open_now === true ? "Open Now" : "Not Open"}
                     </strong>
                     . <br /> <br />
-                    <strong>{spot.name}</strong> can be contacted on{" "} <br />
-                    <strong> {extraData.international_phone_number}</strong> and can be found on {" "}
+                    <strong>{spot.name}</strong> can be contacted on <br />
+                    <strong> {extraData.international_phone_number}</strong> and can be
+                    found on{" "}
                     <strong>
-                        <a style={{ color: "blue", textDecoration: "underline" }}
+                        <a
+                            style={{ color: "blue", textDecoration: "underline" }}
                             href={extraData.website}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -85,24 +88,30 @@ const Modal = ({ spot, toggleModal }) => {
                     <br />
                 </p>{" "}
                 <br />
-
-
                 <SubHeading title="Opening hours:" />
                 {extraData.opening_hours &&
                     extraData.opening_hours.weekday_text.map((day) => (
                         <p className="hours">{day}</p>
                     ))}
-
                 <SubHeading title="Reviews:" />
                 <div className="modal__dets_reviews">
-                    {extraData.reviews ?
-                        extraData.reviews.map((review) => (
-                            <div key={review.place_id} className="modal__dets_reviews-review">
+                    {extraData.reviews
+                        ? extraData.reviews.map((review) => (
+                            <div
+                                key={review.place_id}
+                                className="modal__dets_reviews-review"
+                            >
                                 <p className="rating"> {review.rating}-star rating</p>
-                                <p className="reviewer"><strong>{review.author_name}</strong>  - {review.relative_time_description}</p>
-                                <q><i>{review.text}</i></q>
+                                <p className="reviewer">
+                                    <strong>{review.author_name}</strong> -{" "}
+                                    {review.relative_time_description}
+                                </p>
+                                <q>
+                                    <i>{review.text}</i>
+                                </q>
                             </div>
-                        )) : "No reviews yet"}
+                        ))
+                        : "No reviews yet"}
                 </div>
                 <a
                     className="button"

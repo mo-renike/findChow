@@ -1,0 +1,48 @@
+@import "../../../Stylesheets/main.scss";
+
+.others {
+  padding: 3rem;
+
+  &__wrapper {
+    display: grid;
+    margin-top: 2rem;
+    grid-template-columns: 46% 46%;
+    grid-gap: 8%;
+    justify-content: center;
+
+    @include respond(phone) {
+      grid-template-columns: 100%;
+    }
+
+    &_card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+
+      h3 {
+        position: absolute;
+        font-size: 1.2rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background: rgba(253, 253, 253, 0.9);
+      }
+
+      img {
+        border-radius: inherit;
+        width: 100%;
+        object-fit: cover;
+        transition: all 0.6s ease-in;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+}

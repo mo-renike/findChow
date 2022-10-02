@@ -6,17 +6,19 @@
   margin-top: 3rem;
 
   @include respond(phone) {
-    padding: 1rem;
+    padding: 2rem;
+  }
+
+  &__inner {
+    width: 100%;
   }
 
   &__wrapper {
     display: grid;
     grid-gap: 2rem;
     margin-top: 1rem;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    // max-width: 1350px;
-    margin: auto;
-    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -50,6 +52,11 @@
       .subHeading {
         margin: 1.3rem 0;
         font-size: 1.4rem;
+        color: var(--color-accent);
+
+        @include respond(phone) {
+          font-size: 1.1rem;
+        }
       }
 
       &-dets {

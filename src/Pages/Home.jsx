@@ -1,14 +1,21 @@
 import React from "react";
 
-import { Tweet, Video, Spots, Footer, Header } from "../container";
+import { Tweet, Video, Spots, Header } from "../container";
+import OtherApps from "../container/OtherApp/OtherApps";
 
 const App = () => (
-  <div>
+  <div
+    style={{
+      maxWidth: "1440px",
+      width: "100%",
+      margin: "auto",
+    }}
+  >
     <Header />
     <Video />
     <Spots />
     <Tweet />
-    <Footer />
+    <OtherApps />
   </div>
 );
 

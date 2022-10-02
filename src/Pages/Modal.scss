@@ -22,21 +22,25 @@
     font-size: 2rem;
     cursor: pointer;
     transition: all 0.5s ease;
+
     &:hover {
       color: var(--color-accent);
       transform: rotate(45deg);
     }
   }
+
   &__photos {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+
     img {
       object-fit: cover;
       margin-bottom: 1rem;
     }
   }
+
   &__dets {
     height: 85%;
     overflow-y: scroll;
@@ -66,19 +70,23 @@
     .subHeading {
       font-family: var(--font-base);
     }
+
     &-map {
       width: 100%;
       height: 50%;
     }
-    .hours {
-      font-size: 0.8rem;
-    }
+
+    // .hours {
+    //   font-size: 0.8rem;
+    // }
+
     &_reviews {
       display: flex;
       //scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       overflow-x: scroll;
       width: 100%;
+
       &-review {
         //scroll-snap-align: start;
         min-width: 85%;
@@ -92,9 +100,11 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+
         .rating {
           color: var(--color-accent);
         }
+
         .reviewer {
           margin: 5px 0;
         }

@@ -5,25 +5,23 @@ import Loader from "../../components/Loader";
 import "./Spots.scss";
 import Modal from "../../Pages/Modal";
 
-
 const Spots = () => {
   const [spots, setSpots] = useState([]);
   const [latitude, setLatitude] = useState(6.4522);
   const [longitude, setLongitude] = useState(3.612);
 
-  //writing logic for modal
+  //logic for modal
   const [isOpen, setIsOpen] = useState(false);
-  const [modal, setModal] = useState([])
-
+  const [modal, setModal] = useState([]);
 
   const setModalContent = (spot) => {
-    setModal([spot])
-    setIsOpen(!isOpen)
+    setModal([spot]);
+    setIsOpen(!isOpen);
   };
 
   const toggleModal = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     //fetching all the data
@@ -59,40 +57,53 @@ const Spots = () => {
     }
   }, [latitude, longitude, isOpen]);
 
-
   return (
     <div className="spots" id="spots">
-      <SubHeading title="Amala Spots In your area" />
-      <div className="spots__wrapper">
-        {spots.length ?
-          spots.map((spot) => (
-            <div key={spot.id} className="spots__wrapper_item">
-              {/* <img
+      <div className="spots__inner">
+        <SubHeading title="Amala Spots In your area" />
+        <div className="spots__wrapper">
+          {spots.length ? (
+            spots.map((spot) => (
+              <div key={spot.id} className="spots__wrapper_item">
+                {/* <img
                 src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
                 alt={spot.name}
               /> */}
-              <SubHeading title={spot.name.length < 16
-                ? `${spot.name}`
-                : `${spot.name.substring(0, 16)}...`} />
+                <SubHeading
+                  title={
+                    spot.name.length < 16
+                      ? `${spot.name}`
+                      : `${spot.name.substring(0, 16)}...`
+                  }
+                />
 
-              <div className="spots__wrapper_item-dets">
-                <p> {spot.opening_hours && spot.opening_hours.open_now === true ? "Currently Open" : "Currently Closed"}
-                </p>
-                <p>&#9733; {spot.rating}</p>
+                <div className="spots__wrapper_item-dets">
+                  <p>
+                    {" "}
+                    {spot.opening_hours && spot.opening_hours.open_now === true
+                      ? "Currently Open"
+                      : "Currently Closed"}
+                  </p>
+                  <p>&#9733; {spot.rating}</p>
+                </div>
+
+                <button
+                  className="button"
+                  onClick={() => setModalContent(spot)}
+                >
+                  More Details &rarr;
+                </button>
               </div>
-
-              <button className="button" onClick={() => setModalContent(spot)}>
-                More Details &rarr;
-              </button>
-
-            </div>
-          )) : <Loader />}
-        {isOpen && modal.map(spot => {
-          return (<Modal spot={spot} toggleModal={toggleModal} />)
-        })}
+            ))
+          ) : (
+            <Loader />
+          )}
+          {isOpen &&
+            modal.map((spot) => {
+              return <Modal spot={spot} toggleModal={toggleModal} />;
+            })}{" "}
+        </div>
       </div>
-
-
     </div>
   );
 };
