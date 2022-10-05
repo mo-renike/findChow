@@ -16,7 +16,7 @@ const Navbar = () => {
           <HashLink to="/#spots">Find Amala Spots</HashLink>
         </li>
         <li className="p__opensans">
-          <HashLink to="/#tweets">See Tweets</HashLink>
+          <HashLink to="/#tweets">See latest Tweets</HashLink>
         </li>
         <li className="p__opensans">
           <a href="#contact">Contact</a>
