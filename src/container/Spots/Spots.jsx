@@ -28,7 +28,7 @@ const Spots = () => {
     const fetchData = async () => {
       //fetching spots data
       const spotsData = await FetchData(
-        `https://google-maps28.p.rapidapi.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=5000&language=en&keyword=amala&name=amala`,
+        `https://google-maps28.p.rapidapi.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala`,
         spotOptions
       );
       setSpots(spotsData.results);
