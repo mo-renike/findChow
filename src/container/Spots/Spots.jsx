@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { SubHeading } from "../../components/Headings/Headings";
 import { FetchData, spotOptions } from "../../FetchData";
 import Loader from "../../components/Loader";
@@ -28,10 +29,23 @@ const Spots = () => {
     const fetchData = async () => {
       //fetching spots data
       const spotsData = await FetchData(
-        `https://google-maps28.p.rapidapi.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala`,
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw`,
         spotOptions
       );
-      setSpots(spotsData.results);
+      console.log(spotsData ? spotsData : "no data");
+      setSpots(spotsData);
+
+      //fetching data using 
+      // let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw`;
+
+      // axios.get(url)
+      //   .then(response => {
+      //     console.log(response.data)
+      //   })
+      //   .catch(err => {
+      //     console.log(err.message)
+      //   })
+
     };
     fetchData();
 
@@ -43,6 +57,7 @@ const Spots = () => {
           setLongitude(position.coords.longitude);
           //console.log(latitude, longitude);
         });
+
       } else {
         window.alert("Geolocation is not supported by this browser.");
       }

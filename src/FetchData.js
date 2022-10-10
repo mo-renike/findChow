@@ -1,9 +1,6 @@
 export const spotOptions = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af",
-    "X-RapidAPI-Host": "google-maps28.p.rapidapi.com",
-  },
+  method: "get",
+  headers: {},
 };
 
 export const tweetOptions = {
@@ -16,8 +13,8 @@ export const tweetOptions = {
 export const extraOptions = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af",
-    "X-RapidAPI-Host": "google-maps28.p.rapidapi.com",
+    "X-RapidAPI-Key": "AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw",
+    "X-RapidAPI-Host": "maps.googleapis.com",
   },
 };
 export const FetchData = async (url, options) => {

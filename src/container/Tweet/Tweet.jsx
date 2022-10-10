@@ -27,7 +27,7 @@ const Tweet = () => {
     <div id="tweets" className="tweets">
       <SubHeading title="The Gospel of amala according to twitter." />
       <div className="tweets__wrapper">
-        {tweets.length ? tweets.map(tweet => <SingleTweet key={tweet.id} tweet={tweet} />)
+        {tweets.length ? tweets.map((tweet, idx) => <SingleTweet key={tweet.idx} tweet={tweet} />)
           : <Loader />}
       </div>
     </div>
