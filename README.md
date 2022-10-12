@@ -1,4 +1,5 @@
 # Everything Amala
+### Introduction to the Project
  This is A React-Based Web Application to find everything ..(well, almost everything) you need to know about amala using Google Places API.
 
 ### App Features
@@ -8,9 +9,15 @@
 - Each place has an Image, Spot Name, Total Rating, and a link to view more details.
 - Details pop-up modal Shows extra details such as images, description, opening hours, Reviews and google map link for the selected place.
 
-### Getting Started and Contribution guides
+### Getting Started 
+- git clone `https://github.com/mo-renike/everything-amala.git`
+- cd `everything-amala`
+- `npm install`
+- `npm start` or `yarn start`
+
+### Contribution guides
 - Fork the repo
-- git clone `https://github.com/mo-renike/everything-amala.git` and then open it up on your prefered code editor
+- Open it up on your prefered code editor
 - Pull upstream `git pull upstream master`
 - Create a new branch for your task e.g : `git checkout -b authentication`
 - After making changes, do `git add .`
