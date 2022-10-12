@@ -15,6 +15,8 @@
 - `npm install`
 - `npm start` or `yarn start`
 
+### Tech Stack
+**React**, *SCSS*
 ### Contribution guides
 - Fork the repo
 - Open it up on your prefered code editor
