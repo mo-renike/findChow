@@ -9,7 +9,7 @@
 - Each place has an Image, Spot Name, Total Rating, and a link to view more details.
 - Details pop-up modal Shows extra details such as images, description, opening hours, Reviews and google map link for the selected place.
 
-### Getting Started 
+### Getting Started / Installation guide
 - git clone `https://github.com/mo-renike/everything-amala.git`
 - cd `everything-amala`
 - `npm install`
