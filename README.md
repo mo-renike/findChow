@@ -30,7 +30,7 @@
 
 Here is the link to  the figma design
 `link coming soon`
-**Happy Coding!**
+**Happy Coding!!**
 
 
 **This project relies on Google Console API, it's paid so you have to create your own API KEY, and use it within the project to run it.**
