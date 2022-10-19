@@ -34,3 +34,7 @@ Here is the link to  the figma design
 
 
 **This project relies on Google Console API, it's paid so you have to create your own API KEY, and use it within the project to run it.**
+
+### License
+
+This project  is [MIT licensed](LICENSE).
