@@ -2,16 +2,75 @@ import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { HashLink } from "react-router-hash-link";
-
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 import "./Navbar.scss";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [address, setAddress]=useState("");
+  const [coordinates,setCooardinates] =useState({
+    lat:null,
+    lng:null
+  })
+  const handleSelect=async value =>{
+    const results=await geocodeByAddress(value);
+    const ll=await getLatLng(results[0]);
+    console.log(ll);
+    setAddress(value);
+    setCooardinates(ll);
+  }
 
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">Everything Amala</div>
       <ul className="app__navbar-links">
+      <li className="p__opensans" >
+      <PlacesAutocomplete
+        value={address}
+        onChange={setAddress}
+        onSelect={handleSelect}
+      >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div
+          key={suggestions.description}
+          >
+            <input
+              {...getInputProps({
+                placeholder: 'Search a Amala Restaurant',
+                className: 'location-search-input',
+                width: '50%'
+              })}
+            />
+            <div className="autocomplete-dropdown-container">
+              {loading && <div>Loading...</div>}
+              {suggestions.map(suggestion => {
+                const className = suggestion.active
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item';
+                // inline style for demonstration purpose
+                const style = suggestion.active
+                  ? { backgroundColor: 'blue', cursor: 'pointer' }
+                  : { backgroundColor: 'white', cursor: 'pointer' };
+                return (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      className,
+                      style,
+                    })}
+                  >
+                    <span>{suggestion.description}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </PlacesAutocomplete>
+      <p>Address : {address}</p>
+        </li>
         <li className="p__opensans">
           <HashLink to="/#spots">Find Amala Spots</HashLink>
         </li>
