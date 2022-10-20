@@ -30,8 +30,9 @@ Webapp that shows amala(food) restaurants closest to user location
 - Push changes to your new branch: `git push origin your-current-branch-name`
 - Create a pull request to the main branch
 
+### Design 
 Here is the link to  the figma design
-`link coming soon`
+https://www.figma.com/file/zrXRYhVrl9CsseZrFYhQPR/Everything-Amala?node-id=0%3A1
 **Happy Coding!!**
 
 
