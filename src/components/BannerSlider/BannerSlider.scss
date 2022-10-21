@@ -1,21 +1,21 @@
 @import "../../../Stylesheets/main.scss";
 
 .slider {
-  align-self: center;
+  margin-top: -42%;
+  margin-left: 53%;
+  margin-bottom: 125px;
 
-  &__container {
-    @include respond(phone) {
-      display: none;
-    }
+  @include respond(tab) {
+    margin-top: -50%;
+  }
 
-    @include respond(tab) {
-      margin-top: 155px;
-    }
+  @include respond(phone) {
+    display: none;
   }
 
   img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+    @include respond(tab) {
+      max-width: 95%;
+    }
   }
 }
