@@ -4,6 +4,7 @@
   background-color: #f5f5f5;
   padding: 3rem;
   margin-top: 3rem;
+  overflow-x: scroll !important;
 
   @include respond(phone) {
     padding: 2rem;

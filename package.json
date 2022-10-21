@@ -20,8 +20,10 @@
     "react-router-dom": "^6.3.0",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-tweet-embed": "^2.0.0",
     "react-twitter-embed": "^4.0.4",
+    "slick-carousel": "^1.8.1",
     "swiper": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
