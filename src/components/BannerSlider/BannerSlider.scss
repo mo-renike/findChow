@@ -1,0 +1,48 @@
+@import "../../../Stylesheets/main.scss";
+
+.slider {
+  &__container {
+    position: absolute;
+    top: 20vh;
+    left: 55vw;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  &__circle--first,
+  &__circle--first::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--color-accent);
+    z-index: -1;
+  }
+
+  &__circle--first {
+    transform: translate(-100%, -50%);
+    height: 450px;
+    width: 250px;
+    border-radius: 220px 0 0 220px;
+  }
+
+  &__circle--first::after {
+    content: "";
+    transform: translate(0, -50%);
+    height: 490px;
+    width: 245px;
+    border-radius: 0 250px 250px 0;
+    left: 250px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+
+    @include respond(tab) {
+      max-width: 70%;
+    }
+  }
+}

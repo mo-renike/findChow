@@ -12,7 +12,7 @@ const App = () => (
     }}
   >
     <Header />
-    <Video />
+    {/* <Video /> */}
     <Spots />
     <Tweet />
     <OtherApps />

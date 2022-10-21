@@ -24,11 +24,15 @@
   font-family: var(--font-base);
   letter-spacing: 0.04em;
   text-transform: capitalize;
-  font-size: 3.1rem;
-  color: var(--color-accent);
-
+  font-size: 3rem;
+  color: var(--color-black);
   font-weight: bold;
   line-height: normal;
+
+  em {
+    color: var(--color-accent);
+    font-style: normal;
+  }
   @include respond(tab) {
     font-size: 2.8rem;
   }
