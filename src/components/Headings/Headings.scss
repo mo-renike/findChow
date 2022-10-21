@@ -14,10 +14,6 @@
   @include respond(phone) {
     font-size: 1.5rem;
   }
-
-  //   @include respond(sm) {
-  //     font-size: 1rem;
-  //   }
 }
 
 .heading {
@@ -28,6 +24,14 @@
   color: var(--color-black);
   font-weight: bold;
   line-height: normal;
+
+  @include respond(tab) {
+    width: 150%;
+  }
+
+  @include respond(phone) {
+    width: 80%;
+  }
 
   em {
     color: var(--color-accent);

@@ -15,7 +15,7 @@ const title = () => {
 console.log(title);
 const Header = () => {
   return (
-    <div className="header" id="home">
+    <section className="header" id="home">
       <div className="header__info">
         <Heading
           title={[
@@ -34,7 +34,7 @@ const Header = () => {
         </HashLink>
       </div>
       <BannerSlider />
-    </div>
+    </section>
     // <div className="header2" id="home">
     //   <div className="header2__info">
     //     <Heading title="How many wraps of  " />

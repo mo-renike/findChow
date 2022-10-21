@@ -2,54 +2,53 @@
 
 .header {
   height: 100%;
+  min-height: 750px;
   padding-top: 25vh;
   margin: auto;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-  &::after {
+  &::before {
     content: "";
     z-index: -2;
     position: absolute;
     top: -15px;
     left: -100vw;
     right: 0;
-    border-radius: 0px 0px 22000px 0px;
+    border-radius: 0 0 22000px 0;
     background-color: var(--color-main);
     height: 110%;
     max-height: 750px;
     border: 15px solid rgb(244, 224, 77);
 
     @include respond(phone) {
-      right: -155px;
-      height: 110%;
+      border-radius: 0 0 70% 0;
     }
-  }
 
-  @include respond(tab) {
-    padding: 1rem;
-    height: 70vh;
-    margin-bottom: 210px;
+    @include respond(tab) {
+      border-radius: 0 0 50% 0;
+      height: 80%;
+    }
   }
 
   @include respond(phone) {
     padding: 1rem;
-    height: 60vh;
+    grid-template-columns: 1fr;
+  }
+
+  @include respond(tab) {
+    padding-top: 0;
   }
 
   &__info {
     display: flex;
+
     padding: 2rem;
     flex-direction: column;
-    max-width: 45%;
     margin-left: 5%;
 
     @include respond(tab) {
       margin-top: 3rem;
-      max-width: 65%;
-    }
-
-    @include respond(phone) {
-      max-width: 100%;
     }
 
     .pry__button {
@@ -61,6 +60,7 @@
       border-radius: 24px;
       color: var(--color-white);
       font-size: 18px;
+      text-align: center;
       transition: 0.5s ease;
       cursor: pointer;
 
@@ -85,6 +85,7 @@
     font-size: 16px;
     line-height: 200%;
     letter-spacing: 0.0015em;
+    max-width: 380px;
 
     @include respond(tab) {
       padding-bottom: 20px;

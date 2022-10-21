@@ -1,18 +1,19 @@
 @import "../../../Stylesheets/main.scss";
 
 .slider {
-  &__container {
-    position: absolute;
-    top: 20vh;
-    left: 55vw;
+  align-self: center;
 
+  &__container {
     @include respond(phone) {
       display: none;
     }
+
+    @include respond(tab) {
+      margin-top: 155px;
+    }
   }
 
-  &__circle--first,
-  &__circle--first::after {
+  &__circle--first {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -27,22 +28,9 @@
     border-radius: 220px 0 0 220px;
   }
 
-  &__circle--first::after {
-    content: "";
-    transform: translate(0, -50%);
-    height: 490px;
-    width: 245px;
-    border-radius: 0 250px 250px 0;
-    left: 250px;
-  }
-
   img {
     display: block;
     max-width: 100%;
     height: auto;
-
-    @include respond(tab) {
-      max-width: 70%;
-    }
   }
 }
