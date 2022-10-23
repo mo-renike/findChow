@@ -2,7 +2,7 @@
 Webapp that shows amala(food) restaurants closest to user location 
 # Everything Amala
 ### Introduction to the Project
- This is A React-Based Web Application to find everything ..(well, almost everything) you need to know about amala using Google Places API.
+ This is A React-Based Web Application to find everything ..(well, almost everything) you need to know about amala using Google Places API.  
 
 ### App Features
 - Display X number of amala spots by default using a default location (Near Lekki, Lagos Nigeria). 
