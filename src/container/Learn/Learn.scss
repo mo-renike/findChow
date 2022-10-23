@@ -1,0 +1,31 @@
+@import "../../../Stylesheets/main.scss";
+
+.learn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 50px;
+
+  @include respond(phone) {
+    grid-template-columns: 1fr;
+  }
+
+  &__imageContainer {
+    padding: 0 120px 40px;
+    align-self: center;
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__textContainer {
+    align-self: center;
+    max-width: 550px;
+    padding-right: 40px;
+
+    @include respond(phone) {
+      padding-left: 40px;
+    }
+  }
+}

@@ -81,7 +81,7 @@ const Navbar = () => {
           <HashLink to="/#tweets">See Tweets</HashLink>
         </li>
         <li className="app__navbar-link">
-          <HashLink to="/#tweets">Learn</HashLink>
+          <HashLink to="/#learn">Learn</HashLink>
         </li>
         <HashLink to="/#spots">
           <button className="app__navbar-button">Find Amala Spots</button>
@@ -114,7 +114,7 @@ const Navbar = () => {
                   setToggle(false);
                 }}
               >
-                <a href="#spots">Find Amala Spots</a>
+                <a href="#contact">Contact</a>
               </li>
               <li
                 className="p__opensans"
@@ -130,7 +130,15 @@ const Navbar = () => {
                   setToggle(false);
                 }}
               >
-                <a href="#contact">Contact</a>
+                <a href="#learn">Learn</a>
+              </li>
+              <li
+                className="p__opensans"
+                onClick={() => {
+                  setToggle(false);
+                }}
+              >
+                <a href="#spots">Find Amala Spots</a>
               </li>
             </ul>
           </div>
