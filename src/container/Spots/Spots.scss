@@ -50,16 +50,6 @@
       //     box-shadow: 1px 2px 2px var(--color-accent);
       // }
 
-      .subHeading {
-        margin: 1.3rem 0;
-        font-size: 1.4rem;
-        color: var(--color-accent);
-
-        @include respond(phone) {
-          font-size: 1.1rem;
-        }
-      }
-
       &-dets {
         border-radius: inherit;
         width: 100%;

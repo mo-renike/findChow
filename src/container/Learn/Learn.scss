@@ -1,0 +1,41 @@
+@import "../../../Stylesheets/main.scss";
+
+.learn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @include respond(phone) {
+    padding-top: 50px;
+    grid-template-columns: 1fr;
+  }
+
+  &__imageContainer {
+    padding: 0 120px 40px;
+    align-self: center;
+
+    @include respond(tab) {
+      padding: 0 40px 40px;
+    }
+
+    @include respond(phone) {
+      grid-row: 2 / 2;
+      padding-top: 50px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__textContainer {
+    align-self: center;
+    max-width: 550px;
+    padding-right: 40px;
+
+    @include respond(phone) {
+      padding-left: 40px;
+    }
+  }
+}

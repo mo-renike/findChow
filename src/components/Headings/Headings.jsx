@@ -4,5 +4,5 @@ import "./Headings.scss";
 export const Heading = ({ title }) => <h1 className="heading">{title}</h1>;
 
 export const SubHeading = ({ title }) => (
-  <h4 className="subHeading">{title}</h4>
+  <h2 className="subHeading">{title}</h2>
 );

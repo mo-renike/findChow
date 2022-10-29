@@ -17,7 +17,7 @@
     right: 0;
     border-radius: 0 0 22000px 0;
     background-color: var(--color-main);
-    height: 120%;
+    height: 125%;
     max-height: 750px;
     border: 15px solid rgb(244, 224, 77);
 
@@ -79,12 +79,6 @@
   &__text {
     display: block;
     padding: 20px 0 50px;
-    color: var(--color-black);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 200%;
-    letter-spacing: 0.0015em;
     max-width: 380px;
 
     @include respond(tab) {

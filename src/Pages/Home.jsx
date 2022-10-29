@@ -1,7 +1,7 @@
 import React from "react";
 import BannerSlider from "../components/BannerSlider/BannerSlider";
 
-import { Tweet, Video, Spots, Header } from "../container";
+import { Tweet, Spots, Header, Learn } from "../container";
 import OtherApps from "../container/OtherApp/OtherApps";
 
 const App = () => (
@@ -14,7 +14,7 @@ const App = () => (
   >
     <Header />
     <BannerSlider />
-    {/* <Video /> */}
+    <Learn />
     <Spots />
     <Tweet />
     <OtherApps />
