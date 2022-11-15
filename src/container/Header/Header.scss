@@ -1,194 +1,112 @@
 @import "../../../Stylesheets/main.scss";
 
 .header {
-  height: 100%;
-  min-height: 750px;
-  padding-top: 25vh;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  @include respond(tabport) {
+    height: 65vh;
+  }
+  @include respond(phone) {
+    height: 75vh;
+  }
   &::before {
     content: "";
     z-index: -2;
     position: absolute;
-    top: -15px;
-    left: -100vw;
+    top: 0;
     right: 0;
     border-radius: 0 0 22000px 0;
+    border-top-color: var(--color-main) !important;
     background-color: var(--color-main);
-    height: 125%;
-    max-height: 750px;
+    height: 100%;
+    width: 100%;
     border: 15px solid rgb(244, 224, 77);
 
-    @include respond(phone) {
-      border-radius: 0 0 70% 0;
-    }
-
-    @include respond(tab) {
-      border-radius: 0 0 50% 0;
-      height: 80%;
+    @include respond(tabport) {
+      border-radius: 0 0 0 0;
+      border: none;
     }
   }
 
-  @include respond(phone) {
-    padding: 1rem;
-    grid-template-columns: 1fr;
-  }
+  &__wrapper {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
 
-  @include respond(tab) {
-    padding-top: 0;
+    @include respond(tabport) {
+      grid-template-columns: 100%;
+    }
   }
 
   &__info {
     display: flex;
-
     padding: 2rem;
     flex-direction: column;
-    margin-left: 5%;
-
-    @include respond(tab) {
-      margin-top: 3rem;
+    margin-left: 7%;
+    @include respond(tabland) {
+      margin: 0;
     }
+    &-text {
+      display: block;
+      padding: 1rem 0;
+      max-width: 380px;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--color-black);
+      font-family: var(--font-base);
 
-    .pry__button {
-      width: fit-content;
-      margin: 1rem 0;
-      padding: 1rem 2rem;
-      border: 1px solid var(--color-accent);
-      background-color: var(--color-accent);
-      border-radius: 24px;
-      color: var(--color-white);
-      font-size: 18px;
-      text-align: center;
-      transition: 0.5s ease;
-      cursor: pointer;
+      @include respond(tab) {
+        font-size: 2.8rem;
+      }
 
-      // &:hover {
-      //   background-color: var(--color-accent);
-      //   color: #fff;
-      // }
+      @include respond(phone) {
+        font-size: 2rem;
+      }
 
       @include respond(sm) {
-        font-size: 0.9rem;
-        padding: 0.4rem 1.1rem;
+        font-size: 1.6rem;
+      }
+
+      em {
+        color: var(--color-accent);
+        font-style: italic;
       }
     }
   }
-
-  &__text {
-    display: block;
-    padding: 20px 0 50px;
-    max-width: 380px;
-
-    @include respond(tab) {
-      padding-bottom: 20px;
-    }
-  }
-
-  &__img {
-    overflow: hidden;
-    border-top-left-radius: 150px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 150px;
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      cursor: pointer;
-      transition: all 0.6s ease-in-out;
-      border-radius: inherit;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
-
-    @include respond(tab) {
+  .slider {
+    @include respond(tabport) {
       display: none;
     }
   }
 }
 
-//second hero section design
+.pry__button {
+  width: fit-content;
+  padding: var(--padding-btn);
+  border: 1px solid var(--color-accent);
+  background-color: var(--color-accent);
+  border-radius: var(--border-radius-btn);
+  color: var(--color-white);
+  text-align: center;
+  transition: 0.5s ease;
 
-.header2 {
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  margin-bottom: 2rem;
-
-  &__info {
-    width: 50%;
-    display: flex;
-    padding: 2rem;
-    flex-direction: column;
-
-    @include respond(tab) {
-      width: 70%;
-      justify-content: center;
-      margin: auto;
-    }
-
-    @include respond(phone) {
-      width: 100%;
-      //   margin-top: 4rem;
-    }
-
-    .pry__button {
-      width: fit-content;
-      margin: 1rem 0;
-      padding: 0.6rem 1.5rem;
-      border: 1px solid var(--color-accent);
-      border-radius: 4px;
-      color: var(--color-accent);
-      font-weight: bold;
-      background: none;
-      transition: 0.5s ease;
-      cursor: pointer;
-
-      &:hover {
-        background-color: var(--color-accent);
-        color: #fff;
-      }
-
-      @include respond(sm) {
-        font-size: 0.9rem;
-        padding: 0.4rem 1.1rem;
-      }
-    }
+  &:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: transparent;
   }
 
-  &__imgs {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 1rem;
-    height: 35%;
-
-    &-img {
-      overflow: hidden;
-      height: 100%;
-      padding: 0.4rem;
-      border-radius: 50%;
-
-      img {
-        width: 100%;
-        border-radius: inherit;
-        height: 100%;
-        object-fit: cover;
-        cursor: pointer;
-        transition: all 0.6s ease-in-out;
-
-        &:hover {
-          transform: scale(1.1);
-        }
-      }
-    }
+  @include respond(sm) {
+    font-size: 0.9rem;
+    padding: 0.4rem 1.1rem;
   }
 }

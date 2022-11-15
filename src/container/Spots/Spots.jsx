@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+//import axios from "axios";
 import { SubHeading } from "../../components/Headings/Headings";
 import { FetchData, spotOptions } from "../../FetchData";
 import Loader from "../../components/Loader";
@@ -24,30 +24,23 @@ const Spots = () => {
     setIsOpen(false);
   };
 
+
   useEffect(() => {
-    //fetching all the data
+    //fetching all the data  
+
+    let url = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyDQJJQIiUuU8tw53akZ10d9ArbAK8BXHu0`;
+
     const fetchData = async () => {
       //fetching spots data
       const spotsData = await FetchData(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw`,
+        url,
         spotOptions
       );
-      console.log(spotsData ? spotsData : "no data");
-      setSpots(spotsData);
-
-      //fetching data using 
-      // let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw`;
-
-      // axios.get(url)
-      //   .then(response => {
-      //     console.log(response.data)
-      //   })
-      //   .catch(err => {
-      //     console.log(err.message)
-      //   })
-
-    };
+      console.log(spotsData.results);
+      setSpots(spotsData.results);
+    }
     fetchData();
+
 
     // get user location
     const showCurrentLocation = () => {
@@ -72,6 +65,7 @@ const Spots = () => {
     }
   }, [latitude, longitude, isOpen]);
 
+
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
@@ -79,7 +73,7 @@ const Spots = () => {
         <div className="spots__wrapper">
           {spots.length ? (
             spots.map((spot) => (
-              <div key={spot.id} className="spots__wrapper_item">
+              <div key={spot.place_id} className="spots__wrapper_item">
                 {/* <img
                 src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
                 alt={spot.name}
@@ -114,8 +108,8 @@ const Spots = () => {
             <Loader />
           )}
           {isOpen &&
-            modal.map((spot) => {
-              return <Modal spot={spot} toggleModal={toggleModal} />;
+            modal.map((spot, idx) => {
+              return <Modal spot={spot} key={idx} toggleModal={toggleModal} />;
             })}{" "}
         </div>
       </div>

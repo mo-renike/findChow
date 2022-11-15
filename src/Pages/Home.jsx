@@ -1,23 +1,12 @@
 import React from "react";
-import BannerSlider from "../components/BannerSlider/BannerSlider";
-
-import { Tweet, Spots, Header, Learn } from "../container";
-import OtherApps from "../container/OtherApp/OtherApps";
+import { Tweet, Spots, Learn, Header } from "../container";
 
 const App = () => (
-  <div
-    style={{
-      maxWidth: "1440px",
-      width: "100%",
-      margin: "auto",
-    }}
-  >
-    <Header />
-    <BannerSlider />
+  <div>
+    <Header /> <br /> <br />
     <Learn />
     <Spots />
     <Tweet />
-    <OtherApps />
   </div>
 );
 

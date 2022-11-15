@@ -1,31 +1,33 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { HashLink } from "react-router-hash-link";
-// import PlacesAutocomplete, {
-//   geocodeByAddress,
-//   getLatLng,
-// } from "react-places-autocomplete";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 import "./Navbar.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  // const [address, setAddress] = useState("");
-  // const [coordinates, setCooardinates] = useState({
-  //   lat: null,
-  //   lng: null,
-  // });
-  // const handleSelect = async (value) => {
-  //   const results = await geocodeByAddress(value);
-  //   const ll = await getLatLng(results[0]);
-  //   console.log(ll);
-  //   setAddress(value);
-  //   setCooardinates(ll);
-  // };
+  const [address, setAddress] = useState("");
+  const [coordinates, setCooardinates] = useState({
+    lat: null,
+    lng: null,
+  });
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const ll = await getLatLng(results[0]);
+    console.log(ll);
+    setAddress(value);
+    setCooardinates(ll);
+  };
 
   return (
     <nav className="app__navbar">
-      <div className="app__navbar-logo">Everything Amala</div>
+      <Link to="/" className="app__navbar-logo">Everything Amala</Link>
       <ul className="app__navbar-links">
         {/* <li className="p__opensans">
           <PlacesAutocomplete

@@ -3,12 +3,15 @@
 :root {
   --font-base: "Cormorant Upright", serif;
   --font-alt: "Open Sans", sans-serif;
-
   --color-accent: #af1b3f;
   --color-main: #ecd444;
   --color-black: #2d2d2d;
   --color-gray: #858585;
   --color-white: #ffffff;
+  --border-radius-btn: 18px;
+  --padding-btn: 0.8rem 1.6rem;
+  --padding-btn-sm: 0.2rem 1rem;
+  --box-shadow: 0px 1px 1px 1px #555;
 }
 
 * {
@@ -17,17 +20,27 @@
   margin: 0;
   scroll-behavior: smooth;
 }
-
+body {
+  font-size: 16px;
+  color: var(--color-black);
+}
 a {
   color: unset;
   text-decoration: none;
-  cursor: pointer;
 }
-
+a,
+button {
+  cursor: pointer;
+  font-weight: bold;
+}
 li {
   list-style: none;
 }
-
+.bg-yellow {
+  background-color: var(--color-main) !important;
+  border-color: var(--color-main) !important;
+  color: var(--color-black) !important;
+}
 .slide-bottom {
   -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;

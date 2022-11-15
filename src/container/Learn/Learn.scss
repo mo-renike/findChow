@@ -1,25 +1,22 @@
 @import "../../../Stylesheets/main.scss";
 
 .learn {
+  margin-top: 1rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
+  padding: 3rem;
+  align-items: center;
+  max-width: 1440px;
+  margin: auto;
 
   @include respond(phone) {
-    padding-top: 50px;
-    grid-template-columns: 1fr;
+    padding: 1rem;
+    grid-template-columns: 100%;
   }
 
-  &__imageContainer {
-    padding: 0 120px 40px;
-    align-self: center;
-
-    @include respond(tab) {
-      padding: 0 40px 40px;
-    }
-
+  &__img {
     @include respond(phone) {
-      grid-row: 2 / 2;
-      padding-top: 50px;
+      display: none;
     }
 
     img {
@@ -29,13 +26,22 @@
     }
   }
 
-  &__textContainer {
-    align-self: center;
-    max-width: 550px;
-    padding-right: 40px;
-
-    @include respond(phone) {
-      padding-left: 40px;
+  &__text {
+    max-width: 450px;
+    width: auto;
+    span {
+      opacity: 0.4;
+    }
+    h2 {
+      color: var(--color-accent) !important;
+      margin-top: 0;
+    }
+    a {
+      display: inline-block;
+      margin: 0.5rem 0;
+      background-color: var(--color-main) !important;
+      border-color: var(--color-main) !important;
+      color: var(--color-accent) !important;
     }
   }
 }

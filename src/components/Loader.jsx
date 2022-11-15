@@ -6,12 +6,12 @@ const Loader = () => {
     <div>
       <ColorRing
         visible={true}
-        height="100"
-        width="100"
+        height="150"
+        width="150"
         ariaLabel="blocks-loading"
         wrapperStyle={{}}
         wrapperClass="blocks-wrapper"
-        colors={["#fa3701", "#B2A3B5", "#fa3701", "#345678", "#05f340"]}
+        colors={["#af1b3f", "#ecd444", "#af1b3f", "#ecd444", "#af1b37"]}
       />
     </div>
   );

@@ -15,7 +15,7 @@ const Modal = ({ spot, toggleModal }) => {
     useEffect(() => {
         const fetchData = async () => {
             const spotData = await FetchData(
-                `https://maps.googleapis.com/maps/api/place/details/json?place_id=${spot.place_id}&fields=address_component,adr_address,formatted_address,name,permanently_closed,photo,place_id,type,url,formatted_phone_number,international_phone_number,opening_hours,website,price_level,rating,review,user_ratings_total`,
+                `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${spot.place_id}&fields=address_component,adr_address,formatted_address,name,permanently_closed,photo,place_id,type,url,formatted_phone_number,international_phone_number,opening_hours,website,price_level,rating,review,user_ratings_total`,
                 extraOptions
             );
             console.log(spotData.result);
@@ -49,7 +49,7 @@ const Modal = ({ spot, toggleModal }) => {
                 </GoogleMap> : <Loader />} */}
                 <SubHeading title={spot.name} />
                 <div className="modal__photos">
-                    {extraData.photos &&
+                    {/* {extraData.photos &&
                         extraData.photos
                             .slice(0, 9)
                             .map((photo) => (
@@ -57,7 +57,7 @@ const Modal = ({ spot, toggleModal }) => {
                                     src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photo.photo_reference}&key=AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw`}
                                     alt="img"
                                 />
-                            ))}
+                            ))} */}
                 </div>
                 <SubHeading title="Description:" />
                 <p>
@@ -69,7 +69,6 @@ const Modal = ({ spot, toggleModal }) => {
                     They are located at <strong>{extraData.formatted_address}</strong> and
                     is currently{" "}
                     <strong>
-                        {" "}
                         {spot.opening_hours.open_now === true ? "Open Now" : "Not Open"}
                     </strong>
                     . <br /> <br />
