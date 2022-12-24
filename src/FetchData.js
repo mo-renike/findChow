@@ -1,6 +1,12 @@
 export const spotOptions = {
   method: "get",
-  headers: {},
+  // prevent cors error
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
 };
 
 export const tweetOptions = {
@@ -12,14 +18,20 @@ export const tweetOptions = {
 };
 export const extraOptions = {
   method: "GET",
+  // mode: "no-cors",
   headers: {
     "X-RapidAPI-Key": "AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw",
     "X-RapidAPI-Host": "maps.googleapis.com",
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
+
 export const FetchData = async (url, options) => {
   const res = await fetch(url, options);
-  const data = await res.json();
 
+  const data = await res.json();
+  console.log(data );
   return data;
 };

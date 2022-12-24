@@ -27,8 +27,9 @@ const Spots = () => {
 
   useEffect(() => {
     //fetching all the data  
-
-    let url = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyDQJJQIiUuU8tw53akZ10d9ArbAK8BXHu0`;
+    //get key from env file
+    // let key = AIzaSyDQJJQIiUuU8tw53akZ10d9ArbAK8BXHu0;
+    let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyDQJJQIiUuU8tw53akZ10d9ArbAK8BXHu0`;
 
     const fetchData = async () => {
       //fetching spots data
@@ -69,7 +70,8 @@ const Spots = () => {
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
-        <SubHeading title="Amala Spots In your area" />
+        {/* <SubHeading title="Amala Spots In your area" /> */}
+        <h2 className="subHeading">Showing {spots.length} Amala Spots near You</h2>
         <div className="spots__wrapper">
           {spots.length ? (
             spots.map((spot) => (
@@ -110,7 +112,7 @@ const Spots = () => {
           {isOpen &&
             modal.map((spot, idx) => {
               return <Modal spot={spot} key={idx} toggleModal={toggleModal} />;
-            })}{" "}
+            })}
         </div>
       </div>
     </div>

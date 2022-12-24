@@ -17,14 +17,7 @@ const Header = () => {
     <section className="header" id="home">
       <div className="header__wrapper">
         <div className="header__info">
-          {/* <Heading
-          title={[
-            "How Many Wraps of ",
-            <em>Hot, Fluffy Amala</em>,
-            " Can You Finish?",
-          ]}
-        /> */}
-          <h1>    How Many Wraps of <em>Hot, Fluffy Amala</em> Can You Finish?</h1>
+          <h1>How Many Wraps of <em>Hot, Fluffy Amala</em> Can You Finish?</h1>
           <p className="header__info-text">
             Your number one stop for everything amala. Find amala spots closest to
             you, Learn how to make amala on your own, read or engage in online

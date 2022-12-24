@@ -1,6 +1,8 @@
 import "./Learn.scss";
 import image from "../../images/learn.png";
 import { SubHeading } from "../../components/Headings/Headings";
+
+
 const Learn = () => {
 
   return (
@@ -9,8 +11,9 @@ const Learn = () => {
         <img src={image} alt="" />
       </div>
       <div className="learn__text">
-        <span className="subHeader-small">LEARN</span>
+        <span>LEARN</span>
         <SubHeading title="Amala without Lumps" />
+
         <p>
           The great thing about Amala is that it is quick and easy to prepare,
           but then, if you are not careful you may end up with lumps that will

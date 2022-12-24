@@ -15,7 +15,7 @@ const Modal = ({ spot, toggleModal }) => {
     useEffect(() => {
         const fetchData = async () => {
             const spotData = await FetchData(
-                `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${spot.place_id}&fields=address_component,adr_address,formatted_address,name,permanently_closed,photo,place_id,type,url,formatted_phone_number,international_phone_number,opening_hours,website,price_level,rating,review,user_ratings_total`,
+                `https://maps.googleapis.com/maps/api/place/details/json?place_id=${spot.place_id}&fields=address_component,adr_address,formatted_address,name,permanently_closed,photo,place_id,type,url,formatted_phone_number,international_phone_number,opening_hours,website,price_level,rating,review,user_ratings_total`,
                 extraOptions
             );
             console.log(spotData.result);
@@ -23,6 +23,7 @@ const Modal = ({ spot, toggleModal }) => {
         };
         fetchData();
     }, [spot.place_id]);
+
 
     //load googlemap
     // const { isLoaded } = useLoadScript({

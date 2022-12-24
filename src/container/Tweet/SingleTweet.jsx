@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { TwitterTweetEmbed } from "react-twitter-embed";
-import './Tweetss.scss'
+import './Tweetss.scss';
 
 const SingleTweet = ({ tweet }) => {
+
     return (
         <div className="tweets__wrapper_item">
             <TwitterTweetEmbed onLoad={function noRefCheck() { }}

@@ -7,12 +7,15 @@
   align-items: center;
   justify-content: center;
   position: relative;
+
   @include respond(tabport) {
-    height: 65vh;
+    height: 70vh;
   }
+
   @include respond(phone) {
-    height: 75vh;
+    height: 100vh;
   }
+
   &::before {
     content: "";
     z-index: -2;
@@ -50,17 +53,20 @@
     padding: 2rem;
     flex-direction: column;
     margin-left: 7%;
+
     @include respond(tabland) {
       margin: 0;
     }
+
     &-text {
       display: block;
       padding: 1rem 0;
       max-width: 380px;
     }
+
     h1 {
       font-size: 3rem;
-      font-weight: 700;
+      font-weight: 900;
       color: var(--color-black);
       font-family: var(--font-base);
 
@@ -82,6 +88,7 @@
       }
     }
   }
+
   .slider {
     @include respond(tabport) {
       display: none;

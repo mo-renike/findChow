@@ -7,6 +7,7 @@
   --color-main: #ecd444;
   --color-black: #2d2d2d;
   --color-gray: #858585;
+  --color-btn: #1c0b19;
   --color-white: #ffffff;
   --border-radius-btn: 18px;
   --padding-btn: 0.8rem 1.6rem;
@@ -23,6 +24,13 @@
 body {
   font-size: 16px;
   color: var(--color-black);
+  font-family: var(--font-alt);
+}
+h1 {
+  line-height: 1.4;
+}
+p {
+  line-height: 1.4;
 }
 a {
   color: unset;
@@ -32,15 +40,12 @@ a,
 button {
   cursor: pointer;
   font-weight: bold;
+  font-family: var(--font-alt);
 }
 li {
   list-style: none;
 }
-.bg-yellow {
-  background-color: var(--color-main) !important;
-  border-color: var(--color-main) !important;
-  color: var(--color-black) !important;
-}
+
 .slide-bottom {
   -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
