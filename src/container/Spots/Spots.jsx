@@ -27,18 +27,16 @@ const Spots = () => {
 
   useEffect(() => {
     //fetching all the data  
-    //get key from env file
-    // let key = AIzaSyDQJJQIiUuU8tw53akZ10d9ArbAK8BXHu0;
-    let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=AIzaSyDQJJQIiUuU8tw53akZ10d9ArbAK8BXHu0`;
-
+    // let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=${key}`;
+    let url = `https://local-business-data.p.rapidapi.com/search-nearby?query=amala&lat=${latitude}&lng=${longitude}&limit=20&language=en'`
     const fetchData = async () => {
       //fetching spots data
       const spotsData = await FetchData(
         url,
         spotOptions
       );
-      console.log(spotsData.results);
-      setSpots(spotsData.results);
+      // console.log(spotsData.data);
+      setSpots(spotsData.data);
     }
     fetchData();
 
@@ -71,9 +69,9 @@ const Spots = () => {
     <div className="spots" id="spots">
       <div className="spots__inner">
         {/* <SubHeading title="Amala Spots In your area" /> */}
-        <h2 className="subHeading">Showing {spots.length} Amala Spots near You</h2>
+        <h2 className="subHeading">Showing  Amala Spots near You</h2>
         <div className="spots__wrapper">
-          {spots.length ? (
+          {spots && (
             spots.map((spot) => (
               <div key={spot.place_id} className="spots__wrapper_item">
                 {/* <img
@@ -106,8 +104,6 @@ const Spots = () => {
                 </button>
               </div>
             ))
-          ) : (
-            <Loader />
           )}
           {isOpen &&
             modal.map((spot, idx) => {

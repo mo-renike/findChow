@@ -1,11 +1,8 @@
 export const spotOptions = {
-  method: "get",
-  // prevent cors error
-  mode: "no-cors",
+  method: "GET",
   headers: {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    "X-RapidAPI-Key": "b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af",
+    "X-RapidAPI-Host": "local-business-data.p.rapidapi.com",
   },
 };
 
@@ -18,20 +15,14 @@ export const tweetOptions = {
 };
 export const extraOptions = {
   method: "GET",
-  // mode: "no-cors",
   headers: {
-    "X-RapidAPI-Key": "AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw",
-    "X-RapidAPI-Host": "maps.googleapis.com",
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    "X-RapidAPI-Key": "b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af",
+    "X-RapidAPI-Host": "local-business-data.p.rapidapi.com",
   },
 };
 
 export const FetchData = async (url, options) => {
   const res = await fetch(url, options);
-
   const data = await res.json();
-  console.log(data );
   return data;
 };

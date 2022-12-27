@@ -18,7 +18,7 @@ const Tweet = () => {
       );
       const tweetsObj = tweetsData.globalObjects.tweets;
       const tweetsArr = Object.entries(tweetsObj);
-      console.log(tweetsArr);
+      // console.log(tweetsArr);
       setTweets(tweetsArr);
     };
     fetchData();
