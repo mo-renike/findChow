@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { SubHeading } from "../components/Headings/Headings";
 import "./Modal.scss";
-import { FetchData, extraOptions } from "../FetchData";
+//import { FetchData, extraOptions } from "../FetchData";
 import { FaTimes } from "react-icons/fa";
 //import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 //import Loader from "../components/Loader";
@@ -10,24 +10,24 @@ import { FaTimes } from "react-icons/fa";
 const Modal = ({ spot, toggleModal }) => {
     console.log(spot);
 
-    const [extraData, setExtraData] = useState([]);
+    // const [extraData, setExtraData] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const spotData = await FetchData(
-                `https://local-business-data.p.rapidapi.com/business-details?business_id=${spot.business_id}&extract_emails_and_contacts=true&language=en`,
-                extraOptions
-            );
-            console.log(spotData.data);
-            setExtraData(spotData.data);
-        };
-        fetchData();
-    }, [spot.business_id]);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const spotData = await FetchData(
+    //             `https://local-business-data.p.rapidapi.com/business-details?business_id=${spot.business_id}&extract_emails_and_contacts=true&language=en`,
+    //             extraOptions
+    //         );
+    //         console.log(spotData.data);
+    //         setExtraData(spotData.data);
+    //     };
+    //     fetchData();
+    // }, [spot.business_id]);
 
     return (
         <div className="modal">
             <div className="modal__dets">
-                <SubHeading title={spot.name} />
+                {/* <SubHeading title={spot.name} /> */}
                 <div className="modal__photos">
                     {/* {extraData.photos &&
                         extraData.photos
@@ -43,34 +43,31 @@ const Modal = ({ spot, toggleModal }) => {
                 <div className="modal__dets-flex">
                     <div>  <p>
                         <strong>{spot.name}</strong> is an amala restaurant in your area that
-                        is currently {spot.business_status} and has an average rating of{" "}
+                        has an average rating of{" "}
                         <strong>{spot.rating}</strong> out of{" "}
-                        <strong>{spot.user_ratings_total} </strong> total ratings. <br />{" "}
-                        <br />
-                        They are located at <strong>{extraData.formatted_address}</strong> and
-                        is currently{" "}
-                        <strong>
-                            {spot.opening_hours.open_now === true ? "Open Now" : "Not Open"}
-                        </strong>
-                        . <br /> <br />
-                        <strong>{spot.name}</strong> can be contacted on <br />
-                        <strong> {extraData.international_phone_number}</strong> and can be
-                        found on{" "}
-                        <strong>
+                        <strong>{spot.review_count} </strong> total ratings.
+                    </p> <p>
+                            They are located at <strong>{spot.address}</strong> and
+                            is currently{" "}
+                            <strong>
+                                {spot.business_status}.
+                            </strong>  {" "}
+                            <strong>{spot.name}</strong> can be contacted on <br />
+                            <strong> {spot.phone_number ? spot.phone_number : "No Nunber provided"}</strong> and can be
+                            found on{" "}
                             <a
-                                style={{ color: "blue", textDecoration: "underline" }}
-                                href={extraData.website}
+                                style={{ color: "#ECD444", textDecoration: "underline" }}
+                                href={spot.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 their website
                             </a>
-                        </strong>{" "}
-                        <br />
-                    </p>
+                            <br />
+                        </p>
                         <a
                             className="button"
-                            href={`https://www.google.com/maps/search/?api=1&query=${spot.name}&query_place_id=${spot.place_id}`}
+                            href={spot.place_link}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -79,17 +76,27 @@ const Modal = ({ spot, toggleModal }) => {
                     <aside>
                         <SubHeading title="Opening hours:" />
                         {spot.working_hours &&
-                            spot.working_hours.weekday_text.map((day) => (
-                                <p className="hours">{day}</p>
-                            ))}
+                            Object.keys(spot.working_hours).length > 0 ? (
+                            <div className="modal__dets-hours">
+                                {Object.keys(spot.working_hours).map((day) => (
+                                    <div key={day}>
+                                        <strong>{day}</strong> -{" "}
+                                        {spot.working_hours[day]}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            "No opening hours available"
+                        )
+                        }
                     </aside>
                 </div>
 
 
                 <SubHeading title="Reviews:" />
                 <div className="modal__dets_reviews">
-                    {extraData.reviews
-                        ? extraData.reviews.map((review) => (
+                    {spot.reviews
+                        ? spot.reviews.map((review) => (
                             <div
                                 key={review.place_id}
                                 className="modal__dets_reviews-review"

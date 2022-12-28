@@ -15,18 +15,35 @@
   flex-direction: column;
   transition: 0.5s ease;
 
-
   .close {
     position: absolute;
-    top: 5px;
-   left: 5px;
+    top: 1rem;
+    left: 3rem;
     font-size: 2rem;
     cursor: pointer;
     transition: all 0.5s ease;
 
     &:hover {
       color: var(--color-accent);
-      transform: rotate(45deg);
+      transform: rotate(90deg);
+    }
+    @include respond(phone) {
+      left: 1rem;
+    }
+  }
+  .button {
+    background-color: var(--color-main);
+    color: var(--color-btn);
+    border: none;
+    border-radius: var(--border-radius-btn);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    width: fit-content;
+    padding: 0.6rem 1rem;
+    margin: 1rem 0;
+    &:hover {
+      background-color: var(--color-accent);
+      color: var(--color-main);
     }
   }
 
@@ -43,51 +60,48 @@
   }
 
   &__dets {
-    height: 95%;
+    height: 100%;
     overflow-y: scroll;
     position: relative;
-    width: 95%;
+    width: 100%;
     text-align: left;
-    padding: 2rem;
+    padding: 3rem;
     background-color: var(--color-btn);
-    border-radius: 7px;
-    // border: 1px solid #ededed;
-    box-shadow: 2px 2px 7px 2px #242424;
     color: var(--color-white);
 
-    @include respond(tab) {
-      width: 80%;
+    &::-webkit-scrollbar {
+      display: none;
     }
 
     @include respond(phone) {
-      width: 90%;
       padding: 1rem;
     }
-
-    .button {
-      margin-bottom: auto;
+    aside {
+      background-color: blue;
     }
-
     .subHeading {
       font-family: var(--font-base);
     }
 
-    &-map {
-      width: 100%;
-      height: 50%;
+    &-hours {
+      font-size: 0.9rem;
+      font-weight: normal;
     }
-
-    // .hours {
-    //   font-size: 0.8rem;
-    // }
-
+    &-flex {
+      display: grid;
+      grid-template-columns: 60% 20%;
+      grid-gap: 10%;
+      align-items: flex-start;
+    }
     &_reviews {
       display: flex;
       //scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       overflow-x: scroll;
       width: 100%;
-
+      &::-webkit-scrollbar {
+        display: none;
+      }
       &-review {
         //scroll-snap-align: start;
         min-width: 85%;
