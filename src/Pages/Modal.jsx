@@ -14,7 +14,8 @@ const Modal = ({ spot, toggleModal }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const spotData = await FetchData(`https://local-business-data.p.rapidapi.com/business-details?business_id=${spot.business_id}&extract_emails_and_contacts=true&language=en`,
+            const spotData = await FetchData(
+                `https://local-business-data.p.rapidapi.com/business-details?business_id=${spot.business_id}&extract_emails_and_contacts=true&language=en`,
                 extraOptions
             );
             console.log(spotData.data);
@@ -39,39 +40,52 @@ const Modal = ({ spot, toggleModal }) => {
                             ))} */}
                 </div>
                 <SubHeading title="Description:" />
-                <p>
-                    <strong>{spot.name}</strong> is an amala restaurant in your area
-                    that is currently {spot.business_status} and has an average rating of{" "}
-                    <strong>{spot.rating}</strong> out of{" "}
-                    <strong>{spot.user_ratings_total} </strong> total ratings. <br />{" "}
-                    <br />
-                    They are located at <strong>{extraData.formatted_address}</strong> and
-                    is currently{" "}
-                    <strong>
-                        {spot.opening_hours.open_now === true ? "Open Now" : "Not Open"}
-                    </strong>
-                    . <br /> <br />
-                    <strong>{spot.name}</strong> can be contacted on <br />
-                    <strong> {extraData.international_phone_number}</strong> and can be
-                    found on{" "}
-                    <strong>
+                <div className="modal__dets-flex">
+                    <div>  <p>
+                        <strong>{spot.name}</strong> is an amala restaurant in your area that
+                        is currently {spot.business_status} and has an average rating of{" "}
+                        <strong>{spot.rating}</strong> out of{" "}
+                        <strong>{spot.user_ratings_total} </strong> total ratings. <br />{" "}
+                        <br />
+                        They are located at <strong>{extraData.formatted_address}</strong> and
+                        is currently{" "}
+                        <strong>
+                            {spot.opening_hours.open_now === true ? "Open Now" : "Not Open"}
+                        </strong>
+                        . <br /> <br />
+                        <strong>{spot.name}</strong> can be contacted on <br />
+                        <strong> {extraData.international_phone_number}</strong> and can be
+                        found on{" "}
+                        <strong>
+                            <a
+                                style={{ color: "blue", textDecoration: "underline" }}
+                                href={extraData.website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                their website
+                            </a>
+                        </strong>{" "}
+                        <br />
+                    </p>
                         <a
-                            style={{ color: "blue", textDecoration: "underline" }}
-                            href={extraData.website}
+                            className="button"
+                            href={`https://www.google.com/maps/search/?api=1&query=${spot.name}&query_place_id=${spot.place_id}`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            their website
-                        </a>
-                    </strong>{" "}
-                    <br />
-                </p>{" "}
-                <br />
-                <SubHeading title="Opening hours:" />
-                {spot.working_hours &&
-                    spot.working_hours.weekday_text.map((day) => (
-                        <p className="hours">{day}</p>
-                    ))}
+                            View on Google Maps
+                        </a></div>
+                    <aside>
+                        <SubHeading title="Opening hours:" />
+                        {spot.working_hours &&
+                            spot.working_hours.weekday_text.map((day) => (
+                                <p className="hours">{day}</p>
+                            ))}
+                    </aside>
+                </div>
+
+
                 <SubHeading title="Reviews:" />
                 <div className="modal__dets_reviews">
                     {extraData.reviews
@@ -92,14 +106,7 @@ const Modal = ({ spot, toggleModal }) => {
                         ))
                         : "No reviews yet"}
                 </div>
-                <a
-                    className="button"
-                    href={`https://www.google.com/maps/search/?api=1&query=${spot.name}&query_place_id=${spot.place_id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View on Google Maps
-                </a>
+
                 <span className="close" onClick={toggleModal}>
                     <FaTimes />
                 </span>
