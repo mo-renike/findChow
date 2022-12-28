@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 //import axios from "axios";
 import { SubHeading } from "../../components/Headings/Headings";
 import { FetchData, spotOptions } from "../../FetchData";
-import Loader from "../../components/Loader";
+//import Loader from "../../components/Loader";
 import "./Spots.scss";
 import Modal from "../../Pages/Modal";
 
