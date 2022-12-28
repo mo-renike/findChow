@@ -45,10 +45,10 @@ const Modal = ({ spot, toggleModal }) => {
                     <strong>{spot.rating}</strong> out of{" "}
                     <strong>{spot.user_ratings_total} </strong> total ratings. <br />{" "}
                     <br />
-                    They are located at <strong>{extraData.formatted_address}</strong> and
+                    They are located at <strong>{spot.address}</strong> and
                     is currently{" "}
                     <strong>
-                        {spot.opening_hours.open_now === true ? "Open Now" : "Not Open"}
+                        {spot.opening_hours && spot.opening_hours.open_now === true ? "Open Now" : "Not Open"}
                     </strong>
                     . <br /> <br />
                     <strong>{spot.name}</strong> can be contacted on <br />
@@ -68,12 +68,9 @@ const Modal = ({ spot, toggleModal }) => {
                 </p>{" "}
                 <br />
                 <SubHeading title="Opening hours:" />
-                {spot.working_hours &&
-                    spot.working_hours.weekday_text.map((day) => (
-                        <p className="hours">{day}</p>
-                    ))}
+
                 <SubHeading title="Reviews:" />
-                <div className="modal__dets_reviews">
+                {/* <div className="modal__dets_reviews">
                     {extraData.reviews
                         ? extraData.reviews.map((review) => (
                             <div
@@ -91,7 +88,7 @@ const Modal = ({ spot, toggleModal }) => {
                             </div>
                         ))
                         : "No reviews yet"}
-                </div>
+                </div> */}
                 <a
                     className="button"
                     href={`https://www.google.com/maps/search/?api=1&query=${spot.name}&query_place_id=${spot.place_id}`}
