@@ -15,10 +15,11 @@
   flex-direction: column;
   transition: 0.5s ease;
 
+
   .close {
     position: absolute;
     top: 5px;
-    right: 5px;
+   left: 5px;
     font-size: 2rem;
     cursor: pointer;
     transition: all 0.5s ease;
