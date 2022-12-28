@@ -76,9 +76,7 @@
     @include respond(phone) {
       padding: 1rem;
     }
-    aside {
-      background-color: blue;
-    }
+
     .subHeading {
       font-family: var(--font-base);
     }
@@ -92,6 +90,19 @@
       grid-template-columns: 60% 20%;
       grid-gap: 10%;
       align-items: flex-start;
+      @include respond(tabport) {
+        grid-template-columns: 100%;
+        grid-gap: 0;
+      }
+      .options {
+        display: flex;
+        @include respond(phone) {
+          flex-direction: column;
+        }
+        > * {
+          margin: 0 1rem;
+        }
+      }
     }
     &_reviews {
       display: flex;
