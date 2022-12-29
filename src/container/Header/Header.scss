@@ -1,7 +1,7 @@
 @import "../../../Stylesheets/main.scss";
 
 .header {
-  height: 100vh;
+  height: 95vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -9,7 +9,7 @@
   position: relative;
 
   @include respond(tabport) {
-    height: 70vh;
+    height: 80vh;
   }
 
   @include respond(phone) {
@@ -20,7 +20,7 @@
     content: "";
     z-index: -2;
     position: absolute;
-    top: 0;
+    top: -1rem;
     right: 0;
     border-radius: 0 0 22000px 0;
     border-top-color: var(--color-main) !important;
@@ -33,6 +33,10 @@
       border-radius: 0 0 0 0;
       border: none;
     }
+    @include respond(tabland) {
+      border-radius: 0 0 12000px 0;
+      border: 9px solid rgb(244, 224, 77);
+    }
   }
 
   &__wrapper {
@@ -40,7 +44,7 @@
     align-items: center;
     grid-template-columns: 50% 50%;
     width: 100%;
-    max-width: 1440px;
+    max-width: 1515px;
     margin: auto;
 
     @include respond(tabport) {
@@ -65,13 +69,13 @@
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.8rem;
       font-weight: 900;
       color: var(--color-black);
       font-family: var(--font-base);
 
-      @include respond(tab) {
-        font-size: 2.8rem;
+      @include respond(tabland) {
+        font-size: 2.6rem;
       }
 
       @include respond(phone) {
@@ -90,6 +94,11 @@
   }
 
   .slider {
+    img {
+      @include respond(tabland) {
+        width: 80%;
+      }
+    }
     @include respond(tabport) {
       display: none;
     }
@@ -99,7 +108,7 @@
 .pry__button {
   width: fit-content;
   padding: var(--padding-btn);
-  border: 1px solid var(--color-accent);
+  border: 2px solid var(--color-accent);
   background-color: var(--color-accent);
   border-radius: var(--border-radius-btn);
   color: var(--color-white);

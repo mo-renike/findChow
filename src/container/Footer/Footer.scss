@@ -1,3 +1,5 @@
+@import "../../../Stylesheets/main.scss";
+
 .footer {
   background-color: var(--color-black);
   color: var(--color-white);
@@ -12,19 +14,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 7px;
+    padding: 1rem;
     width: 100%;
-    font-size: 0.8rem;
-    background-color: darken(#2d2d2d, 35);
+    font-size: 1rem;
+    background-color: var(--color-btn);
 
     a {
       color: var(--color-accent);
-      margin-left: 8px;
+      margin: 0 8px;
       transition: 0.5s ease;
+      padding: 0;
 
       &:hover {
         text-decoration: underline;
       }
+    }
+    @include respond(phone) {
+      font-size: 0.8rem;
     }
   }
 

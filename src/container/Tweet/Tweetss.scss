@@ -2,6 +2,7 @@
 
 .tweets {
   padding: 3rem;
+  text-align: center;
 
   // background-color: #f5f5f5;
 
@@ -18,7 +19,7 @@
       margin-right: 2rem;
       height: 25rem;
 
-      @include respond(tab) {
+      @include respond(tabport) {
         width: 70%;
         margin-right: 1.8rem;
       }

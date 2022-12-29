@@ -23,14 +23,29 @@
 }
 body {
   font-size: 16px;
+  letter-spacing: 0.5px;
   color: var(--color-black);
   font-family: var(--font-alt);
 }
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1512px) {
+  body {
+    font-size: 17px;
+  }
+}
+
 h1 {
   line-height: 1.4;
 }
 p {
   line-height: 1.4;
+  font-weight: normal;
+  margin: 0.5rem 0;
 }
 
 a,

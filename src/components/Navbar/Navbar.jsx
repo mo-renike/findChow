@@ -110,13 +110,21 @@ const Navbar = () => {
               }}
             />
             <ul className="app__navbar-mobile-links">
-              <li
+              {/* <li
                 className="p__opensans"
                 onClick={() => {
                   setToggle(false);
                 }}
               >
                 <a href="#contact">Contact</a>
+              </li> */}
+              <li
+                className="p__opensans"
+                onClick={() => {
+                  setToggle(false);
+                }}
+              >
+                <a href="#spots">Find Amala Spots</a>
               </li>
               <li
                 className="p__opensans"
@@ -134,14 +142,7 @@ const Navbar = () => {
               >
                 <a href="#learn">Learn</a>
               </li>
-              <li
-                className="p__opensans"
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
-                <a href="#spots">Find Amala Spots</a>
-              </li>
+
             </ul>
           </div>
         )}

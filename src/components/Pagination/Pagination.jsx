@@ -24,7 +24,7 @@ const Pagination = ({ currentPage, paginate, pageNumbers, spots, spotsPerPage })
             ))}
             <button
                 onClick={() => paginate(currentPage + 1)}
-                disabled={currentPage === Math.ceil(spots.length / spotsPerPage)}
+                disabled={spots ? currentPage === Math.ceil(spots.length / spotsPerPage) : true}
                 className="next"
             >
                 Next

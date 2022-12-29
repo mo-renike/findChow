@@ -6,10 +6,15 @@ import OtherApps from "../container/OtherApp/OtherApps";
 const App = () => (
   <div>
     <Header /> <br /> <br />
-    <Learn />
-    <Spots />
-    <Tweet />
-    <OtherApps />
+    <div style={{
+      maxWidth: "1515px",
+      margin: "auto"
+    }}>
+      <Learn />
+      <Spots />
+      <Tweet />
+      <OtherApps />
+    </div>
   </div>
 );
 

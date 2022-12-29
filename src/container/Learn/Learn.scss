@@ -9,12 +9,19 @@
   max-width: 1440px;
   margin: auto;
 
+  @include respond(tabport) {
+    grid-template-columns: 100%;
+  }
   @include respond(phone) {
     padding: 1rem;
     grid-template-columns: 100%;
   }
 
   &__img {
+    @include respond(tabport) {
+      width: 60%;
+      margin: auto;
+    }
     @include respond(phone) {
       display: none;
     }

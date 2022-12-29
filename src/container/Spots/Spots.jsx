@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-//import axios from "axios";
+import { FaStar, FaRegStar } from "react-icons/fa";
 import { SubHeading } from "../../components/Headings/Headings";
 import { FetchData, spotOptions } from "../../FetchData";
 import Loader from "../../components/Loader";
@@ -25,7 +25,6 @@ const Spots = () => {
     setIsOpen(false);
   };
 
-
   // set dynamic spotsPerPage value according to screen size
   if (window.innerWidth <= 768) {
     var dynamicPerPage = 3;
@@ -37,18 +36,22 @@ const Spots = () => {
   const [spotsPerPage] = useState(dynamicPerPage);
   const indexOfLastSpot = currentPage * spotsPerPage;
   const indexOfFirstSpot = indexOfLastSpot - spotsPerPage;
-  const currentSpots = spots.slice(indexOfFirstSpot, indexOfLastSpot);
+  const currentSpots = spots ? spots.slice(indexOfFirstSpot, indexOfLastSpot) : [];
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // calculate page numbers
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(spots.length / spotsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  // calculate page numbers 
 
+  let pageNumbers = [];
+  if (spots) {
+    for (let i = 1; i <= Math.ceil(spots.length / spotsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  } else {
+    pageNumbers = [0, 1, 2, 3];
+  }
 
   useEffect(() => {
     //fetching all the data  
@@ -71,7 +74,6 @@ const Spots = () => {
         navigator.geolocation.getCurrentPosition((position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
-          //console.log(latitude, longitude);
         });
 
       } else {
@@ -92,7 +94,7 @@ const Spots = () => {
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
-        <SubHeading title={`Showing ${spots.length} Amala Spots In your area`} /> <br />
+        <SubHeading title={`Showing ${spots ? spots.length : ""} Amala Spots In your area`} /> <br />
         <div className="spots__wrapper">
           {currentSpots ? (
             currentSpots.map((spot) => (
@@ -109,11 +111,18 @@ const Spots = () => {
                 <div className="spots__wrapper_item-dets">
                   <p>
                     {" "}
-                    {spot.opening_hours && spot.opening_hours.open_now === true
+                    {spot.business_status && spot.business_status === "OPEN"
                       ? "Currently Open"
                       : "Currently Closed"}
                   </p>
-                  <p>&#9733; {spot.rating}</p>
+                  <div className="rating">
+                    {spot.rating}.0 {"  "}
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <span key={i}>
+                        {spot.rating > i ? <FaStar /> : <FaRegStar />}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <button

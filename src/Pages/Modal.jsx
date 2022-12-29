@@ -1,45 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SubHeading } from "../components/Headings/Headings";
 import "./Modal.scss";
-//import { FetchData, extraOptions } from "../FetchData";
-import { FaAngleLeft, FaCheckCircle } from "react-icons/fa";
-//import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-//import Loader from "../components/Loader";
+import { FetchData, reviewOptions } from "../FetchData";
+import { FaAngleLeft, FaCheckCircle, FaStar, FaRegStar } from "react-icons/fa";
 
 //name, business_status, geometry.location{}, opening_hours{open_now}, rating, user_ratings_total, vicinity, photos[0].html_attributions
 const Modal = ({ spot, toggleModal }) => {
-    // const [extraData, setExtraData] = useState([]);
+    const [reviews, setReview] = React.useState([]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const spotData = await FetchData(
-    //             `https://local-business-data.p.rapidapi.com/business-details?business_id=${spot.business_id}&extract_emails_and_contacts=true&language=en`,
-    //             extraOptions
-    //         );
-    //         console.log(spotData.data);
-    //         setExtraData(spotData.data);
-    //     };
-    //     fetchData();
-    // }, [spot.business_id]);
+    useEffect(() => {
+        let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=5&region=us&language=en`;
+        const fetchExtraData = async () => {
+            const data = await FetchData(url, reviewOptions);
+            //  console.log(data.data);
+            setReview(data.data);
+        };
+        fetchExtraData();
+    }, [spot.business_id]);
+
+    // show the rest of the review text when read more button is clicked
+    const showMore = (e) => {
+        e.target.previousSibling.style.display = "none";
+        e.target.style.display = "none";
+        e.target.nextSibling.style.display = "block";
+    };
 
     return (
         <div className="modal">
             <div className="modal__dets">
                 <span className="close" onClick={toggleModal}>
                     <FaAngleLeft />
-                </span>
-                {/* <SubHeading title={spot.name} /> */}
-                <div className="modal__photos">
-                    {/* {extraData.photos &&
-                        extraData.photos
-                            .slice(0, 9)
-                            .map((photo) => (
-                                <img
-                                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photo.photo_reference}&key=AIzaSyBiVr3N5E4oa0pBJ8Q8m64UFBk5M0JtdXw`}
-                                    alt="img"
-                                />
-                            ))} */}
-                </div>
+                </span>{" "}
+                <br />
                 <SubHeading title="Description:" />
                 <div className="modal__dets-flex">
                     <div>
@@ -52,12 +44,14 @@ const Modal = ({ spot, toggleModal }) => {
                         <p>
                             They are located at <strong>{spot.address}</strong> and is
                             currently <strong>{spot.business_status}.</strong>{" "}
-                            <strong>{spot.name}</strong> can be contacted on <br />
+                        </p>
+                        <p>
+                            <strong>{spot.name}</strong> can be contacted on
                             <strong>
                                 {" "}
                                 {spot.phone_number ? spot.phone_number : "No Number provided"}
                             </strong>{" "}
-                            and can be found on{" "}
+                            and their website is{" "}
                             <a
                                 style={{ color: "#ECD444", textDecoration: "underline" }}
                                 href={spot.website}
@@ -69,14 +63,54 @@ const Modal = ({ spot, toggleModal }) => {
                             <br />
                         </p>
                         <br />
-                        <div className="options">
-                            Service Options:
-                            {spot.about &&
-                                Object.keys(spot.about.details["Service options"]).map(
-                                    (opt) => <p><FaCheckCircle /> {opt}</p>
-                                )}
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                margin: "0 1rem",
+                            }}
+                        >
+                            <h4>Atmosphere:</h4>{" "}
+                            <p style={{ marginLeft: "1rem" }}>
+                                {spot.about.details.Atmosphere &&
+                                    Object.keys(spot.about.details.Atmosphere)}
+                            </p>
                         </div>
-                        <p>Atmosphere:   {Object.keys(spot.about.details.Atmosphere)}</p>
+                        <div className="options">
+                            <h4>Service Options: </h4>
+                            {Object.keys(spot.about.details["Service options"])
+                                ? Object.keys(spot.about.details["Service options"]).map(
+                                    (opt) => (
+                                        <p>
+                                            <FaCheckCircle /> {opt}
+                                        </p>
+                                    )
+                                )
+                                : "No information provided"}
+                        </div>
+                        <div className="options">
+                            <h4>Dining Options: </h4>
+                            {Object.keys(spot.about.details["Dining options"])
+                                ? Object.keys(spot.about.details["Dining options"]).map(
+                                    (opt) => (
+                                        <p>
+                                            <FaCheckCircle /> {opt}
+                                        </p>
+                                    )
+                                )
+                                : "No Options Provided"}
+                        </div>
+                        <div className="options">
+                            <h4>Offerings: </h4>
+                            {Object.keys(spot.about.details["Offerings"])
+                                ? Object.keys(spot.about.details["Offerings"]).map((opt) => (
+                                    <p>
+                                        <FaCheckCircle /> {opt}
+                                    </p>
+                                ))
+                                : "No Offerings Provided"}
+                        </div>
+                        <br />
                         <a
                             className="button"
                             href={spot.place_link}
@@ -86,6 +120,7 @@ const Modal = ({ spot, toggleModal }) => {
                             View on Google Maps
                         </a>
                     </div>
+                    <span className="line"></span>
                     <aside>
                         <SubHeading title="Opening hours:" />
                         {spot.working_hours &&
@@ -102,26 +137,55 @@ const Modal = ({ spot, toggleModal }) => {
                         )}
                     </aside>
                 </div>
-
-                <SubHeading title="Reviews:" />
-                <div className="modal__dets_reviews">
-                    {spot.reviews
-                        ? spot.reviews.map((review) => (
-                            <div
-                                key={review.place_id}
-                                className="modal__dets_reviews-review"
-                            >
-                                <p className="rating"> {review.rating}-star rating</p>
-                                <p className="reviewer">
-                                    <strong>{review.author_name}</strong> -{" "}
-                                    {review.relative_time_description}
-                                </p>
-                                <q>
-                                    <i>{review.text}</i>
-                                </q>
-                            </div>
-                        ))
-                        : "No reviews yet"}
+                <br />
+                <div className="modal__dets-wrapper">
+                    {" "}
+                    <SubHeading title="Reviews:" />
+                    <div className="modal__dets_reviews">
+                        {reviews
+                            ? reviews.map((review) => (
+                                <div
+                                    key={review.author_id}
+                                    className="modal__dets_reviews-review"
+                                >
+                                    <div className="rating">
+                                        {review.rating}.0 {"  "}
+                                        {Array.from({ length: 5 }, (_, i) => (
+                                            <span key={i}>
+                                                {review.rating > i ? <FaStar /> : <FaRegStar />}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <p className="reviewer">
+                                        <strong>{review.author_name}</strong> -{" "}
+                                        {review.review_datetime_utc.slice(0, 10)}
+                                    </p>
+                                    <q>
+                                        <i>
+                                            {review.review_text.length > 200 ? (
+                                                <span>
+                                                    {review.review_text.slice(0, 200)}
+                                                    <br />
+                                                    <button onClick={showMore}>Read more</button>
+                                                    <span style={{ display: "none" }}>
+                                                        {review.review_text.slice(200)}
+                                                    </span>
+                                                    <button
+                                                        style={{ display: "none" }}
+                                                        onClick={showMore}
+                                                    >
+                                                        Show less
+                                                    </button>
+                                                </span>
+                                            ) : (
+                                                review.review_text
+                                            )}
+                                        </i>
+                                    </q>
+                                </div>
+                            ))
+                            : "No reviews yet"}
+                    </div>
                 </div>
             </div>
         </div>

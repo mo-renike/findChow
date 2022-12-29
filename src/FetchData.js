@@ -13,7 +13,8 @@ export const tweetOptions = {
     "X-RapidAPI-Host": "twitter135.p.rapidapi.com",
   },
 };
-export const extraOptions = {
+
+export const reviewOptions = {
   method: "GET",
   headers: {
     "X-RapidAPI-Key": "b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af",
