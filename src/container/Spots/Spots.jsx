@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 //import axios from "axios";
 import { SubHeading } from "../../components/Headings/Headings";
 import { FetchData, spotOptions } from "../../FetchData";
-//import Loader from "../../components/Loader";
+import Loader from "../../components/Loader";
 import "./Spots.scss";
 import Modal from "../../Pages/Modal";
+import Pagination from "../../components/Pagination/Pagination";
 
 const Spots = () => {
   const [spots, setSpots] = useState([]);
@@ -25,17 +26,40 @@ const Spots = () => {
   };
 
 
+  // set dynamic spotsPerPage value according to screen size
+  if (window.innerWidth <= 768) {
+    var dynamicPerPage = 3;
+  } else {
+    dynamicPerPage = 9;
+  }
+  // implement pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [spotsPerPage] = useState(dynamicPerPage);
+  const indexOfLastSpot = currentPage * spotsPerPage;
+  const indexOfFirstSpot = indexOfLastSpot - spotsPerPage;
+  const currentSpots = spots.slice(indexOfFirstSpot, indexOfLastSpot);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // calculate page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(spots.length / spotsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+
   useEffect(() => {
     //fetching all the data  
-    // let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C%20${longitude}&radius=3000&language=en&keyword=amala&name=amala&key=${key}`;
-    let url = `https://local-business-data.p.rapidapi.com/search-nearby?query=amala&lat=${latitude}&lng=${longitude}&limit=20&language=en'`
+    let url = `https://local-business-data.p.rapidapi.com/search-nearby?query=amala&lat=${latitude}&lng=${longitude}&limit=24&language=en'`
     const fetchData = async () => {
       //fetching spots data
       const spotsData = await FetchData(
         url,
         spotOptions
       );
-      console.log(spotsData.data);
+      //console.log(spotsData.data);
       setSpots(spotsData.data);
     }
     fetchData();
@@ -68,19 +92,19 @@ const Spots = () => {
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
-        <SubHeading title="Amala Spots In your area" /> <br />
+        <SubHeading title={`Showing ${spots.length} Amala Spots In your area`} /> <br />
         <div className="spots__wrapper">
-          {spots && (
-            spots.map((spot) => (
+          {currentSpots ? (
+            currentSpots.map((spot) => (
               <div key={spot.place_id} className="spots__wrapper_item">
 
-                <SubHeading
-                  title={
+                <h3>
+                  {
                     spot.name.length < 15
                       ? `${spot.name}`
                       : `${spot.name.substring(0, 15)}...`
                   }
-                />
+                </h3>
 
                 <div className="spots__wrapper_item-dets">
                   <p>
@@ -93,19 +117,27 @@ const Spots = () => {
                 </div>
 
                 <button
-                  className="button"
                   onClick={() => setModalContent(spot)}
                 >
                   More Details &rarr;
                 </button>
               </div>
             ))
-          )}
+          ) : <Loader />}
+
           {isOpen &&
             modal.map((spot, idx) => {
               return <Modal spot={spot} key={idx} toggleModal={toggleModal} />;
             })}
         </div>
+        <Pagination
+          spots={spots}
+          spotsPerPage={spotsPerPage}
+          currentPage={currentPage}
+          paginate={paginate}
+          pageNumbers={pageNumbers}
+
+        />
       </div>
     </div>
   );
