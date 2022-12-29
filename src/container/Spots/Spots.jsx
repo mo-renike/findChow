@@ -68,21 +68,21 @@ const Spots = () => {
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
-        {/* <SubHeading title="Amala Spots In your area" /> */}
-        <h2 className="subHeading">Showing  Amala Spots near You</h2>
+        <SubHeading title="Amala Spots In your area" /> <br />
         <div className="spots__wrapper">
           {spots && (
             spots.map((spot) => (
               <div key={spot.place_id} className="spots__wrapper_item">
-                {/* <img
-                src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${spot.photo && spot.photos[0].photo_reference}&key=b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af`}
-                alt={spot.name}
-              /> */}
+                <img
+                  src={spot.photos_sample && spot.photos[0].photo_url}
+
+                  alt={spot.name}
+                />
                 <SubHeading
                   title={
-                    spot.name.length < 16
+                    spot.name.length < 15
                       ? `${spot.name}`
-                      : `${spot.name.substring(0, 16)}...`
+                      : `${spot.name.substring(0, 15)}...`
                   }
                 />
 

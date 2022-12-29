@@ -2,20 +2,22 @@
 
 .others {
   padding: 3rem;
-
+  text-align: center;
   &__wrapper {
     display: grid;
     margin-top: 2rem;
+    padding: 2rem 5rem;
     grid-template-columns: 46% 46%;
     grid-gap: 8%;
     justify-content: center;
 
     @include respond(phone) {
       grid-template-columns: 100%;
+      padding: 1rem;
     }
 
     &_card {
-      border: 1px solid #ccc;
+      border: 9px solid var(--color-btn);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
@@ -25,12 +27,15 @@
 
       h3 {
         position: absolute;
-        font-size: 1.2rem;
-        bottom: 0;
+        bottom: -1rem;
+        border: 0;
         left: 0;
         right: 0;
         padding: 10px;
-        background: rgba(253, 253, 253, 0.9);
+        background: var(--color-btn);
+        color: var(--color-white);
+        font-family: var(--font-base);
+        font-size: 1.5rem;
       }
 
       img {

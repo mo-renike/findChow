@@ -2,7 +2,7 @@ import React from "react";
 import { SubHeading } from "../components/Headings/Headings";
 import "./Modal.scss";
 //import { FetchData, extraOptions } from "../FetchData";
-import { FaCheckCircle, FaTimes } from "react-icons/fa";
+import { FaAngleLeft, FaCheckCircle } from "react-icons/fa";
 //import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 //import Loader from "../components/Loader";
 
@@ -26,7 +26,7 @@ const Modal = ({ spot, toggleModal }) => {
         <div className="modal">
             <div className="modal__dets">
                 <span className="close" onClick={toggleModal}>
-                    <FaTimes />
+                    <FaAngleLeft />
                 </span>
                 {/* <SubHeading title={spot.name} /> */}
                 <div className="modal__photos">
@@ -55,7 +55,7 @@ const Modal = ({ spot, toggleModal }) => {
                             <strong>{spot.name}</strong> can be contacted on <br />
                             <strong>
                                 {" "}
-                                {spot.phone_number ? spot.phone_number : "No Nunber provided"}
+                                {spot.phone_number ? spot.phone_number : "No Number provided"}
                             </strong>{" "}
                             and can be found on{" "}
                             <a
@@ -77,7 +77,6 @@ const Modal = ({ spot, toggleModal }) => {
                                 )}
                         </div>
                         <p>Atmosphere:   {Object.keys(spot.about.details.Atmosphere)}</p>
-
                         <a
                             className="button"
                             href={spot.place_link}

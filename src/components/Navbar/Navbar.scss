@@ -44,18 +44,17 @@
       li {
         cursor: pointer;
         margin: 0 1rem;
-        color: var(--color-black);
-        transition: 0.5s ease;
+
         a {
           font-size: 1.08rem;
-          text-transform: uppercase;
+          text-transform: capitalize;
           font-weight: bold;
-          // box-shadow: var(--box-shadow);
-          // border-radius: var(--border-radius-btn);
-          // padding: var(--padding-btn-sm);
-        }
-        &:hover {
-          color: var(--color-accent);
+          color: var(--color-black);
+          transition: 1s ease;
+          &:hover {
+            color: var(--color-accent);
+            border-bottom: 1px solid var(--color-accent);
+          }
         }
       }
     }
