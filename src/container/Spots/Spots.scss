@@ -1,7 +1,7 @@
 @import "../../../Stylesheets/main.scss";
 
 .spots {
-  background-color: #f5f5f5;
+  // background-color: #f5f5f5;
   padding: 3rem;
   margin-top: 3rem;
   text-align: center;
@@ -24,10 +24,9 @@
     justify-content: center;
     text-align: center;
 
-    @include respond(tab) {
+    @include respond(tabport) {
       grid-template-columns: 50% 50%;
     }
-
     @include respond(phone) {
       grid-template-columns: 100%;
     }
@@ -37,24 +36,22 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      background-color: #f5f5f5;
+      background-color: var(--color-btn);
       border-radius: 7px;
       border: 1px solid #ededed;
       box-shadow: 0px 1px 1px 1px #dedede;
       transition: 0.5s ease;
       padding-top: 1rem;
-      //cursor: pointer;
-
-      // &:hover {
-      //     border-color: var(--color-accent);
-      //     box-shadow: 1px 2px 2px var(--color-accent);
-      // }
-
+      h3 {
+        color: var(--color-white);
+        font-size: 1.4rem;
+        margin: 0.5rem 0;
+      }
       &-dets {
         border-radius: inherit;
         width: 100%;
         display: flex;
-        color: var(--color-gray);
+        color: var(--color-white);
         justify-content: space-between;
         padding: 7px 12px;
         font-weight: bold;
@@ -63,6 +60,15 @@
           text-transform: lowercase !important;
           font-size: 0.8rem;
         }
+      }
+      button {
+        background-color: var(--color-main);
+        color: var(--color-accent);
+        width: fit-content;
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: var(--border-radius-btn);
+        margin: 1rem auto;
       }
     }
   }

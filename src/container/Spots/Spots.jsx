@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 //import axios from "axios";
 import { SubHeading } from "../../components/Headings/Headings";
 import { FetchData, spotOptions } from "../../FetchData";
-//import Loader from "../../components/Loader";
+import Loader from "../../components/Loader";
 import "./Spots.scss";
 import Modal from "../../Pages/Modal";
 
@@ -70,21 +70,17 @@ const Spots = () => {
       <div className="spots__inner">
         <SubHeading title="Amala Spots In your area" /> <br />
         <div className="spots__wrapper">
-          {spots && (
+          {spots ? (
             spots.map((spot) => (
               <div key={spot.place_id} className="spots__wrapper_item">
-                <img
-                  src={spot.photos_sample && spot.photos[0].photo_url}
 
-                  alt={spot.name}
-                />
-                <SubHeading
-                  title={
+                <h3>
+                  {
                     spot.name.length < 15
                       ? `${spot.name}`
                       : `${spot.name.substring(0, 15)}...`
                   }
-                />
+                </h3>
 
                 <div className="spots__wrapper_item-dets">
                   <p>
@@ -97,14 +93,13 @@ const Spots = () => {
                 </div>
 
                 <button
-                  className="button"
                   onClick={() => setModalContent(spot)}
                 >
                   More Details &rarr;
                 </button>
               </div>
             ))
-          )}
+          ) : (<Loader />)}
           {isOpen &&
             modal.map((spot, idx) => {
               return <Modal spot={spot} key={idx} toggleModal={toggleModal} />;
