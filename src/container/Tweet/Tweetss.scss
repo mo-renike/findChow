@@ -13,14 +13,13 @@
   &__wrapper {
     display: flex;
     overflow-x: scroll;
-    // hide scrollbar
     &::-webkit-scrollbar {
       display: none;
     }
     &_item {
       width: 90%;
       margin-right: 2rem;
-      height: 25rem;
+      height: 20rem;
 
       @include respond(tabport) {
         width: 70%;
