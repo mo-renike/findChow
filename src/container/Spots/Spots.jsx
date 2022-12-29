@@ -73,11 +73,7 @@ const Spots = () => {
           {spots && (
             spots.map((spot) => (
               <div key={spot.place_id} className="spots__wrapper_item">
-                <img
-                  src={spot.photos_sample && spot.photos[0].photo_url}
 
-                  alt={spot.name}
-                />
                 <SubHeading
                   title={
                     spot.name.length < 15
