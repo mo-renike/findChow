@@ -13,7 +13,10 @@
   &__wrapper {
     display: flex;
     overflow-x: scroll;
-
+    // hide scrollbar
+    &::-webkit-scrollbar {
+      display: none;
+    }
     &_item {
       width: 90%;
       margin-right: 2rem;
