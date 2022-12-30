@@ -9,10 +9,12 @@
   button {
     border: none;
     border-radius: var(--border-radius-btn);
-    margin: 5px;
+    margin: 2px;
     width: fit-content;
-    padding: 0.4rem 1rem;
+    padding: 0.2rem 0.5rem;
     cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: bold;
     transition: all 0.3s ease;
     &:hover {
       background-color: var(--color-accent);

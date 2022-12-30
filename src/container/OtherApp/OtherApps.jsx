@@ -10,11 +10,11 @@ const OtherApps = () => {
             <div className="others__wrapper">
                 <a rel="noreferrer" target="_blank" href="https://mo-renike.github.io/Movie-App/" className="others__wrapper_card">
                     <img src={Movie} alt="movie" />
-                    <h3>Movie App</h3>
+                    <h3>Movie info and Reviews</h3>
                 </a>
                 <a rel="noreferrer" target="_blank" href="https://fitnessexercises.netlify.app/" className="others__wrapper_card">
                     <img src={Fitness} alt="fitness" />
-                    <h3>Fitness App</h3>
+                    <h3>Free Fitness exercises  </h3>
                 </a>
 
             </div>

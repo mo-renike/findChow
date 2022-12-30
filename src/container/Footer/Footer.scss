@@ -14,13 +14,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 1.5rem;
     width: 100%;
     font-size: 1rem;
     background-color: var(--color-btn);
 
     a {
-      color: var(--color-accent);
+      color: var(--color-main);
       margin: 0 8px;
       transition: 0.5s ease;
       padding: 0;

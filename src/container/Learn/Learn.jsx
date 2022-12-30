@@ -15,10 +15,8 @@ const Learn = () => {
         <SubHeading title="Amala without Lumps" />
 
         <p>
-          The great thing about Amala is that it is quick and easy to prepare,
-          but then, if you are not careful you may end up with lumps that will
-          make its consumption less than appetizing. To ensure you get the
-          smoothest results, click the button below.
+          The great thing about Amala is that it is quick and easy to prepare. To ensure you get the
+          smoothest results, click the button below to learn how to make amala at home.
         </p>
         <a target="blank" href="https://www.youtube.com/embed/KbYJj_gSZME" className="pry__button">Watch Now</a>
       </div>

@@ -1,13 +1,12 @@
 @import "../../../Stylesheets/main.scss";
 
 .spots {
-  // background-color: #f5f5f5;
+  background-color: #f9f9f9;
   padding: 3rem;
-  margin-top: 3rem;
   text-align: center;
 
   @include respond(phone) {
-    padding: 2rem;
+    padding: 1rem;
   }
 
   &__inner {
@@ -18,7 +17,7 @@
     display: grid;
     grid-gap: 2rem;
     margin-top: 1rem;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 30% 30% 30%;
 
     align-items: center;
     justify-content: center;
@@ -33,7 +32,7 @@
 
     &_item {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       flex-direction: column;
       background-color: var(--color-btn);
@@ -41,10 +40,11 @@
       border: 1px solid #ededed;
       box-shadow: 0px 1px 1px 1px #dedede;
       transition: 0.5s ease;
-      padding-top: 1rem;
+      padding: 1.5rem;
       h3 {
         color: var(--color-white);
-        font-size: 1.4rem;
+        font-size: 2rem;
+        font-family: var(--font-base);
         margin: 0.5rem 0;
       }
       &-dets {
@@ -53,22 +53,31 @@
         display: flex;
         color: var(--color-white);
         justify-content: space-between;
-        padding: 7px 12px;
+        flex-direction: column;
+        align-items: flex-start;
         font-weight: bold;
 
         p {
-          text-transform: lowercase !important;
+          text-transform: capitalize !important;
           font-size: 0.8rem;
+          opacity: 0.6;
+        }
+        .rating {
+          color: var(--color-main);
+          font-size: 1.3rem;
+          margin: 0.6rem 0;
         }
       }
       button {
         background-color: var(--color-main);
         color: var(--color-accent);
         width: fit-content;
-        padding: 0.6rem 1.2rem;
+        padding: 0.6rem 1.4rem;
         border: none;
         border-radius: var(--border-radius-btn);
         margin: 1rem auto;
+        font-weight: bold;
+        margin-bottom: 0;
       }
     }
   }

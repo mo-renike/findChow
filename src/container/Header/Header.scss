@@ -13,7 +13,7 @@
   }
 
   @include respond(phone) {
-    height: 100vh;
+    height: 85vh;
   }
 
   &::before {
@@ -111,7 +111,7 @@
   border: 2px solid var(--color-accent);
   background-color: var(--color-accent);
   border-radius: var(--border-radius-btn);
-  color: var(--color-white);
+  color: var(--color-main);
   text-align: center;
   transition: 0.5s ease;
 

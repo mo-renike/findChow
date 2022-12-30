@@ -3,6 +3,9 @@
 .others {
   padding: 3rem;
   text-align: center;
+  @include respond(phone) {
+    padding: 1rem;
+  }
   &__wrapper {
     display: grid;
     margin-top: 2rem;

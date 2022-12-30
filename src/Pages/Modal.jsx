@@ -38,8 +38,8 @@ const Modal = ({ spot, toggleModal }) => {
                         {" "}
                         <p>
                             <strong>{spot.name}</strong> is an amala restaurant in your area
-                            that has an average rating of <strong>{spot.rating}</strong> out
-                            of <strong>{spot.review_count} </strong> total ratings.
+                            that has an average rating of <strong>{spot.rating}/5</strong> from
+                            {"  "}<strong>{spot.review_count} </strong> total ratings.
                         </p>{" "}
                         <p>
                             They are located at <strong>{spot.address}</strong> and is
