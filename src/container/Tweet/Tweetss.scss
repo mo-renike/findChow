@@ -3,8 +3,9 @@
 .tweets {
   padding: 3rem;
   text-align: center;
-
-  // background-color: #f5f5f5;
+  margin-top: 2rem;
+  background-color: var(--color-main);
+  border-radius: 7px;
 
   @include respond(phone) {
     padding: 1rem;

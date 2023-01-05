@@ -81,7 +81,7 @@ const Modal = ({ spot, toggleModal }) => {
                             {Object.keys(spot.about.details["Service options"])
                                 ? Object.keys(spot.about.details["Service options"]).map(
                                     (opt) => (
-                                        <p>
+                                        <p key={opt.id}>
                                             <FaCheckCircle /> {opt}
                                         </p>
                                     )
