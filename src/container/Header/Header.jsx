@@ -20,7 +20,7 @@ const Header = () => {
           <h1>How Many Wraps of <em>Hot, Fluffy Amala</em> Can You Finish?</h1>
           <p className="header__info-text">
             Your number one stop for everything amala. Find amala spots closest to
-            you, check information about each spot including reviews, rating, description, and contact detains.
+            you, check information about each spot including reviews, rating, description, and contact details.
 
           </p>
           <HashLink to="/#spots" className="pry__button">
