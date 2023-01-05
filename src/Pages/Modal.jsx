@@ -3,6 +3,7 @@ import { SubHeading } from "../components/Headings/Headings";
 import "./Modal.scss";
 import { FetchData, reviewOptions } from "../FetchData";
 import { FaAngleLeft, FaCheckCircle, FaStar, FaRegStar } from "react-icons/fa";
+import Loader from "../components/Loader";
 
 //name, business_status, geometry.location{}, opening_hours{open_now}, rating, user_ratings_total, vicinity, photos[0].html_attributions
 const Modal = ({ spot, toggleModal }) => {
@@ -12,7 +13,7 @@ const Modal = ({ spot, toggleModal }) => {
         let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=5&region=us&language=en`;
         const fetchExtraData = async () => {
             const data = await FetchData(url, reviewOptions);
-            console.log(data);
+            //  console.log(data);
             setReview(data.data);
         };
         fetchExtraData();
@@ -73,8 +74,8 @@ const Modal = ({ spot, toggleModal }) => {
                         >
                             <h4>Atmosphere:</h4>{" "}
                             <p style={{ marginLeft: "1rem" }}>
-                                {spot.about.details.Atmosphere &&
-                                    Object.keys(spot.about.details.Atmosphere)}
+                                {spot.about.details.Atmosphere ?
+                                    Object.keys(spot.about.details.Atmosphere) : "Atmosphere not specified"}
                             </p>
                         </div>
                         <div className="options">
@@ -163,7 +164,7 @@ const Modal = ({ spot, toggleModal }) => {
                                     </p>
                                     <q>
                                         <i>
-                                            {review.review_text.length > 200 ? (
+                                            {review.review_text && review.review_text.length > 200 ? (
                                                 <span>
                                                     {review.review_text.slice(0, 200)}
                                                     <br />
@@ -185,7 +186,7 @@ const Modal = ({ spot, toggleModal }) => {
                                     </q>
                                 </div>
                             ))
-                            : "No reviews yet"}
+                            : <Loader />}
                     </div>
                 </div>
             </div>
