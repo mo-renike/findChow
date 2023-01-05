@@ -17,7 +17,7 @@ const Footer = () => (
 
     <div className="footer__copy">
       Designed by{" "}
-      <a href="https://www.figma.com/proto/NFRay0y04jqzjOOwjRlurW/Arowosegbe-Khadijah's-Portfolio?page-id=0%3A1&node-id=4%3A210&viewport=-214%2C116%2C0.33&scaling=scale-down&starting-point-node-id=4%3A210"> Dija</a> {" "} and Developed by   <a href="https://github.com/mo-renike">Morenike</a>
+      <a href="https://www.figma.com/proto/NFRay0y04jqzjOOwjRlurW/Arowosegbe-Khadijah's-Portfolio?page-id=0%3A1&node-id=4%3A210&viewport=-214%2C116%2C0.33&scaling=scale-down&starting-point-node-id=4%3A210"> Khadijah</a> {" "} and Developed by   <a href="https://github.com/mo-renike">Morenike</a>
     </div>
   </div>
 );
