@@ -12,11 +12,12 @@ const Modal = ({ spot, toggleModal }) => {
         let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=5&region=us&language=en`;
         const fetchExtraData = async () => {
             const data = await FetchData(url, reviewOptions);
-            //  console.log(data.data);
+            console.log(data);
             setReview(data.data);
         };
         fetchExtraData();
-    }, [spot.business_id]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // show the rest of the review text when read more button is clicked
     const showMore = (e) => {
@@ -38,7 +39,7 @@ const Modal = ({ spot, toggleModal }) => {
                         {" "}
                         <p>
                             <strong>{spot.name}</strong> is an amala restaurant in your area
-                            that has an average rating of <strong>{spot.rating}/5</strong> from
+                            that has an average rating of <strong>{spot.rating ? spot.rating : 0}/5</strong> from
                             {"  "}<strong>{spot.review_count} </strong> total ratings.
                         </p>{" "}
                         <p>
@@ -58,7 +59,7 @@ const Modal = ({ spot, toggleModal }) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                their website
+                                {spot.website ? spot.website : "Not Available"}
                             </a>
                             <br />
                         </p>
@@ -78,7 +79,7 @@ const Modal = ({ spot, toggleModal }) => {
                         </div>
                         <div className="options">
                             <h4>Service Options: </h4>
-                            {Object.keys(spot.about.details["Service options"])
+                            {spot.about.details["Service options"]
                                 ? Object.keys(spot.about.details["Service options"]).map(
                                     (opt) => (
                                         <p key={opt.id}>
@@ -90,7 +91,7 @@ const Modal = ({ spot, toggleModal }) => {
                         </div>
                         <div className="options">
                             <h4>Dining Options: </h4>
-                            {Object.keys(spot.about.details["Dining options"])
+                            {spot.about.details["Dining options"]
                                 ? Object.keys(spot.about.details["Dining options"]).map(
                                     (opt) => (
                                         <p>
@@ -102,7 +103,7 @@ const Modal = ({ spot, toggleModal }) => {
                         </div>
                         <div className="options">
                             <h4>Offerings: </h4>
-                            {Object.keys(spot.about.details["Offerings"])
+                            {spot.about.details["Offerings"]
                                 ? Object.keys(spot.about.details["Offerings"]).map((opt) => (
                                     <p>
                                         <FaCheckCircle /> {opt}
