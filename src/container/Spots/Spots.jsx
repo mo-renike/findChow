@@ -62,7 +62,7 @@ const Spots = () => {
         url,
         spotOptions
       );
-      console.log(spotsData.data);
+      //console.log(spotsData.data);
       setSpots(spotsData.data);
     }
     fetchData();

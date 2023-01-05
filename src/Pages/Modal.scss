@@ -99,6 +99,7 @@
       grid-template-columns: 60% 5% 25%;
       grid-gap: 5%;
       align-items: flex-start;
+
       @include respond(tabport) {
         grid-template-columns: 100%;
         grid-gap: 0;
@@ -106,11 +107,14 @@
       .options {
         display: flex;
         margin-bottom: 0.6rem;
+        h4 {
+          margin-bottom: 0.2rem;
+        }
         @include respond(phone) {
           flex-direction: column;
         }
         > * {
-          margin: 0 1rem;
+          margin: 0 0.8rem;
         }
       }
       .line {
@@ -168,4 +172,9 @@
       }
     }
   }
+}
+.title {
+  font-size: 1.6rem !important;
+  color: var(--color-main);
+  font-weight: bold;
 }

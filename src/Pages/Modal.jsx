@@ -3,17 +3,17 @@ import { SubHeading } from "../components/Headings/Headings";
 import "./Modal.scss";
 import { FetchData, reviewOptions } from "../FetchData";
 import { FaAngleLeft, FaCheckCircle, FaStar, FaRegStar } from "react-icons/fa";
-import Loader from "../components/Loader";
+
 
 //name, business_status, geometry.location{}, opening_hours{open_now}, rating, user_ratings_total, vicinity, photos[0].html_attributions
 const Modal = ({ spot, toggleModal }) => {
     const [reviews, setReview] = React.useState([]);
 
     useEffect(() => {
-        let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=5&region=us&language=en`;
+        let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=10&region=us&language=en`;
         const fetchExtraData = async () => {
             const data = await FetchData(url, reviewOptions);
-            //  console.log(data);
+            console.log(data);
             setReview(data.data);
         };
         fetchExtraData();
@@ -39,7 +39,7 @@ const Modal = ({ spot, toggleModal }) => {
                     <div>
                         {" "}
                         <p>
-                            <strong>{spot.name}</strong> is an amala restaurant in your area
+                            <span className="title">{spot.name}</span> is an amala restaurant in your area
                             that has an average rating of <strong>{spot.rating ? spot.rating : 0}/5</strong> from
                             {"  "}<strong>{spot.review_count} </strong> total ratings.
                         </p>{" "}
@@ -74,43 +74,68 @@ const Modal = ({ spot, toggleModal }) => {
                         >
                             <h4>Atmosphere:</h4>{" "}
                             <p style={{ marginLeft: "1rem" }}>
-                                {spot.about.details.Atmosphere ?
-                                    Object.keys(spot.about.details.Atmosphere) : "Atmosphere not specified"}
+                                {spot.about && (spot.about.details.Atmosphere) ?
+
+                                    Object.keys(spot.about.details.Atmosphere) : "Atmosphere not specified"
+                                }
                             </p>
                         </div>
                         <div className="options">
+                            <h4>Amenities: </h4>
+                            {
+                                spot.about
+                                    && (spot.about.details["Amenities"]) ?
+                                    (Object.keys(spot.about.details["Amenities"]).map(
+                                        (opt) => (
+                                            <p>
+                                                <FaCheckCircle /> {opt}
+                                            </p>
+                                        )
+                                    )) : "Amenities not specified"
+                            }
+                        </div>
+                        <div className="options">
                             <h4>Service Options: </h4>
-                            {spot.about.details["Service options"]
-                                ? Object.keys(spot.about.details["Service options"]).map(
-                                    (opt) => (
-                                        <p key={opt.id}>
-                                            <FaCheckCircle /> {opt}
-                                        </p>
-                                    )
-                                )
-                                : "No information provided"}
+                            {
+                                spot.about
+                                    && (spot.about.details["Service options"]) ?
+                                    (Object.keys(spot.about.details["Service options"]).map(
+                                        (opt) => (
+                                            <p>
+                                                <FaCheckCircle /> {opt}
+                                            </p>
+                                        )
+                                    )) : "No Options Provided"
+                            }
                         </div>
                         <div className="options">
                             <h4>Dining Options: </h4>
-                            {spot.about.details["Dining options"]
-                                ? Object.keys(spot.about.details["Dining options"]).map(
-                                    (opt) => (
-                                        <p>
-                                            <FaCheckCircle /> {opt}
-                                        </p>
-                                    )
-                                )
-                                : "No Options Provided"}
+                            {
+                                spot.about
+                                    && spot.about.details["Dining options"] ?
+                                    (Object.keys(spot.about.details["Dining options"]).map(
+                                        (opt) => (
+                                            <p>
+                                                <FaCheckCircle /> {opt}
+                                            </p>
+                                        )
+                                    )) : "No Options Provided"
+                            }
                         </div>
                         <div className="options">
                             <h4>Offerings: </h4>
-                            {spot.about.details["Offerings"]
-                                ? Object.keys(spot.about.details["Offerings"]).map((opt) => (
-                                    <p>
-                                        <FaCheckCircle /> {opt}
-                                    </p>
-                                ))
-                                : "No Offerings Provided"}
+                            {
+                                spot.about
+                                    &&
+                                    spot.about.details["Offerings"] ?
+                                    (Object.keys(spot.about.details["Offerings"]).map(
+                                        (opt) => (
+                                            <p>
+                                                <FaCheckCircle /> {opt}
+                                            </p>
+                                        )
+                                    )) : "No Offerings Provided"
+                            }
                         </div>
                         <br />
                         <a
@@ -186,7 +211,7 @@ const Modal = ({ spot, toggleModal }) => {
                                     </q>
                                 </div>
                             ))
-                            : <Loader />}
+                            : "No Reviews yet"}
                     </div>
                 </div>
             </div>
