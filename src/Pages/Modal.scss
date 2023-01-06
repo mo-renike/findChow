@@ -177,4 +177,7 @@
   font-size: 1.6rem !important;
   color: var(--color-main);
   font-weight: bold;
+  @include respond(phone) {
+    font-size: 1.3rem !important;
+  }
 }

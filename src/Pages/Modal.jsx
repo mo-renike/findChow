@@ -55,7 +55,7 @@ const Modal = ({ spot, toggleModal }) => {
                             </strong>{" "}
                             and their website is{" "}
                             <a
-                                style={{ color: "#ECD444", textDecoration: "underline" }}
+                                style={{ color: "#ECD444", textDecoration: "underline", whiteSpace: "nowrap" }}
                                 href={spot.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -65,20 +65,19 @@ const Modal = ({ spot, toggleModal }) => {
                             <br />
                         </p>
                         <br />
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                margin: "0 1rem",
-                            }}
-                        >
-                            <h4>Atmosphere:</h4>{" "}
-                            <p style={{ marginLeft: "1rem" }}>
-                                {spot.about && (spot.about.details.Atmosphere) ?
-
-                                    Object.keys(spot.about.details.Atmosphere) : "Atmosphere not specified"
-                                }
-                            </p>
+                        <div className="options">
+                            <h4>Atmosphere: </h4>
+                            {
+                                spot.about
+                                    && (spot.about.details["Atmosphere"]) ?
+                                    (Object.keys(spot.about.details["Atmosphere"]).map(
+                                        (opt) => (
+                                            <p>
+                                                <FaCheckCircle /> {opt}
+                                            </p>
+                                        )
+                                    )) : "Atmosphere not specified"
+                            }
                         </div>
                         <div className="options">
                             <h4>Amenities: </h4>
