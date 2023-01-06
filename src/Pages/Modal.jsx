@@ -13,7 +13,7 @@ const Modal = ({ spot, toggleModal }) => {
         let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=10&region=us&language=en`;
         const fetchExtraData = async () => {
             const data = await FetchData(url, reviewOptions);
-            console.log(data);
+
             setReview(data.data);
         };
         fetchExtraData();
