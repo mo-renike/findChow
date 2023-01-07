@@ -7,14 +7,14 @@ import { FaAngleLeft, FaCheckCircle, FaStar, FaRegStar } from "react-icons/fa";
 
 //name, business_status, geometry.location{}, opening_hours{open_now}, rating, user_ratings_total, vicinity, photos[0].html_attributions
 const Modal = ({ spot, toggleModal }) => {
-    const [reviews, setReview] = React.useState([]);
+    const [reviews, setReviews] = React.useState([]);
 
     useEffect(() => {
-        let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=10&region=us&language=en`;
+        let url = `https://local-business-data.p.rapidapi.com/business-reviews?business_id=${spot.business_id}&limit=10&language=en`;
         const fetchExtraData = async () => {
             const data = await FetchData(url, reviewOptions);
 
-            setReview(data.data);
+            setReviews(data.data);
         };
         fetchExtraData();
         // eslint-disable-next-line react-hooks/exhaustive-deps

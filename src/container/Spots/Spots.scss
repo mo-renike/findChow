@@ -23,7 +23,7 @@
     justify-content: center;
     text-align: center;
 
-    @include respond(tabport) {
+    @include respond(tabland) {
       grid-template-columns: 50% 50%;
     }
     @include respond(phone) {

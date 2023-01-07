@@ -53,9 +53,11 @@ const Spots = () => {
     pageNumbers = [0, 1, 2, 3];
   }
 
+
+
   useEffect(() => {
     //fetching all the data  
-    let url = `https://local-business-data.p.rapidapi.com/search-nearby?query=amala&lat=${latitude}&lng=${longitude}&limit=30&language=en'`
+    let url = `https://local-business-data.p.rapidapi.com/search-nearby?query=amala&lat=${latitude}&lng=${longitude}&limit=33&language=en'`
     const fetchData = async () => {
       //fetching spots data
       const spotsData = await FetchData(
@@ -101,18 +103,19 @@ const Spots = () => {
 
                 <h3>
                   {
-                    spot.name.length < 15
+                    spot.name.length < 17
                       ? `${spot.name}`
-                      : `${spot.name.substring(0, 15)}...`
+                      : `${spot.name.substring(0, 17)}...`
                   }
                 </h3>
 
                 <div className="spots__wrapper_item-dets">
-                  <p>
+                  <p style={{ display: "flex", justifyContent: "space-between" }}>
                     {" "}
                     {spot.business_status && spot.business_status === "OPEN"
                       ? "Currently Open"
                       : "Currently Closed"}
+                    {spot.district && spot.district.length > 0 ? ` - ${spot.district}` : ""}
                   </p>
                   <div className="rating">
                     {spot.rating} {"  "}

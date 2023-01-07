@@ -21,7 +21,7 @@ const Footer = ({ count }) => (
         {" "}
         Khadijah
       </a>{" "}
-      and Developed by <a href="https://github.com/mo-renike">Mo</a>
+      and Developed by <a href="https://portfolio-mo-renike.vercel.app/">Mo</a>
       <span>Page Visits: {count}</span> <a className="footer__top" href="#home">
         <FaArrowUp />
       </a>
