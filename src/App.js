@@ -8,18 +8,29 @@ import { ErrorBoundary } from "react-error-boundary";
 import NotFound from "./components/NotFound/NotFound";
 import { ErrorFallback } from "./components/ErrorBoundary/ErrorFallback";
 
-const App = () => (
-  <div>
-    <Navbar />
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </ErrorBoundary>
-    <Footer />
-  </div>
-);
+const App = () => {
+  // count number of website visits
+  let count = localStorage.getItem("page_view");
+  if (count === null) {
+    count = 1;
+  } else {
+    count = parseInt(count) + 1;
+  }
+  localStorage.setItem("page_view", count);
+
+  return (
+    <div>
+      <Navbar />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ErrorBoundary>
+      <Footer count={count} />
+    </div>
+  );
+};
 
 export default App;
