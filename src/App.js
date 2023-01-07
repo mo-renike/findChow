@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { Footer } from "./container";
 import Home from "./Pages/Home";
@@ -10,14 +10,17 @@ import { ErrorFallback } from "./components/ErrorBoundary/ErrorFallback";
 
 const App = () => {
   // count number of website visits
-  let count = localStorage.getItem("page_view");
-  if (count === null) {
-    count = 1;
-  } else {
-    count = parseInt(count) + 1;
-  }
-  localStorage.setItem("page_view", count);
 
+  useEffect(() => {
+    let count = localStorage.getItem("page_view");
+    if (count === null) {
+      count = 1;
+    } else {
+      count = parseInt(count) + 1;
+    }
+    localStorage.setItem("page_view", count);
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+  }, []);
   return (
     <div>
       <Navbar />
