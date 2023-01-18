@@ -1,7 +1,7 @@
 export const spotOptions = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "b5955c940amsh9ba067ff07dbc5ap17f2abjsn2acd75e2d6af",
+    "X-RapidAPI-Key": "53ef09989fmsh8c5174896d19423p1db036jsn5a01fa26a652",
     "X-RapidAPI-Host": "local-business-data.p.rapidapi.com",
   },
 };
