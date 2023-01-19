@@ -9,8 +9,8 @@ import Pagination from "../../components/Pagination/Pagination";
 
 const Spots = () => {
   const [spots, setSpots] = useState([]);
-  const [latitude, setLatitude] = useState(6.4522);
-  const [longitude, setLongitude] = useState(3.612);
+  const [latitude, setLatitude] = useState(6.1522);
+  const [longitude, setLongitude] = useState(3.712);
 
   //logic for modal
   const [isOpen, setIsOpen] = useState(false);
@@ -69,19 +69,19 @@ const Spots = () => {
     fetchData();
 
 
-    // get user location
-    const showCurrentLocation = () => {
+    // get user location on page load
+    const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
         });
-
       } else {
-        window.alert("Geolocation is not supported by this browser.");
+        alert("Geolocation is not supported by this browser.");
       }
     };
-    showCurrentLocation();
+    getLocation();
+
 
     //prevent background scrolling when modal is open
     if (isOpen) {
@@ -89,7 +89,7 @@ const Spots = () => {
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [latitude, longitude, isOpen]);
+  }, [isOpen, latitude, longitude]);
 
 
   return (

@@ -17,7 +17,7 @@ export const tweetOptions = {
 export const reviewOptions = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "53ef09989fmsh8c5174896d19423p1db036jsn5a01fa26a652”,
+    "X-RapidAPI-Key": "53ef09989fmsh8c5174896d19423p1db036jsn5a01fa26a652",
     "X-RapidAPI-Host": "local-business-data.p.rapidapi.com",
   },
 };
