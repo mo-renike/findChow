@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { FaStar, FaRegStar } from "react-icons/fa";
+import React, { useState, useContext, useEffect } from 'react';
+import { AppContext } from '../../AppContext';
 import { SubHeading } from "../../components/Headings/Headings";
-import { FetchData, spotOptions } from "../../FetchData";
-import Loader from "../../components/Loader";
 import "./Spots.scss";
-import Modal from "../../Pages/Modal";
 import Pagination from "../../components/Pagination/Pagination";
+import SIngleSpot from './SIngleSpot';
 
 const Spots = () => {
   const [spots, setSpots] = useState([]);
-  const [latitude, setLatitude] = useState(6.1522);
-  const [longitude, setLongitude] = useState(3.712);
+  const [latitude, setLatitude] = useState(6.5095);
+  const [longitude, setLongitude] = useState(3.3711);
 
   //logic for modal
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState([]);
+  const { foodType } = useContext(AppContext);
 
   const setModalContent = (spot) => {
     setModal([spot]);
@@ -27,7 +26,7 @@ const Spots = () => {
 
   // set dynamic spotsPerPage value according to screen size
   if (window.innerWidth <= 768) {
-    var dynamicPerPage = 3;
+    var dynamicPerPage = 4;
   } else {
     dynamicPerPage = 9;
   }
@@ -42,8 +41,7 @@ const Spots = () => {
     setCurrentPage(pageNumber);
   };
 
-  // calculate page numbers 
-
+  // calculate page numbers for pagination
   let pageNumbers = [];
   if (spots) {
     for (let i = 1; i <= Math.ceil(spots.length / spotsPerPage); i++) {
@@ -53,35 +51,39 @@ const Spots = () => {
     pageNumbers = [0, 1, 2, 3];
   }
 
-
-
   useEffect(() => {
-    //fetching all the data  
-    let url = `https://local-business-data.p.rapidapi.com/search-nearby?query=amala&lat=${latitude}&lng=${longitude}&limit=33&language=en'`
-    const fetchData = async () => {
-      //fetching spots data
-      const spotsData = await FetchData(
-        url,
-        spotOptions
-      );
-      setSpots(spotsData.data);
-    }
-    fetchData();
 
-
-    // get user location on page load
+    // get user location using  geolocation  when the component mounts 
     const getLocation = () => {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          setLatitude(position.coords.latitude);
-          setLongitude(position.coords.longitude);
-        });
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       } else {
         alert("Geolocation is not supported by this browser.");
       }
-    };
-    getLocation();
+    }; getLocation();
 
+    // get amala spots using google places api
+    const getSpots = async () => {
+      try {
+        const res = await fetch(`http://localhost:8080/api/maps/place?latitude=${latitude}&longitude=${longitude}&radius=50000&type=restaurant&keyword=${foodType}`);
+        if (!res.ok) {
+          throw new Error("Something went wrong");
+        } else {
+          const data = await res.json();
+          setSpots(data.results);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }; getSpots();
 
     //prevent background scrolling when modal is open
     if (isOpen) {
@@ -89,65 +91,20 @@ const Spots = () => {
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [isOpen, latitude, longitude]);
+  }, [foodType, isOpen, latitude, longitude]);
 
 
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
-        <SubHeading title={`Showing ${spots ? spots.length : ""} Amala Spots In your area`} /> <br />
-        <div className="spots__wrapper">
-          {currentSpots ? (
-            currentSpots.map((spot) => (
-              <div key={spot.place_id} className="spots__wrapper_item">
-
-                <h3>
-                  {
-                    spot.name.length < 17
-                      ? `${spot.name}`
-                      : `${spot.name.substring(0, 17)}...`
-                  }
-                </h3>
-
-                <div className="spots__wrapper_item-dets">
-                  <p style={{ display: "flex", justifyContent: "space-between" }}>
-                    {" "}
-                    {spot.business_status && spot.business_status === "OPEN"
-                      ? "Currently Open"
-                      : "Currently Closed"}
-                    {spot.district && spot.district.length > 0 ? ` - ${spot.district}` : ""}
-                  </p>
-                  <div className="rating">
-                    {spot.rating} {"  "}
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <span key={i}>
-                        {spot.rating > i ? <FaStar /> : <FaRegStar />}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setModalContent(spot)}
-                >
-                  More Details &rarr;
-                </button>
-              </div>
-            ))
-          ) : <Loader />}
-
-          {isOpen &&
-            modal.map((spot, idx) => {
-              return <Modal spot={spot} key={idx} toggleModal={toggleModal} />;
-            })}
-        </div>
+        <SubHeading title={`Showing ${spots ? spots.length : ""} ${foodType} Spots In your area`} /> <br />
+        <SIngleSpot currentSpots={currentSpots} toggleModal={toggleModal} setModalContent={setModalContent} isOpen={isOpen} modal={modal} />
         <Pagination
           spots={spots}
           spotsPerPage={spotsPerPage}
           currentPage={currentPage}
           paginate={paginate}
           pageNumbers={pageNumbers}
-
         />
       </div>
     </div>
