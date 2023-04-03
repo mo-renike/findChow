@@ -9,91 +9,63 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
+import FoodTypeDropdown from "../FoodType/FoodTypeDropdown";
 
-const Navbar = () => {
+const Navbar = ({ signOut, user }) => {
   const [toggle, setToggle] = useState(false);
-  const [address, setAddress] = useState("");
-  const [coordinates, setCooardinates] = useState({
-    lat: null,
-    lng: null,
-  });
-  const handleSelect = async (value) => {
-    const results = await geocodeByAddress(value);
-    const ll = await getLatLng(results[0]);
-    console.log(ll);
-    setAddress(value);
-    setCooardinates(ll);
+
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => {
+    setShow(!show);
   };
 
   return (
     <nav className="app__navbar">
-      <Link to="/" className="app__navbar-logo">Everything Amala</Link>
-      <ul className="app__navbar-links">
-        {/* <li className="p__opensans">
-          <PlacesAutocomplete
-            value={address}
-            onChange={setAddress}
-            onSelect={handleSelect}
-          >
-            {({
-              getInputProps,
-              suggestions,
-              getSuggestionItemProps,
-              loading,
-            }) => (
-              <div key={suggestions.description}>
-                <input
-                  {...getInputProps({
-                    placeholder: "Search a Amala Restaurant",
-                    className: "location-search-input",
-                    width: "50%",
-                  })}
-                />
-                <div className="autocomplete-dropdown-container">
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map((suggestion) => {
-                    const className = suggestion.active
-                      ? "suggestion-item--active"
-                      : "suggestion-item";
-                    // inline style for demonstration purpose
-                    const style = suggestion.active
-                      ? { backgroundColor: "blue", cursor: "pointer" }
-                      : { backgroundColor: "white", cursor: "pointer" };
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style,
-                        })}
-                      >
-                        <span>{suggestion.description}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+      <Link to="/" className="app__navbar-logo">
+        Find Chow
+      </Link>
+
+      <div className="app__navbar-links">
+        <FoodTypeDropdown />
+        <div className="app__navbar-profile">
+          <div onClick={handleShow} className="app__navbar_profile-img">
+            {user && user.photoURL ? (
+              <img src={user.photoURL} alt="" />
+            ) : (
+              <span>{user && user.displayName.slice(0, 2)}</span>
             )}
-          </PlacesAutocomplete>
-          <p>Address : {address}</p>
-        </li> */}
-        <li className="app__navbar-link">
-          <a href="#contact">Contact</a>
-        </li>
-        <li className="app__navbar-link">
-          <HashLink to="/#tweets">See Tweets</HashLink>
-        </li>
-        <li className="app__navbar-link">
-          <HashLink to="/#learn">Learn</HashLink>
-        </li>
-        <HashLink to="/#spots">
-          <button className="app__navbar-button">Find Amala Spots</button>
-        </HashLink>
-      </ul>
+          </div>
+          {show && (
+            <ul className="slide-bottom">
+              <li className="app__navbar-link">
+                {" "}
+                <Link to="/dashboard" className="app__navbar-link">
+                  Favorites
+                </Link>
+              </li>
+
+              {user ? (
+                <li className="app__navbar-link" onClick={signOut}>
+                  Logout
+                </li>
+              ) : (
+                <li>
+                  {" "}
+                  <Link to="/login" className="app__navbar-link">
+                    Login
+                  </Link>
+                </li>
+              )}
+            </ul>
+          )}
+        </div>
+      </div>
       <div className="app__navbar-mobile">
         <GiHamburgerMenu
           className="ham"
           fontSize={27}
-          color="#ff2a00"
+          color="#af1b3f"
           cursor="pointer"
           onClick={() => {
             setToggle(true);
@@ -103,46 +75,42 @@ const Navbar = () => {
           <div className="app__navbar-mobile_overlay  slide-bottom">
             <MdOutlineRestaurantMenu
               fontSize={27}
-              color="#fff"
+              color="#ecd444"
               className="overlay-close"
               onClick={() => {
                 setToggle(false);
               }}
             />
             <ul className="app__navbar-mobile-links">
-              {/* <li
-                className="p__opensans"
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
-                <a href="#contact">Contact</a>
-              </li> */}
-              <li
-                className="p__opensans"
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
-                <a href="#spots">Find Amala Spots</a>
-              </li>
-              <li
-                className="p__opensans"
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
-                <a href="#tweets">See Tweets</a>
-              </li>
-              <li
-                className="p__opensans"
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
-                <a href="#learn">Learn</a>
+              <FoodTypeDropdown setToggle={setToggle} />
+              <li onClick={() => {
+                setToggle(false);
+              }}>
+                {user ? (
+                  <li>
+                    <Link to="/dashboard" className="app__navbar-link">
+                      Favorites
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
               </li>
 
+              <li
+                className="p__opensans app__navbar-link"
+                onClick={() => {
+                  setToggle(false);
+                }}
+              >
+                {user ? (
+                  <a href="/" onClick={signOut}>Logout</a>
+                ) : (
+                  <Link to="/login" className="app__navbar-link">
+                    Login
+                  </Link>
+                )}
+              </li>
             </ul>
           </div>
         )}

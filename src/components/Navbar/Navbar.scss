@@ -5,22 +5,22 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background: transparent;
+    // background: transparent;
     align-items: center;
     padding: 1rem 2rem;
     z-index: 5;
     position: absolute;
+    background-color: var(--color-main);
     top: 0;
     @include respond(tabport) {
       padding: 1rem;
     }
-
     &-logo {
       font-family: var(--font-base);
       color: var(--color-black);
       letter-spacing: 0.04em;
       font-size: 1.5rem;
-      font-weight: 700;
+      font-weight: bolder;
       cursor: pointer;
       transition: 0.5s ease;
 
@@ -44,22 +44,21 @@
       li {
         cursor: pointer;
         margin: 0 1rem;
+        font-weight: bold;
 
-        a {
-          font-size: 1.08rem;
-          text-transform: capitalize;
-          font-weight: bold;
-          color: var(--color-black);
-          transition: 1s ease;
-          &:hover {
-            color: var(--color-accent);
-            border-bottom: 1px solid var(--color-accent);
-          }
+        font-size: 1.08rem;
+        text-transform: capitalize;
+        color: var(--color-black);
+        transition: 1s ease;
+        &:hover {
+          color: var(--color-accent);
+          border-bottom: 1px solid var(--color-accent);
         }
       }
     }
 
     &-button {
+      font-size: 1.08rem;
       width: fit-content;
       padding: var(--padding-btn);
       border: 1px solid var(--color-accent);
@@ -68,10 +67,10 @@
       color: var(--color-accent);
       text-align: center;
       transition: 0.5s ease;
-      &:hover {
-        background-color: var(--color-accent);
-        color: var(--color-main);
-      }
+      // &:hover {
+      //   background-color: var(--color-accent);
+      //   color: var(--color-main);
+      // }
     }
 
     &-mobile {
