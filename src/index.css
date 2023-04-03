@@ -10,11 +10,10 @@
   --color-btn: #1c0b19;
   --color-white: #f7f7f7;
   --border-radius-btn: 18px;
-  --padding-btn: 0.8rem 1.6rem;
-  --padding-btn-sm: 0.2rem 1rem;
+  --padding-btn: 0.7rem 1.2rem;
+  --padding-btn-sm: 0.2rem 0.8rem;
   --box-shadow: 0px 1px 1px 1px #555;
 }
-
 
 * {
   box-sizing: border-box;
