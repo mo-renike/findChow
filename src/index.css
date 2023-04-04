@@ -57,6 +57,8 @@ button {
 }
 li {
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 
 .slide-bottom {
@@ -87,4 +89,8 @@ li {
 }
 .accent {
   color: var(--color-accent) !important;
+}
+
+.d-flex {
+  display: flex;
 }

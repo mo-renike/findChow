@@ -12,8 +12,45 @@
     position: absolute;
     background-color: var(--color-main);
     top: 0;
+    height: 80px;
     @include respond(tabport) {
       padding: 1rem;
+    }
+    &-user {
+      position: relative;
+      margin-left: 1rem;
+    }
+    &-profile {
+      &_flex {
+        display: flex;
+        cursor: pointer;
+        img {
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 0.4rem;
+        }
+        p {
+          font-weight: bold;
+        }
+      }
+      &_show {
+        background-color: rgba($color: #000000, $alpha: 0.2);
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: 2.7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 0;
+        li {
+          margin: 0.2rem 0 !important;
+          padding: 0.3rem;
+          color: var(--color-black) !important;
+        }
+      }
     }
     &-logo {
       font-family: var(--font-base);
@@ -45,7 +82,6 @@
         cursor: pointer;
         margin: 0 1rem;
         font-weight: bold;
-
         font-size: 1.08rem;
         text-transform: capitalize;
         color: var(--color-black);
