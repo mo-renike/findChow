@@ -47,8 +47,10 @@
         padding: 0.5rem 0;
         li {
           margin: 0.2rem 0 !important;
-          padding: 0.3rem;
-          color: var(--color-black) !important;
+          a {
+            padding: 0.3rem;
+            color: var(--color-black) !important;
+          }
         }
       }
     }
@@ -56,7 +58,7 @@
       font-family: var(--font-base);
       color: var(--color-black);
       letter-spacing: 0.04em;
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       font-weight: bolder;
       cursor: pointer;
       transition: 0.5s ease;
@@ -78,7 +80,8 @@
         display: none;
       }
 
-      li {
+      li,
+      a {
         cursor: pointer;
         margin: 0 1rem;
         font-weight: bold;

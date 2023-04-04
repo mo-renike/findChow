@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdFavorite, MdLogout, MdOutlineRestaurantMenu } from "react-icons/md";
+import { RiArrowDownSFill } from "react-icons/ri";
+import { MdFavorite, MdLogin, MdLogout, MdOutlineRestaurantMenu } from "react-icons/md";
 import { HashLink } from "react-router-hash-link";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
@@ -28,14 +29,14 @@ const Navbar = ({ signOut, user }) => {
         <div className="app__navbar-user">
           {!user ? (
             <Link to="/login" className="app__navbar-link">
-              Login
+              <MdLogin style={{ marginRight: "5px" }} />  Login
             </Link>
           ) : (
             <div onClick={handleShow} className="app__navbar-profile">
               {user &&
                 <div className="app__navbar-profile_flex">
                   <img src={user.photoURL} alt="" />
-                  <p>{user.displayName}</p>
+                  <p>{user.displayName} <RiArrowDownSFill /></p>
                 </div>
               }
             </div>
@@ -51,7 +52,7 @@ const Navbar = ({ signOut, user }) => {
               </li>
 
               <li onClick={signOut}>
-                <MdLogout />    Logout
+                <a href="/">       <MdLogout />    Logout</a>
               </li>
 
             </ul>
