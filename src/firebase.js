@@ -1,20 +1,28 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBdnaSGn3fq0JRkKsGRDAYkhTYWt8FHND4",
   authDomain: "findchow-24d1c.firebaseapp.com",
+  databaseURL: "https://findchow-24d1c-default-rtdb.firebaseio.com",
   projectId: "findchow-24d1c",
   storageBucket: "findchow-24d1c.appspot.com",
   messagingSenderId: "54057494086",
   appId: "1:54057494086:web:705e794bf93da6321c4c47",
+  measurementId: "G-99S6H0EEDM",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
 
 export const auth = getAuth(app);
+
+// Initialize Realtime Database and get a reference to the service
+export const database = getDatabase(app);
 
 // Google provider for authentication
 const provider = new GoogleAuthProvider();
