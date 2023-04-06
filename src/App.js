@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { Footer } from "./container";
 import Home from "./Pages/Home";
@@ -9,10 +9,11 @@ import NotFound from "./components/NotFound/NotFound";
 import { ErrorFallback } from "./components/ErrorBoundary/ErrorFallback";
 import { auth, signInWithGoogle, signOut } from "./firebase";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import { AppContext } from "./AppContext";
 
 const App = () => {
   // count number of website visits
-  const [currentUser, setCurrentUser] = React.useState(null);
+  const { currentUser, setCurrentUser } = useContext(AppContext);
 
   let count = localStorage.getItem("page_view");
   if (count === null) {
@@ -39,7 +40,7 @@ const App = () => {
       }
     });
     // document.addEventListener("contextmenu", (event) => event.preventDefault());
-  }, []);
+  }, [setCurrentUser]);
   return (
     <div>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
