@@ -1,7 +1,7 @@
 @import "../../../Stylesheets/main.scss";
 
 .spots {
-  background-color: #f9f9f9;
+  // background-color: #f9f9f9;
   padding: 3rem;
   text-align: center;
 
@@ -31,6 +31,7 @@
     }
 
     &_item {
+      position: relative;
       display: flex;
       align-items: flex-start;
       justify-content: center;
@@ -46,6 +47,22 @@
         font-size: 2rem;
         font-family: var(--font-base);
         margin: 0.5rem 0;
+      }
+      .fav {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.3rem;
+        background-color: var(--color-accent);
+        color: var(--color-main);
+        border-radius: 0 0 0 7px;
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: 0.5s ease;
+        &:hover {
+          background-color: var(--color-main);
+          color: var(--color-accent);
+        }
       }
       &-dets {
         border-radius: inherit;
