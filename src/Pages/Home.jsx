@@ -12,7 +12,7 @@ const App = () => (
     }}>
       {/* <Learn /> */}
       <Spots />
-      <Tweet />
+      {/* <Tweet /> */}
       {/* <OtherApps /> */}
     </div>
   </div>
