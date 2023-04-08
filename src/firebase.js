@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
-import { getDatabase } from "firebase/database";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -18,11 +18,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
+logEvent(analytics, "notification_received");
+
 
 export const auth = getAuth(app);
 
-// Initialize Realtime Database and get a reference to the service
-export const database = getDatabase(app);
+// Firestore
+export const db = getFirestore(app);
 
 // Google provider for authentication
 const provider = new GoogleAuthProvider();

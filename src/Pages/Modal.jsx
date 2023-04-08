@@ -60,7 +60,7 @@ const Modal = ({ spot, toggleModal }) => {
                                 They are located at <strong>{spot.vicinity}</strong> and is
                                 currently{" "}
                                 <strong>
-                                    {spot.opening_hours.open_now === true ? "Open" : "Closed"}.
+                                    {spot.opening_hours?.open_now === true ? "Open" : "Closed"}.
                                 </strong>{" "}
                             </p>
                             <p>

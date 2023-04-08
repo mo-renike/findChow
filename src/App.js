@@ -8,7 +8,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import NotFound from "./components/NotFound/NotFound";
 import { ErrorFallback } from "./components/ErrorBoundary/ErrorFallback";
 import { auth, signInWithGoogle, signOut } from "./firebase";
-import Dashboard from "./Pages/Dashboard/Dashboard";
+import Favorites from "./Pages/Favorites/Favorites";
 import { AppContext } from "./AppContext";
 
 const App = () => {
@@ -49,7 +49,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login signIn={signIn} />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </ErrorBoundary>
       <Footer count={count} />

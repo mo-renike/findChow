@@ -8,6 +8,13 @@ export const AppProvider = ({ children }) => {
   );
   const [favoriteSpots, setFavoriteSpots] = useState([]);
   const [currentUser, setCurrentUser] = React.useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modal, setModal] = useState([]);
+
+  const setModalContent = (spot) => {
+    setModal([spot]);
+    setIsOpen(!isOpen);
+  };
 
   return (
     <AppContext.Provider
@@ -18,6 +25,11 @@ export const AppProvider = ({ children }) => {
         setFavoriteSpots,
         currentUser,
         setCurrentUser,
+        isOpen,
+        setIsOpen,
+        modal,
+        setModal,
+        setModalContent,
       }}
     >
       {children}
