@@ -23,6 +23,7 @@ const SIngleSpot = ({
     const [message, setMessage] = useState('');
     const { favoriteSpots, setFavoriteSpots, currentUser } = useContext(AppContext);
     const navigate = useNavigate()
+    // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(true); // new state variable
 
     const toggleFavorite = async (spot) => {
@@ -66,7 +67,16 @@ const SIngleSpot = ({
     };
 
 
-
+    useEffect(() => {
+        let timer;
+        if (message !== '') {
+            timer = setTimeout(() => {
+                setMessage('');
+            }, 3000); // 3 seconds
+        }
+        return () => clearTimeout(timer);
+    }, [message]);
+    
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
@@ -90,9 +100,9 @@ const SIngleSpot = ({
 
                         <h3>
                             {
-                                spot.name.length < 17
+                                spot.name.length < 22
                                     ? `${spot.name}`
-                                    : `${spot.name.substring(0, 17)}...`
+                                    : `${spot.name.substring(0, 22)}...`
                             }
                         </h3>
                         { }
