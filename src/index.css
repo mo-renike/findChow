@@ -55,7 +55,8 @@ button {
   font-weight: bold;
   font-family: var(--font-alt);
 }
-li {
+li,
+a {
   list-style: none;
   display: flex;
   align-items: center;

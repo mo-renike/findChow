@@ -25,10 +25,10 @@ const Navbar = ({ signOut, user }) => {
       </Link>
 
       <div className="app__navbar-links">
-        <FoodTypeDropdown />
+        <FoodTypeDropdown setToggle={setToggle} />
         <div className="app__navbar-user">
           {!user ? (
-            <Link to="/login" className="app__navbar-link">
+            <Link to="/login" style={{ fontSize: "1.2rem" }}>
               <MdLogin style={{ marginRight: "5px" }} />  Login
             </Link>
           ) : (
@@ -46,7 +46,7 @@ const Navbar = ({ signOut, user }) => {
             <ul className="slide-bottom app__navbar-profile_show">
               <li>
                 {" "}
-                <Link onClick={handleShow} to="/dashboard">
+                <Link onClick={handleShow} to="/favorites">
                   <MdFavorite />  Favorites
                 </Link>
               </li>
@@ -86,7 +86,7 @@ const Navbar = ({ signOut, user }) => {
               }}>
                 {user ? (
                   <li>
-                    <Link to="/dashboard" className="app__navbar-link">
+                    <Link to="/favorites" className="app__navbar-link">
                       Favorites
                     </Link>
                   </li>

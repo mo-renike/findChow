@@ -1,4 +1,4 @@
-import React, { useContext, useNavigate } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../../AppContext';
 
 const foodTypes = [
@@ -11,12 +11,10 @@ const foodTypes = [
 
 const FoodTypeDropdown = ({ setToggle }) => {
     const { foodType, setFoodType } = useContext(AppContext);
-    const navigate = useNavigate
 
     const handleChange = (e) => {
         setFoodType(e.target.value);
         setToggle(false); // call setToggle with a value of true
-        navigate('/#spots')
     };
 
     return (
