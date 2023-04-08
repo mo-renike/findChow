@@ -1,18 +1,46 @@
 .slider {
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--color-accent);
-  > * {
-    width: 100%;
-    height: 100%;
-  }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
+  .image {
+    position: relative;
+    width: 529px;
+    height: 530px;
+    overflow: hidden;
     border-radius: 50%;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      border: 3px solid var(--color-main);
+      top: -5px;
+      left: 94px;
+      z-index: -1;
+      box-shadow: -4px 10px 10px rgba(0, 0, 0, 0.5);
+    }
+    // add anothe pseudo element to create a border on the opposite side
+    &::after {
+      box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
+      content: "";
+      position: absolute;
+      width: 510px;
+      height: 529px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      border: 3px solid var(--color-main);
+      bottom: 6px;
+      right: 94px;
+      z-index: -1;
+    }
+    img {
+      width: 500px;
+      margin: auto;
+      height: 500px;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      box-shadow: -4px 10px 10px rgba(0, 0, 0, 0.5);
+    }
   }
 }

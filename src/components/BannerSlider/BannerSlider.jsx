@@ -5,9 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./BannerSlider.scss";
 
-import slide1 from "../../images/banner-slider-1.png";
-import slide2 from "../../images/banner-slider-2.png";
-import slide3 from "../../images/banner-slider-3.png";
+import slide1 from "../../images/amala1.jpeg";
+import slide2 from "../../images/amala2.jpeg";
+import slide3 from "../../images/amala5.jpeg";
 
 import calabar1 from "../../images/calabar-11.jpeg"
 import calabar2 from "../../images/calabar.jpg"
@@ -23,7 +23,7 @@ const BannerSlider = () => {
   const settings = {
     autoplay: true,
     infinite: true,
-    speed: 500,
+    speed: 400,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -47,7 +47,7 @@ const BannerSlider = () => {
       <Slider {...settings}>
         {slides().map((slide, index) => {
           return (
-            <div key={index}>
+            <div className='image' key={index}>
               <img src={slide} alt={foodType} />
             </div>
           );
