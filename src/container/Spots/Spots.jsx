@@ -10,15 +10,8 @@ const Spots = () => {
   const [latitude, setLatitude] = useState(6.5095);
   const [longitude, setLongitude] = useState(3.3711);
 
-  //logic for modal
-  const [isOpen, setIsOpen] = useState(false);
-  const [modal, setModal] = useState([]);
-  const { foodType } = useContext(AppContext);
+  const { foodType, modal, setModalContent, isOpen, setIsOpen } = useContext(AppContext);
 
-  const setModalContent = (spot) => {
-    setModal([spot]);
-    setIsOpen(!isOpen);
-  };
 
   const toggleModal = () => {
     setIsOpen(false);

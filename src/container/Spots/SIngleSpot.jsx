@@ -1,11 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import Loader from "../../components/Loader";
 import Modal from "../../Pages/Modal";
 import "./Spots.scss";
+import { db } from '../../firebase';
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 
 import { AppContext } from '../../AppContext';
+import ToastAlert from '../../components/Toasts/ToastAlert';
+import { useNavigate } from 'react-router-dom';
 
 
 const SIngleSpot = ({
@@ -14,40 +18,87 @@ const SIngleSpot = ({
     isOpen,
     modal,
     toggleModal,
-
+    spots
 }) => {
+    const [message, setMessage] = useState('');
+    const { favoriteSpots, setFavoriteSpots, currentUser } = useContext(AppContext);
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(true); // new state variable
 
-    const { favoriteSpots, setFavoriteSpots } = useContext(AppContext);
+    const toggleFavorite = async (spot) => {
+        if (!currentUser) {
+            setMessage("Please log in to add to favorites");
+            navigate("/login");
+            return;
+        }
 
-
-    const toggleFavorite = (spot) => {
         const isFavorite = favoriteSpots.some((favoriteSpot) => favoriteSpot.place_id === spot.place_id);
+        let newFavorites;
         if (isFavorite) {
-            const newFavoriteSpots = favoriteSpots.filter((favoriteSpot) => favoriteSpot.place_id !== spot.place_id);
-            setFavoriteSpots(newFavoriteSpots);
+            newFavorites = favoriteSpots.filter((favoriteSpot) => favoriteSpot.place_id !== spot.place_id);
+            setFavoriteSpots(newFavorites);
+            setMessage("Removed from favorites");
+
+            try {
+                const querySnapshot = await getDocs(collection(db, "favorites"));
+                const docId = querySnapshot.docs.find(doc => doc.data().favorites.place_id === spot.place_id)?.id;
+                if (docId) {
+                    await deleteDoc(doc(db, "favorites", docId));
+                }
+            } catch (e) {
+                console.error("Error deleting document: ", e);
+            }
         } else {
-            setFavoriteSpots([...favoriteSpots, spot]);
+            newFavorites = [...favoriteSpots, spot];
+            setFavoriteSpots(newFavorites);
+            setMessage("Added to favorites");
+            console.log("added");
+
+            try {
+                const docRef = await addDoc(collection(db, "favorites"), {
+                    favorites: spot
+                });
+                console.log("Document written with ID: ", docRef.id);
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
         }
     };
 
 
+
+    useEffect(() => {
+        const fetchFavorites = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, "favorites"));
+                const favoriteSpotsArray = querySnapshot.docs.map(doc => doc.data().favorites);
+                setFavoriteSpots(favoriteSpotsArray);
+                setLoading(false);
+            } catch (e) {
+                console.error("Error getting favorite spots: ", e);
+            }
+        };
+        fetchFavorites();
+    }, []);
+
     return (
         <div className="spots__wrapper">
+            <ToastAlert title={message} />
             {currentSpots.length !== 0 ? (
                 currentSpots.map((spot) => (
                     <div key={spot.place_id} className="spots__wrapper_item">
-                        <div className="d-f">
-                            <h3>
-                                {
-                                    spot.name.length < 17
-                                        ? `${spot.name}`
-                                        : `${spot.name.substring(0, 17)}...`
-                                }
-                            </h3>
-                            <span onClick={() => toggleFavorite(spot)}>
-                                {favoriteSpots.some((favoriteSpot) => favoriteSpot.place_id === spot.place_id) ? (<AiFillHeart />) : (<AiOutlineHeart />)}
-                            </span>
-                        </div>
+
+                        <h3>
+                            {
+                                spot.name.length < 17
+                                    ? `${spot.name}`
+                                    : `${spot.name.substring(0, 17)}...`
+                            }
+                        </h3>
+                        { }
+                        <span className='fav' onClick={() => toggleFavorite(spot)}>
+                            {favoriteSpots.some((favoriteSpot) => favoriteSpot.place_id === spot.place_id) ? (<AiFillHeart />) : (<AiOutlineHeart />)}
+                        </span>
                         <div className="spots__wrapper_item-dets">
                             <p style={{ display: "flex", justifyContent: "space-between" }}>
                                 {" "}
