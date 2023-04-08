@@ -1,7 +1,14 @@
+@import "../../../Stylesheets/main.scss";
+
+
 .favorites {
   margin-top: 5rem;
-  padding: 2rem;
+  padding: 4rem;
   height: 100%;
   width: 100%;
   background-color: var(--color-white);
+    @include respond(phone) {
+    padding: 1rem;
+  }
+
 }

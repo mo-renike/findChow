@@ -1,7 +1,7 @@
 @import "../../../Stylesheets/main.scss";
 
 .spots {
-  padding: 2rem 0;
+  padding: 2rem ;
   text-align: center;
 
   @include respond(phone) {
@@ -17,7 +17,6 @@
     grid-gap: 2rem;
     margin-top: 1rem;
     grid-template-columns: 32% 32% 32%;
-
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -25,7 +24,7 @@
     @include respond(tabland) {
       grid-template-columns: 50% 50%;
     }
-    @include respond(phone) {
+    @include respond(tabport) {
       grid-template-columns: 100%;
     }
 
