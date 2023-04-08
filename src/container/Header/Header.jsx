@@ -1,35 +1,31 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { AppContext } from '../../AppContext';
 import { HashLink } from "react-router-hash-link";
 import BannerSlider from "../../components/BannerSlider/BannerSlider";
 //import { Heading } from "../../components/Headings/Headings";
 import "./Header.scss";
 
-// const title = () => {
-//   return (
-//     <div>
-//       How Many Wraps of <em>Hot, Fluffy Amala</em> Can You Finish?
-//     </div>
-//   );
-// };
 
 const Header = () => {
+  const { foodType } = useContext(AppContext);
+
   return (
     <section className="header" id="home">
       <div className="header__wrapper">
         <div className="header__info">
-          <h1>How Many Wraps of <em>Hot, Fluffy Amala</em> Can You Finish?</h1>
-          <p className="header__info-text">
-            Your number one stop for everything amala. Find amala spots closest to
-            you, check information about each spot including reviews, rating, description, and contact details.
+          {foodType === "amala" ? (<h1>How many wraps of <em>Hot, Fluffy Amala</em> Can  only you finish?</h1>) :
+            foodType === "chinese" ? (<h1> Discover the best  <em>Chinese Cuisine</em> in town, right at your fingertips</h1>) :
+              (<h1>Craving for a taste of <em>Calabar kitchen?</em> find spots  near you in a snap!</h1>)}
 
+          <p className="header__info-text">
+            Unleash your inner foodie! Discover top-rated {foodType}  spots nearby and check reviews before heading there. <br /> Plus, you can save your top spots and share them with your foodie friends. Don't settle for mediocre meals, let us help you find the best {foodType} around!
           </p>
           <HashLink to="/#spots" className="pry__button">
-            Explore Amala Spots
+            Explore {foodType} Spots
           </HashLink>
         </div>
         <BannerSlider />
       </div>
-
     </section>
   );
 };

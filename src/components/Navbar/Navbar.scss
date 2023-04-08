@@ -5,22 +5,61 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background: transparent;
+    // background: transparent;
     align-items: center;
     padding: 1rem 2rem;
     z-index: 5;
     position: absolute;
+    background-color: var(--color-main);
     top: 0;
+    height: 80px;
     @include respond(tabport) {
       padding: 1rem;
     }
-
+    &-user {
+      position: relative;
+      margin-left: 1rem;
+    }
+    &-profile {
+      &_flex {
+        display: flex;
+        cursor: pointer;
+        img {
+          height: 40px;
+          width: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 0.4rem;
+        }
+        p {
+          font-weight: bold;
+        }
+      }
+      &_show {
+        background-color: rgba($color: #000000, $alpha: 0.2);
+        position: absolute;
+        width: 100%;
+        right: 0;
+        top: 2.7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 0;
+        li {
+          margin: 0.2rem 0 !important;
+          a {
+            padding: 0.3rem;
+            color: var(--color-black) !important;
+          }
+        }
+      }
+    }
     &-logo {
       font-family: var(--font-base);
       color: var(--color-black);
       letter-spacing: 0.04em;
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.7rem;
+      font-weight: bolder;
       cursor: pointer;
       transition: 0.5s ease;
 
@@ -41,25 +80,24 @@
         display: none;
       }
 
-      li {
+      li,
+      a {
         cursor: pointer;
         margin: 0 1rem;
-
-        a {
-          font-size: 1.08rem;
-          text-transform: capitalize;
-          font-weight: bold;
-          color: var(--color-black);
-          transition: 1s ease;
-          &:hover {
-            color: var(--color-accent);
-            border-bottom: 1px solid var(--color-accent);
-          }
+        font-weight: bold;
+        font-size: 1.08rem;
+        text-transform: capitalize;
+        color: var(--color-black);
+        transition: 1s ease;
+        &:hover {
+          color: var(--color-accent);
+          border-bottom: 1px solid var(--color-accent);
         }
       }
     }
 
     &-button {
+      font-size: 1.08rem;
       width: fit-content;
       padding: var(--padding-btn);
       border: 1px solid var(--color-accent);
@@ -68,10 +106,10 @@
       color: var(--color-accent);
       text-align: center;
       transition: 0.5s ease;
-      &:hover {
-        background-color: var(--color-accent);
-        color: var(--color-main);
-      }
+      // &:hover {
+      //   background-color: var(--color-accent);
+      //   color: var(--color-main);
+      // }
     }
 
     &-mobile {
