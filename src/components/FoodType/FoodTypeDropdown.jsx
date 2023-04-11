@@ -4,7 +4,7 @@ import { AppContext } from '../../AppContext';
 const foodTypes = [
     { label: 'Amala Joints', value: 'amala' },
     { label: 'Chinese restaurants', value: 'chinese' },
-    { label: 'Calabar Kitchen', value: 'calabar' },
+    { label: 'Calabar Kitchen', value: 'calabar%2Ckitchen' },
     // { label: 'Mexican', value: 'mexican' },
     // { label: 'Pizza', value: 'pizza' },
 ];

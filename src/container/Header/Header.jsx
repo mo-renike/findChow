@@ -18,10 +18,10 @@ const Header = () => {
               (<h1>Craving for a taste of <em>Calabar kitchen?</em> find spots  near you in a snap!</h1>)}
 
           <p className="header__info-text">
-            Unleash your inner foodie! Discover top-rated {foodType}  spots nearby and check reviews before heading there. <br /> Plus, you can save your top spots and share them with your foodie friends. Don't settle for mediocre meals, let us help you find the best {foodType} around!
+            Unleash your inner foodie! Discover top-rated {foodType === "calabar%2Ckitchen" ? "Calabar" : foodType} spots nearby and check reviews before heading there. <br /> Plus, you can save your top spots and share them with your foodie friends. Don't settle for mediocre meals, let us help you find the best {foodType} around!
           </p>
           <HashLink to="/#spots" className="pry__button">
-            Explore {foodType} Spots
+            Explore {foodType === "calabar%2Ckitchen" ? "Calabar" : foodType} Spots
           </HashLink>
         </div>
         <BannerSlider />
