@@ -1,22 +1,20 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { MdFavorite, MdLogin, MdLogout, MdOutlineRestaurantMenu } from "react-icons/md";
-import { HashLink } from "react-router-hash-link";
+import {  useLocation } from "react-router-dom";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import FoodTypeDropdown from "../FoodType/FoodTypeDropdown";
 
 const Navbar = ({ signOut, user }) => {
   const [toggle, setToggle] = useState(false);
-
   const [show, setShow] = useState(false);
+  const location = useLocation();
 
   const handleShow = () => {
     setShow(!show);
   };
-
 
   return (
     <nav className="app__navbar">
@@ -25,7 +23,7 @@ const Navbar = ({ signOut, user }) => {
       </Link>
 
       <div className="app__navbar-links">
-        <FoodTypeDropdown setToggle={setToggle} />
+        {location.pathname === "/" && <FoodTypeDropdown />}
         <div className="app__navbar-user">
           {!user ? (
             <Link to="/login" style={{ fontSize: "1.2rem" }}>
@@ -80,7 +78,7 @@ const Navbar = ({ signOut, user }) => {
               }}
             />
             <ul className="app__navbar-mobile-links">
-              <FoodTypeDropdown setToggle={setToggle} />
+              {location.pathname === "/" && <FoodTypeDropdown setToggle={setToggle} />}
               <li onClick={() => {
                 setToggle(false);
               }}>
