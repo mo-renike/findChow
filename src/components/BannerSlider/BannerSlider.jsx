@@ -35,7 +35,7 @@ const BannerSlider = () => {
   const slides = () => {
     if (foodType === "amala") {
       return [slide1, slide2, slide3];
-    } else if (foodType === "calabar") {
+    } else if (foodType === "calabar%2Ckitchen") {
       return [calabar1, calabar2, calabar3];
     } else if (foodType === "chinese") {
       return [chinese1, chinese2, chinese3];

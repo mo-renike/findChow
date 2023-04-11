@@ -3,9 +3,7 @@ import React, { useState, createContext } from "react";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [foodType, setFoodType] = useState(
-    localStorage.getItem("foodType") || "amala"
-  );
+  const [foodType, setFoodType] = useState("amala");
   const [favoriteSpots, setFavoriteSpots] = useState([]);
   const [currentUser, setCurrentUser] = React.useState(null);
   const [isOpen, setIsOpen] = useState(false);

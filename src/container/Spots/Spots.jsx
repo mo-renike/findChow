@@ -90,7 +90,7 @@ const Spots = () => {
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
-        <SubHeading title={`Showing ${spots ? spots.length : ""} ${foodType} Spots In your area`} /> <br />
+        <SubHeading title={`Showing ${spots ? spots.length : ""} ${foodType === "calabar%2Ckitchen" ? "Calabar" : foodType} Spots In your area`} /> <br />
         <SIngleSpot currentSpots={currentSpots} toggleModal={toggleModal} setModalContent={setModalContent} isOpen={isOpen} modal={modal} />
         <Pagination
           spots={spots}

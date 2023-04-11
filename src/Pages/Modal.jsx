@@ -18,7 +18,6 @@ const Modal = ({ spot, toggleModal }) => {
                 if (res.status === 200) {
                     const data = await res.json();
                     setDetails(data.result);
-                    console.log(data.result);
                     setLoading(false);
                 } else {
                     console.log("error");
