@@ -10,7 +10,7 @@ const App = () => (
       maxWidth: "1560px",
       margin: "auto"
     }}>
-      {/* <Learn /> */}
+      <Learn />
       <Spots />
       {/* <Tweet /> */}
       {/* <OtherApps /> */}

@@ -76,7 +76,7 @@ const SIngleSpot = ({
         }
         return () => clearTimeout(timer);
     }, [message]);
-    
+
     useEffect(() => {
         const fetchFavorites = async () => {
             try {
@@ -89,7 +89,7 @@ const SIngleSpot = ({
             }
         };
         fetchFavorites();
-    }, []);
+    }, [setFavoriteSpots]);
 
     return (
         <div className="spots__wrapper">
@@ -100,9 +100,9 @@ const SIngleSpot = ({
 
                         <h3>
                             {
-                                spot.name.length < 22
+                                spot.name.length < 18
                                     ? `${spot.name}`
-                                    : `${spot.name.substring(0, 22)}...`
+                                    : `${spot.name.substring(0, 18)}...`
                             }
                         </h3>
                         { }
