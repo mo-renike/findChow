@@ -27,7 +27,7 @@ app.get("/api/maps/place", async (req, res) => {
 
 app.get("/api/maps/place/details", async (req, res) => {
   const { place_id } = req.query;
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=address_components,business_status,formatted_address,icon,icon_mask_base_uri,delivery,dine_in,icon_background_color,name,photo,place_id,plus_code,type,url,utc_offset,vicinity,reviews,formatted_phone_number,opening_hours,website,wheelchair_accessible_entrance&key=${process.env.GOOGLE_MAPS_API_KEY}`;
+  const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=address_components,business_status,formatted_address,icon,icon_mask_base_uri,delivery,dine_in,icon_background_color,name,photo,place_id,plus_code,type,url,utc_offset,vicinity,reviews,formatted_phone_number,opening_hours,website,curbside_pickup,reservable,serves_brunch,serves_dinner,serves_lunch,wheelchair_accessible_entrance&key=${process.env.GOOGLE_MAPS_API_KEY}`;
 
   try {
     const response = await fetch(url);

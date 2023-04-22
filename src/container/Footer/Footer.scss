@@ -1,10 +1,9 @@
 @import "../../../Stylesheets/main.scss";
 
-.footer {
-  background-color: var(--color-black);
+.footer {  
+  background-color: var(--color-btn);
   color: var(--color-white);
   font-family: var(--font-base);
-  background-color: darken(#2d2d2d, 13);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -19,7 +18,7 @@
     padding: 1.5rem;
     width: 100%;
     font-size: 1rem;
-    background-color: var(--color-btn);
+  
 
     a {
       color: var(--color-main);

@@ -67,8 +67,11 @@
         transform: translateX(9px);
       }
 
+      @include respond(phone) {
+        font-size: 1.1rem;
+      }
       @include respond(sm) {
-        font-size: 0.9rem;
+        font-size: 0.84rem;
       }
     }
 
@@ -106,15 +109,21 @@
       color: var(--color-accent);
       text-align: center;
       transition: 0.5s ease;
-      // &:hover {
-      //   background-color: var(--color-accent);
-      //   color: var(--color-main);
-      // }
+      margin-left: auto;
+
+      @include respond(phone) {
+        font-size: 0.9rem;
+        padding: 4px;
+      }
+      @include respond(sm) {
+        font-size: 0.8rem;
+        padding: 2px;
+      }
     }
 
     &-mobile {
       display: none;
-      margin-right: 20px;
+      // margin-right: 20px;
 
       @include respond(tabport) {
         display: flex;

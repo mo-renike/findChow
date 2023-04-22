@@ -9,12 +9,9 @@
   position: relative;
 
   @include respond(tabport) {
-    height: 80vh;
-  }
-
-  @include respond(phone) {
     height: 85vh;
   }
+
 
   &::before {
     content: "";
@@ -75,15 +72,16 @@
       font-family: var(--font-base);
 
       @include respond(tabland) {
-        font-size: 2.6rem;
+        margin-top: 1.9rem;
+        font-size: 2.2rem;
       }
 
       @include respond(phone) {
-        font-size: 2rem;
+        font-size: 1.75rem;
       }
 
       @include respond(sm) {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
       }
 
       em {
