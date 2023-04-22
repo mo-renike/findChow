@@ -13,7 +13,13 @@ const Modal = ({ spot, toggleModal }) => {
             setLoading(true);
             try {
                 const res = await fetch(
-                    `http://localhost:8080/api/maps/place/details?place_id=${spot.place_id}`
+                    `https://findchow.onrender.com/api/maps/place/details?place_id=${spot.place_id}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
                 );
                 if (res.status === 200) {
                     const data = await res.json();
