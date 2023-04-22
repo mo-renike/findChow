@@ -13,7 +13,7 @@ This is A React-Based Web Application to find food spots closest to a user locat
 - Select a foodType from the dropdown menu
 - Display X number of spots by default using a default location (Near Lekki, Lagos Nigeria).
 - Ask for the User Location using Geolocation API
-- Display spots closest to the user's location & Update the amala spots according to the user location.
+- Display selected food type spots closest to the user's location & Update the amala spots according to the user location.
 - Each place has an Image, Spot Name, Total Rating, and a link to view more details.
 - Details pop-up modal Shows extra details such as images, description, opening hours, Reviews and google map link for the selected place.
 <!--
