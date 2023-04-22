@@ -18,7 +18,7 @@ app.get("/api/maps/place", async (req, res) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    //   console.log(url);
+   // console.log(url);
     res.json(data);
   } catch (error) {
     console.log(error);
@@ -33,7 +33,7 @@ app.get("/api/maps/place/details", async (req, res) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    //console.log(url);
+   // console.log(url);
     res.json(data);
   } catch (error) {
     console.log(error);
