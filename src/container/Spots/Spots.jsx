@@ -72,7 +72,6 @@ const Spots = () => {
         } else {
           const data = await res.json();
           setSpots(data.results);
-          console.log(spots);
         }
       } catch (error) {
         console.log(error);
@@ -85,7 +84,7 @@ const Spots = () => {
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [foodType, isOpen, latitude, longitude, spots]);
+  }, [foodType, isOpen, latitude, longitude]);
 
 
   return (
