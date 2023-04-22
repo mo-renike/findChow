@@ -66,7 +66,7 @@ const Spots = () => {
     // get amala spots using google places api
     const getSpots = async () => {
       try {
-        const res = await fetch(`http://localhost:8080/api/maps/place?latitude=${latitude}&longitude=${longitude}&radius=50000&type=restaurant&keyword=${foodType}`);
+        const res = await fetch(`http://localhost:8080/api/maps/place?latitude=${latitude}&longitude=${longitude}&radius=51000&type=restaurant&keyword=${foodType}`);
         if (!res.ok) {
           throw new Error("Something went wrong");
         } else {
