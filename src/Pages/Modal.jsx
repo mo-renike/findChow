@@ -24,6 +24,7 @@ const Modal = ({ spot, toggleModal }) => {
                 if (res.status === 200) {
                     const data = await res.json();
                     setDetails(data.result);
+                    console.log(data.result);
                     setLoading(false);
                 } else {
                     console.log("error");
@@ -149,7 +150,7 @@ const Modal = ({ spot, toggleModal }) => {
                                     "No take out"
                                 )}
                             </div>
-                            <div className="options">
+                            {/* <div className="options">
                                 <h4>Offerings: </h4>
                                 {details.wheelchair_accessible_entrance &&
                                     details.wheelchair_accessible_entrance === true ? (
@@ -159,7 +160,7 @@ const Modal = ({ spot, toggleModal }) => {
                                 ) : (
                                     "No Delivery"
                                 )}
-                            </div>
+                            </div> */}
                             <br />
                             <a
                                 className="button"
