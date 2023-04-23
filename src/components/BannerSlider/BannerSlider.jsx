@@ -47,7 +47,7 @@ const BannerSlider = () => {
       <Slider {...settings}>
         {slides().map((slide, index) => {
           return (
-            <div className='image' key={index}>
+            <div className='slider__image' key={index}>
               <img src={slide} alt={foodType} />
             </div>
           );

@@ -12,7 +12,6 @@
     height: 85vh;
   }
 
-
   &::before {
     content: "";
     z-index: -2;
@@ -31,7 +30,7 @@
       border: none;
     }
     @include respond(tabland) {
-      border-radius: 0 0 12000px 0;
+      border-radius: 0 0 0px 0;
       border: 9px solid rgb(244, 224, 77);
     }
   }
@@ -39,13 +38,13 @@
   &__wrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 48% 48%;
+    grid-gap: 2%;
     width: 100%;
-    max-width: 1515px;
+    max-width: 1560px;
     margin: auto;
-
-    @include respond(tabport) {
-      grid-template-columns: 100%;
+    @include respond(tabland) {
+    padding-top: 2rem;
     }
   }
 
@@ -66,7 +65,7 @@
     }
 
     h1 {
-      font-size: 3.7rem;
+      font-size: 3.5rem;
       font-weight: 900;
       color: var(--color-black);
       font-family: var(--font-base);
@@ -92,11 +91,6 @@
   }
 
   .slider {
-    img {
-      @include respond(tabland) {
-        width: 80%;
-      }
-    }
     @include respond(tabport) {
       display: none;
     }

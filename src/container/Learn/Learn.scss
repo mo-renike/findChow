@@ -3,10 +3,11 @@
 .learn {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 48% 48%;
+  grid-gap: 2%;
   padding: 3rem;
   align-items: center;
-  max-width: 1440px;
+  max-width: 1560px;
   margin: auto;
 
   @include respond(tabport) {
@@ -14,27 +15,50 @@
   }
   @include respond(phone) {
     padding: 1rem;
-    grid-template-columns: 100%;
   }
 
   &__img {
-    @include respond(tabport) {
-      width: 60%;
-      margin: auto;
-    }
-    @include respond(phone) {
-      display: none;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
+    .slider__image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      background: var(--color-main);
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      box-shadow: -1px 3px 13px rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      @include respond(tabport) {
+        width: 400px;
+        height: 400px;
+      }
+      @include respond(phone) {
+        width: 300px;
+        height: 300px;
+      }
+      @include respond(sm) {
+        width: 250px;
+        height: 250px;
+      }
+      img {
+        width: 93%;
+        height: 93%;
+        object-fit: cover;
+        object-position: center center;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.5);
+      }
     }
   }
 
   &__text {
-    max-width: 450px;
+    padding: 1rem;
     width: auto;
     span {
       opacity: 0.6;
@@ -42,6 +66,7 @@
     }
     h2 {
       color: var(--color-accent) !important;
+      font-family: var(--font-base);
       margin-top: 0;
     }
     a {

@@ -18,7 +18,8 @@ const SIngleSpot = ({
     isOpen,
     modal,
     toggleModal,
-    spots
+    spots,
+    photoUrl
 }) => {
     const [message, setMessage] = useState('');
     const { favoriteSpots, setFavoriteSpots, currentUser } = useContext(AppContext);
@@ -97,7 +98,7 @@ const SIngleSpot = ({
             {currentSpots.length !== 0 ? (
                 currentSpots.map((spot) => (
                     <div key={spot.place_id} className="spots__wrapper_item">
-
+                        <img src={photoUrl} alt={spot.name} />
                         <h3>
                             {
                                 spot.name.length < 18
@@ -105,13 +106,12 @@ const SIngleSpot = ({
                                     : `${spot.name.substring(0, 18)}...`
                             }
                         </h3>
-                        { }
                         <span className='fav' onClick={() => toggleFavorite(spot)}>
                             {favoriteSpots.some((favoriteSpot) => favoriteSpot.place_id === spot.place_id) ? (<AiFillHeart />) : (<AiOutlineHeart />)}
                         </span>
                         <div className="spots__wrapper_item-dets">
                             <p style={{ display: "flex", justifyContent: "space-between" }}>
-                                {" "}
+
                                 {spot.opening_hours?.open_now && spot.opening_hours?.open_now === true
                                     ? "Currently Open"
                                     : "Currently Closed"}

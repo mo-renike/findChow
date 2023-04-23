@@ -7,6 +7,7 @@ import SIngleSpot from './SIngleSpot';
 
 const Spots = () => {
   const [spots, setSpots] = useState([]);
+  const [photoUrl, setPhotoUrl] = useState("")
   const [latitude, setLatitude] = useState(6.5095);
   const [longitude, setLongitude] = useState(3.3711);
 
@@ -85,6 +86,20 @@ const Spots = () => {
       }
     }; getSpots();
 
+    // get photos
+
+    const getPhoto = async () => {
+      try {
+        const res = await fetch('https://findchow.onrender.com//api/maps/place/photo?photo_reference=')
+        if (res.ok) {
+          const photo = await res.json()
+          setPhotoUrl(photo)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }; getPhoto()
+
     //prevent background scrolling when modal is open
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -98,7 +113,7 @@ const Spots = () => {
     <div className="spots" id="spots">
       <div className="spots__inner">
         <SubHeading title={`Showing ${spots ? spots.length : ""} ${foodType === "calabar%2Ckitchen" ? "Calabar" : foodType} Spots In your area`} /> <br />
-        <SIngleSpot currentSpots={currentSpots} toggleModal={toggleModal} setModalContent={setModalContent} isOpen={isOpen} modal={modal} />
+        <SIngleSpot currentSpots={currentSpots} toggleModal={toggleModal} setModalContent={setModalContent} isOpen={isOpen} modal={modal} photoUrl={photoUrl} />
         <Pagination
           spots={spots}
           spotsPerPage={spotsPerPage}
