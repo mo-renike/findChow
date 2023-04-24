@@ -5,7 +5,6 @@ import "./Login.scss"
 
 
 const Login = ({ signIn }) => {
-   console.log(signIn);
 
     return (
         <div className="login">

@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import "./Learn.scss";
-import "../../components/BannerSlider/BannerSlider.scss"
+import "../../components/BannerSlider/BannerSlider.scss";
 import { SubHeading } from "../../components/Headings/Headings";
 import { AppContext } from "../../AppContext";
 
-
 import slide1 from "../../images/amala2.jpeg";
-import calabar2 from "../../images/calabar-3.jpg"
-import chinese1 from "../../images/chinese-1.jpg"
-
+import calabar2 from "../../images/calabar-3.jpg";
+import chinese1 from "../../images/kung.jpg";
 
 const Learn = () => {
   const { foodType } = useContext(AppContext);
@@ -35,9 +33,9 @@ const Learn = () => {
         {foodType === "amala" ? (
           <SubHeading title="Amala without Lumps" />
         ) : foodType === "chinese" ? (
-          <SubHeading title="How to make chinese food" />
+          <SubHeading title="Kung Pao Chicken" />
         ) : (
-          <SubHeading title="White Soup" />
+          <SubHeading title="White Soup/ Ofe-Nsala" />
         )}
 
         <p>
@@ -45,7 +43,7 @@ const Learn = () => {
           {foodType === "amala"
             ? "amala"
             : foodType === "chinese"
-              ? "chinese food"
+              ? "Kung Pao Chicken"
               : "White Soup"}{" "}
           is that it is quick and easy to prepare. To ensure you get the best
           results, click the button below to learn how to make{" "}
@@ -56,26 +54,31 @@ const Learn = () => {
               : "White Soup"}{" "}
           at home.
         </p>
-        {foodType === "amala" ? (<a
-          target="blank"
-          href="https://www.youtube.com/embed/KbYJj_gSZME"
-          className="pry__button"
-        >
-          Watch Now
-        </a>) : foodType === "chinese" ? (<a
-          target="blank"
-          href="https://www.youtube.com/embed/KbYJj_gSZME"
-          className="pry__button"
-        >
-          Watch Now
-        </a>) : (<a
-          target="blank"
-          href="https://www.youtube.com/embed/KbYJj_gSZME"
-          className="pry__button"
-        >
-          Watch Now
-        </a>)}
-
+        {foodType === "amala" ? (
+          <a
+            target="blank"
+            href="https://www.youtube.com/embed/KbYJj_gSZME"
+            className="pry__button"
+          >
+            How to make Amala{" "}
+          </a>
+        ) : foodType === "chinese" ? (
+          <a
+            target="blank"
+              href="https://www.youtube.com/watch?v=YT8oN4U7Vm8"
+            className="pry__button"
+          >
+           Hung Pao Chicken
+          </a>
+        ) : (
+          <a
+            target="blank"
+            href="https://www.youtube.com/watch?v=yOr7sx6Usfg"
+            className="pry__button"
+          >
+            How to make Ofe-Nsala
+          </a>
+        )}
       </div>
     </section>
   );

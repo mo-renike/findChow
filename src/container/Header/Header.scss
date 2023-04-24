@@ -45,6 +45,10 @@
     margin: auto;
     @include respond(tabland) {
     padding-top: 2rem;
+   // grid-template-columns: 100%;
+    }
+    @include respond(tabport) {
+   grid-template-columns: 100%;
     }
   }
 
@@ -61,7 +65,7 @@
     &-text {
       display: block;
       padding: 1rem 0;
-      max-width: 440px;
+      max-width: 500px;
     }
 
     h1 {

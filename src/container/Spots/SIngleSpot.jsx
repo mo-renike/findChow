@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { FaStar, FaRegStar, FaArrowRight } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import Loader from "../../components/Loader";
 import Modal from "../../Pages/Modal";
@@ -54,7 +54,6 @@ const SIngleSpot = ({
             newFavorites = [...favoriteSpots, spot];
             setFavoriteSpots(newFavorites);
             setMessage("Added to favorites");
-            console.log("added");
 
             try {
                 const docRef = await addDoc(collection(db, "favorites"), {
@@ -98,7 +97,7 @@ const SIngleSpot = ({
             {currentSpots.length !== 0 ? (
                 currentSpots.map((spot) => (
                     <div key={spot.place_id} className="spots__wrapper_item">
-                        <img src={photoUrl} alt={spot.name} />
+                        {/* <img src={photoUrl} alt={spot.name} /> */}
                         <h3>
                             {
                                 spot.name.length < 18
@@ -126,8 +125,8 @@ const SIngleSpot = ({
                                 ))}
                             </div>
                         </div>
-                        <button onClick={() => setModalContent(spot)}>
-                            More Details &rarr;
+                        <button style={{display: "flex", alignItems: "center"}} onClick={() => setModalContent(spot)}>
+                            More Details {" "} <FaArrowRight style={{marginLeft: "9px"}} />
                         </button>
                     </div>
                 ))
