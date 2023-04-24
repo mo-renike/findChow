@@ -9,10 +9,6 @@
   position: relative;
 
   @include respond(tabport) {
-    height: 80vh;
-  }
-
-  @include respond(phone) {
     height: 85vh;
   }
 
@@ -34,7 +30,7 @@
       border: none;
     }
     @include respond(tabland) {
-      border-radius: 0 0 12000px 0;
+      border-radius: 0 0 0px 0;
       border: 9px solid rgb(244, 224, 77);
     }
   }
@@ -42,13 +38,17 @@
   &__wrapper {
     display: grid;
     align-items: center;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 48% 48%;
+    grid-gap: 2%;
     width: 100%;
-    max-width: 1515px;
+    max-width: 1560px;
     margin: auto;
-
+    @include respond(tabland) {
+    padding-top: 2rem;
+   // grid-template-columns: 100%;
+    }
     @include respond(tabport) {
-      grid-template-columns: 100%;
+   grid-template-columns: 100%;
     }
   }
 
@@ -65,25 +65,26 @@
     &-text {
       display: block;
       padding: 1rem 0;
-      max-width: 440px;
+      max-width: 500px;
     }
 
     h1 {
-      font-size: 3.7rem;
+      font-size: 3.5rem;
       font-weight: 900;
       color: var(--color-black);
       font-family: var(--font-base);
 
       @include respond(tabland) {
-        font-size: 2.6rem;
+        margin-top: 1.9rem;
+        font-size: 2.2rem;
       }
 
       @include respond(phone) {
-        font-size: 2rem;
+        font-size: 1.75rem;
       }
 
       @include respond(sm) {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
       }
 
       em {
@@ -94,11 +95,6 @@
   }
 
   .slider {
-    img {
-      @include respond(tabland) {
-        width: 80%;
-      }
-    }
     @include respond(tabport) {
       display: none;
     }

@@ -7,6 +7,7 @@ import SIngleSpot from './SIngleSpot';
 
 const Spots = () => {
   const [spots, setSpots] = useState([]);
+  //const [photoUrl, setPhotoUrl] = useState("")
   const [latitude, setLatitude] = useState(6.5095);
   const [longitude, setLongitude] = useState(3.3711);
 
@@ -84,6 +85,20 @@ const Spots = () => {
         console.log(error);
       }
     }; getSpots();
+
+    // get photos
+
+    // const getPhoto = async () => {
+    //   try {
+    //     const res = await fetch('https://findchow.onrender.com//api/maps/place/photo?photo_reference=')
+    //     if (res.ok) {
+    //       const photo = await res.json()
+    //       setPhotoUrl(photo)
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }; getPhoto()
 
     //prevent background scrolling when modal is open
     if (isOpen) {

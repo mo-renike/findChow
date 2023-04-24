@@ -5,7 +5,7 @@ const foodTypes = [
     { label: 'Amala Joints', value: 'amala' },
     { label: 'Chinese restaurants', value: 'chinese' },
     { label: 'Calabar Kitchen', value: 'calabar%2Ckitchen' },
-    // { label: 'Mexican', value: 'mexican' },
+    //{ label: 'Cakes and More', value: 'cakes' },
     // { label: 'Pizza', value: 'pizza' },
 ];
 

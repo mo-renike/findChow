@@ -5,7 +5,6 @@ import "./Login.scss"
 
 
 const Login = ({ signIn }) => {
-    // build login form with authentication
 
     return (
         <div className="login">

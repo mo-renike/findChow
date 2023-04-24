@@ -21,9 +21,9 @@ const Navbar = ({ signOut, user }) => {
       <Link to="/" className="app__navbar-logo">
         Find Chow
       </Link>
-
+  {location.pathname === "/" && <FoodTypeDropdown />}
       <div className="app__navbar-links">
-        {location.pathname === "/" && <FoodTypeDropdown />}
+      
         <div className="app__navbar-user">
           {!user ? (
             <Link to="/login" style={{ fontSize: "1.2rem" }}>
@@ -59,7 +59,7 @@ const Navbar = ({ signOut, user }) => {
       </div>
       <div className="app__navbar-mobile">
         <GiHamburgerMenu
-          className="ham"
+        style={{marginLeft:"7px"}}
           fontSize={27}
           color="#af1b3f"
           cursor="pointer"
@@ -78,7 +78,7 @@ const Navbar = ({ signOut, user }) => {
               }}
             />
             <ul className="app__navbar-mobile-links">
-              {location.pathname === "/" && <FoodTypeDropdown setToggle={setToggle} />}
+              {/* {location.pathname === "/" && <FoodTypeDropdown setToggle={setToggle} />} */}
               <li onClick={() => {
                 setToggle(false);
               }}>
