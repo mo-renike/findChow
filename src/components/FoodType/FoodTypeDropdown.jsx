@@ -14,7 +14,7 @@ const FoodTypeDropdown = ({ setToggle }) => {
 
     const handleChange = (e) => {
         setFoodType(e.target.value);
-        setToggle(false); // call setToggle with a value of true
+        // setToggle(false); 
     };
     return (
         <select className="app__navbar-button" value={foodType} onChange={handleChange}>

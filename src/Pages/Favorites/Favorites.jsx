@@ -13,7 +13,7 @@ const Favorites = () => {
     const [favoriteSpotsFromDB, setFavoriteSpotsFromDB] = useState([]);
 
     const { setFavoriteSpots, setModalContent, modal, isOpen, setIsOpen } = useContext(AppContext);
-
+    console.log(favoriteSpotsFromDB);
     const toggleModal = () => {
         setIsOpen(false);
     };

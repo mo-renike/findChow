@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { MdFavorite, MdLogin, MdLogout, MdOutlineRestaurantMenu } from "react-icons/md";
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import FoodTypeDropdown from "../FoodType/FoodTypeDropdown";
@@ -21,9 +21,9 @@ const Navbar = ({ signOut, user }) => {
       <Link to="/" className="app__navbar-logo">
         Find Chow
       </Link>
-  {location.pathname === "/" && <FoodTypeDropdown />}
+      {location.pathname === "/" && <FoodTypeDropdown />}
       <div className="app__navbar-links">
-      
+
         <div className="app__navbar-user">
           {!user ? (
             <Link to="/login" style={{ fontSize: "1.2rem" }}>
@@ -59,7 +59,7 @@ const Navbar = ({ signOut, user }) => {
       </div>
       <div className="app__navbar-mobile">
         <GiHamburgerMenu
-        style={{marginLeft:"7px"}}
+          style={{ marginLeft: "7px" }}
           fontSize={27}
           color="#af1b3f"
           cursor="pointer"

@@ -1,5 +1,5 @@
 {
-  "name": "restaurant",
+  "name": "findChow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,7 +12,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "firebase": "^9.17.1",
-    "node-sass": "^7.0.1",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
@@ -25,6 +24,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-twitter-embed": "^4.0.4",
+    "sass": "^1.69.5",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
@@ -51,5 +51,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "find restaurants in your area",
+  "main": "index.js",
+  "repository": "https://github.com/mo-renike/findChow.git",
+  "author": "mo-renike <herroyalpianist@gmail.com>",
+  "license": "MIT"
 }
