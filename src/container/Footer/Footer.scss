@@ -1,6 +1,6 @@
 @import "../../../Stylesheets/main.scss";
 
-.footer {  
+.footer {
   background-color: var(--color-btn);
   color: var(--color-white);
   font-family: var(--font-base);
@@ -17,8 +17,7 @@
     align-items: center;
     padding: 1.5rem;
     width: 100%;
-    font-size: 1rem;
-  
+    font-size: 0.85rem;
 
     a {
       color: var(--color-main);
@@ -31,7 +30,7 @@
       }
     }
     @include respond(phone) {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
     span {
       font-size: 0.7rem;

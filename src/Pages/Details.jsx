@@ -13,7 +13,7 @@ const Modal = ({ spot, toggleModal }) => {
             setLoading(true);
             try {
                 const res = await fetch(
-                    `https://findchow.onrender.com/api/maps/place/details?place_id=${spot.place_id}`,
+                    `http://localhost:8080/api/details?place_id=${spot.place_id}`,
                     {
                         method: "GET",
                         headers: {
@@ -24,7 +24,7 @@ const Modal = ({ spot, toggleModal }) => {
                 if (res.status === 200) {
                     const data = await res.json();
                     setDetails(data.result);
-                    console.log(data.result);
+
                     setLoading(false);
                 } else {
                     console.log("error");
@@ -32,10 +32,11 @@ const Modal = ({ spot, toggleModal }) => {
             } catch (error) {
                 console.log(error);
             }
-        }; fetchExtraData();
+        };
+        fetchExtraData();
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+
+    }, [spot.place_id]);
 
     // show the rest of the review text when read more button is clicked
     const showMore = (e) => {
@@ -46,8 +47,10 @@ const Modal = ({ spot, toggleModal }) => {
 
     return (
         <div className="modal">
-            {loading ? <Loader /> :
-                (<div className="modal__dets">
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="modal__dets">
                     <span className="close" onClick={toggleModal}>
                         <FaAngleLeft />
                     </span>{" "}
@@ -56,8 +59,8 @@ const Modal = ({ spot, toggleModal }) => {
                     <div className="modal__dets-flex">
                         <div>
                             <p>
-                                <span className="title">{spot.name}</span> is a restaurant
-                                in your area that has an average rating of{" "}
+                                <span className="title">{spot.name}</span> is a restaurant in
+                                your area that has an average rating of{" "}
                                 <strong>{spot.rating ? spot.rating : 0}/5</strong> from
                                 {"  "}
                                 <strong>{spot.user_ratings_total} </strong> total ratings.
@@ -72,7 +75,7 @@ const Modal = ({ spot, toggleModal }) => {
                             <p>
                                 <strong>{spot.name}</strong> can be contacted on
                                 <strong>
-                                    {" "}
+
                                     {details.formatted_phone_number
                                         ? details.formatted_phone_number
                                         : "No Number provided"}
@@ -150,7 +153,7 @@ const Modal = ({ spot, toggleModal }) => {
                                     "No take out"
                                 )}
                             </div>
-                            {/* <div className="options">
+                            <div className="options">
                                 <h4>Offerings: </h4>
                                 {details.wheelchair_accessible_entrance &&
                                     details.wheelchair_accessible_entrance === true ? (
@@ -160,7 +163,7 @@ const Modal = ({ spot, toggleModal }) => {
                                 ) : (
                                     "No Delivery"
                                 )}
-                            </div> */}
+                            </div>
                             <br />
                             <a
                                 className="button"
@@ -181,7 +184,6 @@ const Modal = ({ spot, toggleModal }) => {
                                     ))
                                     : "No opening hours provided"}
                             </div>
-
                         </aside>
                     </div>
                     <br />
@@ -236,9 +238,8 @@ const Modal = ({ spot, toggleModal }) => {
                                 : "No Reviews yet"}
                         </div>
                     </div>
-                </div>)
-            }
-
+                </div>
+            )}
         </div>
     );
 };

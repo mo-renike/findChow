@@ -1,8 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap");
 :root {
-  --font-base: "Cormorant Upright", serif;
-  --font-alt: "Quicksand", sans-serif;
+  --font-base: "SF Pro Display", sans-serif;
+  --font-alt: "SF Pro Display", sans-serif;
   --color-accent: #af1b3f;
   --color-main: #ecd444;
   --color-black: #2d2d2d;

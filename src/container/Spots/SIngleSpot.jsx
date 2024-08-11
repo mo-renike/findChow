@@ -1,49 +1,68 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { FaStar, FaRegStar, FaArrowRight } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaStar, FaRegStar, FaChevronRight } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import Loader from "../../components/Loader";
-import Modal from "../../Pages/Modal";
+import Modal from "../../Pages/Details";
 import "./Spots.scss";
-import { db } from '../../firebase';
-import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
+import {
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    doc,
+} from "firebase/firestore";
+import { toast } from 'react-toastify';
+import { AppContext } from "../../AppContext";
+import { useNavigate } from "react-router-dom";
 
-import { AppContext } from '../../AppContext';
-import ToastAlert from '../../components/Toasts/ToastAlert';
-import { useNavigate } from 'react-router-dom';
+const SIngleSpot = ({ spot, setModalContent, isOpen, modal, toggleModal }) => {
 
-
-const SIngleSpot = ({
-    currentSpots,
-    setModalContent,
-    isOpen,
-    modal,
-    toggleModal,
-    spots,
-    photoUrl
-}) => {
-    const [message, setMessage] = useState('');
-    const { favoriteSpots, setFavoriteSpots, currentUser } = useContext(AppContext);
-    const navigate = useNavigate()
-    // eslint-disable-next-line no-unused-vars
-    const [loading, setLoading] = useState(true); // new state variable
+    const { favoriteSpots, setFavoriteSpots, currentUser } =
+        useContext(AppContext);
+    const navigate = useNavigate();
 
     const toggleFavorite = async (spot) => {
         if (!currentUser) {
-            setMessage("Please log in to add to favorites");
+
+            toast.info("Please login to add favorites", {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             navigate("/login");
             return;
         }
 
-        const isFavorite = favoriteSpots.some((favoriteSpot) => favoriteSpot.place_id === spot.place_id);
+        const isFavorite = favoriteSpots.some(
+            (favoriteSpot) => favoriteSpot.place_id === spot.place_id
+        );
         let newFavorites;
         if (isFavorite) {
-            newFavorites = favoriteSpots.filter((favoriteSpot) => favoriteSpot.place_id !== spot.place_id);
+            newFavorites = favoriteSpots.filter(
+                (favoriteSpot) => favoriteSpot.place_id !== spot.place_id
+            );
             setFavoriteSpots(newFavorites);
-            setMessage("Removed from favorites");
+            toast.success("Removed from favorites!", {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
 
             try {
                 const querySnapshot = await getDocs(collection(db, "favorites"));
-                const docId = querySnapshot.docs.find(doc => doc.data().favorites.place_id === spot.place_id)?.id;
+                const docId = querySnapshot.docs.find(
+                    (doc) => doc.data().favorites.place_id === spot.place_id
+                )?.id;
                 if (docId) {
                     await deleteDoc(doc(db, "favorites", docId));
                 }
@@ -53,11 +72,20 @@ const SIngleSpot = ({
         } else {
             newFavorites = [...favoriteSpots, spot];
             setFavoriteSpots(newFavorites);
-            setMessage("Added to favorites");
 
+            toast.success("Added to favorites!", {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             try {
                 const docRef = await addDoc(collection(db, "favorites"), {
-                    favorites: spot
+                    favorites: spot,
                 });
                 console.log("Document written with ID: ", docRef.id);
             } catch (e) {
@@ -66,77 +94,51 @@ const SIngleSpot = ({
         }
     };
 
-
-    useEffect(() => {
-        let timer;
-        if (message !== '') {
-            timer = setTimeout(() => {
-                setMessage('');
-            }, 3000); // 3 seconds
-        }
-        return () => clearTimeout(timer);
-    }, [message]);
-
-    useEffect(() => {
-        const fetchFavorites = async () => {
-            try {
-                const querySnapshot = await getDocs(collection(db, "favorites"));
-                const favoriteSpotsArray = querySnapshot.docs.map(doc => doc.data().favorites);
-                setFavoriteSpots(favoriteSpotsArray);
-                setLoading(false);
-            } catch (e) {
-                console.error("Error getting favorite spots: ", e);
-            }
-        };
-        fetchFavorites();
-    }, [setFavoriteSpots]);
-
     return (
-        <div className="spots__wrapper">
-            <ToastAlert title={message} />
-            {currentSpots.length !== 0 ? (
-                currentSpots.map((spot) => (
-                    <div key={spot.place_id} className="spots__wrapper_item">
-                        {/* <img src={photoUrl} alt={spot.name} /> */}
-                        <h3>
-                            {
-                                spot.name.length < 18
-                                    ? `${spot.name}`
-                                    : `${spot.name.substring(0, 18)}...`
-                            }
-                        </h3>
-                        <span className='fav' onClick={() => toggleFavorite(spot)}>
-                            {favoriteSpots.some((favoriteSpot) => favoriteSpot.place_id === spot.place_id) ? (<AiFillHeart />) : (<AiOutlineHeart />)}
-                        </span>
-                        <div className="spots__wrapper_item-dets">
-                            <p style={{ display: "flex", justifyContent: "space-between" }}>
+        <>
 
-                                {spot.opening_hours?.open_now && spot.opening_hours?.open_now === true
-                                    ? "Currently Open"
-                                    : "Currently Closed"}
-                                {/* {spot.district && spot.district.length > 0 ? ` - ${spot.district}` : ""} */}
-                            </p>
-                            <div className="rating">
-                                {spot.rating} {"  "}
-                                {Array.from({ length: 5 }, (_, i) => (
-                                    <span key={i}>
-                                        {spot.rating > i ? <FaStar /> : <FaRegStar />}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                        <button style={{display: "flex", alignItems: "center"}} onClick={() => setModalContent(spot)}>
-                            More Details {" "} <FaArrowRight style={{marginLeft: "9px"}} />
-                        </button>
+            <div className="spots__wrapper_item">
+                <h3>
+                    {spot && spot.name.length < 18
+                        ? `${spot.name}`
+                        : `${spot.name.substring(0, 18)}...`}
+                </h3>
+                <span className="fav" onClick={() => toggleFavorite(spot)}>
+                    {favoriteSpots.some(
+                        (favoriteSpot) => favoriteSpot.place_id === spot.place_id
+                    ) ? (
+                        <AiFillHeart />
+                    ) : (
+                        <AiOutlineHeart />
+                    )}
+                </span>
+                <div className="spots__wrapper_item-dets"><p>{spot.distance}km</p>
+                    <p>
+                        {spot.opening_hours?.open_now &&
+                            spot.opening_hours?.open_now === true
+                            ? "Currently open"
+                            : "Currently closed"}
+                    </p>
+                    <div className="rating">
+                        {/* {spot.rating} {"  "} */}
+                        {Array.from({ length: 5 }, (_, i) => (
+                            <span key={i}>
+                                {spot.rating > i ? <FaStar /> : <FaRegStar />}
+                            </span>
+                        ))}
                     </div>
-                ))
-            ) : <Loader />}
+                </div>
+                <button onClick={() => setModalContent(spot)}>
+                    More Details <FaChevronRight style={{ marginLeft: "5px" }} />
+                </button>
+            </div>
+
             {isOpen &&
                 modal.map((spot, idx) => {
                     return <Modal spot={spot} key={idx} toggleModal={toggleModal} />;
                 })}
-        </div>
-    )
-}
+        </>
+    );
+};
 
-export default SIngleSpot
+export default SIngleSpot;

@@ -10,7 +10,9 @@ import { ErrorFallback } from "./components/ErrorBoundary/ErrorFallback";
 import { auth, signOut } from "./firebase";
 import Favorites from "./Pages/Favorites/Favorites";
 import { AppContext } from "./AppContext";
+import { ToastContainer, } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   const { currentUser, setCurrentUser } = useContext(AppContext);
 
@@ -49,6 +51,18 @@ const App = () => {
         </Routes>
       </ErrorBoundary>
       <Footer count={count} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

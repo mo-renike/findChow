@@ -45,7 +45,7 @@ const Learn = () => {
             : foodType === "chinese"
               ? "Kung Pao Chicken"
               : "White Soup"}{" "}
-          is that it is quick and easy to prepare. To ensure you get the best
+          is that it is and easy to prepare. To ensure you get the best
           results, click the button below to learn how to make{" "}
           {foodType === "amala"
             ? "amala"
@@ -60,15 +60,15 @@ const Learn = () => {
             href="https://www.youtube.com/embed/KbYJj_gSZME"
             className="pry__button"
           >
-            How to make Amala{" "}
+            See how it's made!
           </a>
         ) : foodType === "chinese" ? (
           <a
             target="blank"
-              href="https://www.youtube.com/watch?v=YT8oN4U7Vm8"
+            href="https://www.youtube.com/watch?v=YT8oN4U7Vm8"
             className="pry__button"
           >
-           Hung Pao Chicken
+            See how it's made!
           </a>
         ) : (
           <a
@@ -76,7 +76,7 @@ const Learn = () => {
             href="https://www.youtube.com/watch?v=yOr7sx6Usfg"
             className="pry__button"
           >
-            How to make Ofe-Nsala
+            See how it's made!
           </a>
         )}
       </div>

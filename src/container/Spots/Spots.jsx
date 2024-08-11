@@ -1,24 +1,34 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { AppContext } from '../../AppContext';
+import React, { useState, useContext, useEffect } from "react";
+import { AppContext } from "../../AppContext";
 import { SubHeading } from "../../components/Headings/Headings";
 import "./Spots.scss";
 import Pagination from "../../components/Pagination/Pagination";
-import SIngleSpot from './SIngleSpot';
+import SIngleSpot from "./SIngleSpot";
+import Loader from "../../components/Loader";
+import { haversineDistance } from "../../utils/index";
 
 const Spots = () => {
+  const [loading, setLoading] = useState(false);
   const [spots, setSpots] = useState([]);
-  //const [photoUrl, setPhotoUrl] = useState("")
-  const [latitude, setLatitude] = useState(6.5095);
-  const [longitude, setLongitude] = useState(3.3711);
 
-  const { foodType, modal, setModalContent, isOpen, setIsOpen } = useContext(AppContext);
-
+  const {
+    foodType,
+    modal,
+    setModalContent,
+    isOpen,
+    setIsOpen,
+    latitude,
+    longitude,
+    setLatitude,
+    setLongitude,
+  } = useContext(AppContext);
 
   const toggleModal = () => {
     setIsOpen(false);
   };
 
   // set dynamic spotsPerPage value according to screen size
+
   if (window.innerWidth <= 768) {
     var dynamicPerPage = 4;
   } else {
@@ -29,7 +39,9 @@ const Spots = () => {
   const [spotsPerPage] = useState(dynamicPerPage);
   const indexOfLastSpot = currentPage * spotsPerPage;
   const indexOfFirstSpot = indexOfLastSpot - spotsPerPage;
-  const currentSpots = spots ? spots.slice(indexOfFirstSpot, indexOfLastSpot) : [];
+  const currentSpots = spots
+    ? spots.slice(indexOfFirstSpot, indexOfLastSpot)
+    : [];
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -46,8 +58,7 @@ const Spots = () => {
   }
 
   useEffect(() => {
-
-    // get user location using  geolocation  when the component mounts 
+    // get user location using  geolocation  when the component mounts
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -62,12 +73,16 @@ const Spots = () => {
       } else {
         alert("Geolocation is not supported by this browser.");
       }
-    }; getLocation();
+    };
+    getLocation();
+  }, [latitude, longitude, setLatitude, setLongitude]);
 
-    // get amala spots using google places api
+  useEffect(() => {
     const getSpots = async () => {
       try {
-        const res = await fetch(`https://findchow.onrender.com/api/maps/place?latitude=${latitude}&longitude=${longitude}&radius=51000&type=restaurant&keyword=${foodType}`,
+        setLoading(true);
+        const res = await fetch(
+          `http://localhost:8080/api/place?latitude=${latitude}&longitude=${longitude}&keyword=${foodType}&name=${foodType}`,
           {
             method: "GET",
             headers: {
@@ -79,41 +94,52 @@ const Spots = () => {
           throw new Error("Something went wrong");
         } else {
           const data = await res.json();
-          setSpots(data.results);
+          const placesWithDistances = data.results.map(place => {
+            const distance = haversineDistance(latitude, longitude, place.geometry.location.lat, place.geometry.location.lng);
+            return { ...place, distance };
+          });
+
+          setSpots(placesWithDistances);
+
+
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
       }
-    }; getSpots();
+    };
+    getSpots();
+  }, [foodType, latitude, longitude]);
 
-    // get photos
-
-    // const getPhoto = async () => {
-    //   try {
-    //     const res = await fetch('https://findchow.onrender.com//api/maps/place/photo?photo_reference=')
-    //     if (res.ok) {
-    //       const photo = await res.json()
-    //       setPhotoUrl(photo)
-    //     }
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }; getPhoto()
-
+  useEffect(() => {
     //prevent background scrolling when modal is open
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [foodType, isOpen, latitude, longitude]);
-
+  }, [isOpen]);
 
   return (
     <div className="spots" id="spots">
       <div className="spots__inner">
-        <SubHeading title={`Showing ${spots ? spots.length : ""} ${foodType === "calabar%2Ckitchen" ? "Calabar" : foodType} Spots In your area`} /> <br />
-        <SIngleSpot currentSpots={currentSpots} toggleModal={toggleModal} setModalContent={setModalContent} isOpen={isOpen} modal={modal} />
+        <SubHeading
+          title={`Showing ${spots ? spots.length : ""} ${foodType === "calabar%2Ckitchen" ? "Calabar" : foodType
+            } Spots In your area`}
+        />{" "}
+        <br />
+        <div className="spots__wrapper">
+          {currentSpots.map((spot, idx) => (
+            <SIngleSpot
+              key={idx}
+              spot={spot}
+              toggleModal={toggleModal}
+              setModalContent={setModalContent}
+              isOpen={isOpen}
+              modal={modal}
+            />
+          ))}
+        </div>
         <Pagination
           spots={spots}
           spotsPerPage={spotsPerPage}
@@ -121,6 +147,7 @@ const Spots = () => {
           paginate={paginate}
           pageNumbers={pageNumbers}
         />
+        {loading && <Loader />}
       </div>
     </div>
   );
