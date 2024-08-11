@@ -25,7 +25,7 @@ const NotFound = () => {
             </Helmet> */}
             <img src={error} style={imgStyle} alt="Not found" />
             <h2>Are you lost?</h2> <br />
-            <Link className="button" to="/" >Go back home</Link>
+            <Link className="button-yellow" to="/" >Go back home</Link>
         </div>
     );
 };

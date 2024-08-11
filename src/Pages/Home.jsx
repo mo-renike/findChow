@@ -1,19 +1,19 @@
 import React from "react";
-// eslint-disable-next-line no-unused-vars
-import { Tweet, Spots, Learn, Header } from "../container";
-//import OtherApps from "../container/OtherApp/OtherApps";
+import { Spots, Learn, Header } from "../container";
+import HomeSeo from "../components/SEO/HomeSeo";
+
 
 const App = () => (
   <div>
+    <HomeSeo />
     <Header /> <br /> <br />
     <div style={{
       maxWidth: "1560px",
-      margin: "auto"
+      margin: "auto",
+
     }}>
       <Learn />
       <Spots />
-      {/* <Tweet /> */}
-      {/* <OtherApps /> */}
     </div>
   </div>
 );

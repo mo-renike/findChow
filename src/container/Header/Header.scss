@@ -1,7 +1,7 @@
 @import "../../../Stylesheets/main.scss";
 
 .header {
-  height: 95vh;
+  height: 96vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -44,11 +44,11 @@
     max-width: 1560px;
     margin: auto;
     @include respond(tabland) {
-    padding-top: 2rem;
-   // grid-template-columns: 100%;
+      padding-top: 2rem;
+      // grid-template-columns: 100%;
     }
     @include respond(tabport) {
-   grid-template-columns: 100%;
+      grid-template-columns: 100%;
     }
   }
 

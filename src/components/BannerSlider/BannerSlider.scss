@@ -1,19 +1,20 @@
 @import "../../../Stylesheets/main.scss";
 
 .slider {
-  width: 600px;
-  height: 600px;
-      border-radius: 50%;
-    @include respond(tabland) {
-      width: 400px !important;
-      height: 400px !important;
-    }
+  margin-top: 2rem;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  @include respond(tabland) {
+    width: 400px !important;
+    height: 400px !important;
+  }
   .slider__image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
     background: var(--color-accent);
     border: 6px solid var(--color-main);
     box-shadow: -1px 3px 17px rgba(0, 0, 0, 0.5);

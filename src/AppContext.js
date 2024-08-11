@@ -8,13 +8,9 @@ export const AppProvider = ({ children }) => {
   const [longitude, setLongitude] = useState(0);
   const [favoriteSpots, setFavoriteSpots] = useState([]);
   const [currentUser, setCurrentUser] = React.useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [modal, setModal] = useState([]);
 
-  const setModalContent = (spot) => {
-    setModal([spot]);
-    setIsOpen(!isOpen);
-  };
+  const [spots, setSpots] = useState([]);
+
 
   return (
     <AppContext.Provider
@@ -25,13 +21,9 @@ export const AppProvider = ({ children }) => {
         setFavoriteSpots,
         currentUser,
         setCurrentUser,
-        isOpen,
-        setIsOpen,
-        modal,
-        setModal,
-        setModalContent,
         latitude, setLatitude,
-        longitude, setLongitude
+        longitude, setLongitude,
+        spots, setSpots
       }}
     >
       {children}

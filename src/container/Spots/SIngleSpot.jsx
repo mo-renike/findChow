@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { FaStar, FaRegStar, FaChevronRight } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import Modal from "../../Pages/Details";
 import "./Spots.scss";
 import { db } from "../../firebase";
 import {
@@ -15,7 +14,7 @@ import { toast } from 'react-toastify';
 import { AppContext } from "../../AppContext";
 import { useNavigate } from "react-router-dom";
 
-const SIngleSpot = ({ spot, setModalContent, isOpen, modal, toggleModal }) => {
+const SIngleSpot = ({ spot }) => {
 
     const { favoriteSpots, setFavoriteSpots, currentUser } =
         useContext(AppContext);
@@ -23,7 +22,6 @@ const SIngleSpot = ({ spot, setModalContent, isOpen, modal, toggleModal }) => {
 
     const toggleFavorite = async (spot) => {
         if (!currentUser) {
-
             toast.info("Please login to add favorites", {
                 position: "top-right",
                 autoClose: 4000,
@@ -94,50 +92,47 @@ const SIngleSpot = ({ spot, setModalContent, isOpen, modal, toggleModal }) => {
         }
     };
 
+    // Return null if spot is undefined
+    if (!spot) {
+        return null;
+    }
+
     return (
-        <>
 
-            <div className="spots__wrapper_item">
-                <h3>
-                    {spot && spot.name.length < 18
-                        ? `${spot.name}`
-                        : `${spot.name.substring(0, 18)}...`}
-                </h3>
-                <span className="fav" onClick={() => toggleFavorite(spot)}>
-                    {favoriteSpots.some(
-                        (favoriteSpot) => favoriteSpot.place_id === spot.place_id
-                    ) ? (
-                        <AiFillHeart />
-                    ) : (
-                        <AiOutlineHeart />
-                    )}
-                </span>
-                <div className="spots__wrapper_item-dets"><p>{spot.distance}km</p>
-                    <p>
-                        {spot.opening_hours?.open_now &&
-                            spot.opening_hours?.open_now === true
-                            ? "Currently open"
-                            : "Currently closed"}
-                    </p>
-                    <div className="rating">
-                        {/* {spot.rating} {"  "} */}
-                        {Array.from({ length: 5 }, (_, i) => (
-                            <span key={i}>
-                                {spot.rating > i ? <FaStar /> : <FaRegStar />}
-                            </span>
-                        ))}
-                    </div>
+        <div className="spots__wrapper_item">
+            <h3>
+                {spot.name?.length < 18
+                    ? spot.name
+                    : `${spot.name?.substring(0, 18)}...`}
+            </h3>
+            <span className="fav" onClick={() => toggleFavorite(spot)}>
+                {favoriteSpots.some(
+                    (favoriteSpot) => favoriteSpot.place_id === spot.place_id
+                ) ? (
+                    <AiFillHeart />
+                ) : (
+                    <AiOutlineHeart />
+                )}
+            </span>
+            <div className="spots__wrapper_item-dets">
+                <p>{spot.distance}km</p>
+                <p>
+                    {spot.opening_hours?.open_now
+                        ? "Currently open"
+                        : "Currently closed"}
+                </p>
+                <div className="rating">
+                    {Array.from({ length: 5 }, (_, i) => (
+                        <span key={i}>
+                            {spot.rating > i ? <FaStar /> : <FaRegStar />}
+                        </span>
+                    ))}
                 </div>
-                <button onClick={() => setModalContent(spot)}>
-                    More Details <FaChevronRight style={{ marginLeft: "5px" }} />
-                </button>
             </div>
-
-            {isOpen &&
-                modal.map((spot, idx) => {
-                    return <Modal spot={spot} key={idx} toggleModal={toggleModal} />;
-                })}
-        </>
+            <button onClick={() => navigate(`/${spot.place_id}`)}>
+                More Details <FaChevronRight style={{ marginLeft: "5px" }} />
+            </button>
+        </div>
     );
 };
 

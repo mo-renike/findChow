@@ -9,6 +9,7 @@ import NotFound from "./components/NotFound/NotFound";
 import { ErrorFallback } from "./components/ErrorBoundary/ErrorFallback";
 import { auth, signOut } from "./firebase";
 import Favorites from "./Pages/Favorites/Favorites";
+import Details from './Pages/Details'
 import { AppContext } from "./AppContext";
 import { ToastContainer, } from 'react-toastify';
 
@@ -40,7 +41,9 @@ const App = () => {
   }, [setCurrentUser]);
 
   return (
-    <div>
+    <div style={{
+      position: 'relative'
+    }}>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Navbar signOut={signOutUser} user={currentUser} />
         <Routes>
@@ -48,6 +51,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/:placeId" element={<Details />} />
         </Routes>
       </ErrorBoundary>
       <Footer count={count} />

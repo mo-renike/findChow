@@ -3,17 +3,25 @@ import { SubHeading } from "../components/Headings/Headings";
 import "./Modal.scss";
 import { FaAngleLeft, FaCheckCircle, FaStar, FaRegStar } from "react-icons/fa";
 import Loader from "../components/Loader";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import DetailsSeo from "../components/SEO/DetailsSeo";
 
-const Modal = ({ spot, toggleModal }) => {
+const Details = ({ spot }) => {
+
+    const { placeId } = useParams();
     const [details, setDetails] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+    const navigate = useNavigate();
+    console.log(placeId);
+
 
     useEffect(() => {
         const fetchExtraData = async () => {
             setLoading(true);
             try {
                 const res = await fetch(
-                    `http://localhost:8080/api/details?place_id=${spot.place_id}`,
+                    `http://localhost:8080/api/details?place_id=${placeId}`,
                     {
                         method: "GET",
                         headers: {
@@ -34,10 +42,11 @@ const Modal = ({ spot, toggleModal }) => {
             }
         };
         fetchExtraData();
+    }, [placeId]);
 
-
-    }, [spot.place_id]);
-
+    if (!spot) {
+        return null;
+    }
     // show the rest of the review text when read more button is clicked
     const showMore = (e) => {
         e.target.previousSibling.style.display = "none";
@@ -47,11 +56,12 @@ const Modal = ({ spot, toggleModal }) => {
 
     return (
         <div className="modal">
+            <DetailsSeo />
             {loading ? (
                 <Loader />
             ) : (
                 <div className="modal__dets">
-                    <span className="close" onClick={toggleModal}>
+                    <span className="close" onClick={() => navigate(`/`)}>
                         <FaAngleLeft />
                     </span>{" "}
                     <br />
@@ -75,7 +85,6 @@ const Modal = ({ spot, toggleModal }) => {
                             <p>
                                 <strong>{spot.name}</strong> can be contacted on
                                 <strong>
-
                                     {details.formatted_phone_number
                                         ? details.formatted_phone_number
                                         : "No Number provided"}
@@ -244,4 +253,4 @@ const Modal = ({ spot, toggleModal }) => {
     );
 };
 
-export default Modal;
+export default Details;

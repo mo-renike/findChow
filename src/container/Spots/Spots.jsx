@@ -9,7 +9,7 @@ import { haversineDistance } from "../../utils/index";
 
 const Spots = () => {
   const [loading, setLoading] = useState(false);
-  const [spots, setSpots] = useState([]);
+
 
   const {
     foodType,
@@ -21,6 +21,8 @@ const Spots = () => {
     longitude,
     setLatitude,
     setLongitude,
+    spots,
+    setSpots
   } = useContext(AppContext);
 
   const toggleModal = () => {
@@ -109,7 +111,7 @@ const Spots = () => {
       }
     };
     getSpots();
-  }, [foodType, latitude, longitude]);
+  }, [foodType, latitude, longitude, setSpots]);
 
   useEffect(() => {
     //prevent background scrolling when modal is open

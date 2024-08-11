@@ -1,16 +1,10 @@
 @import "../../Stylesheets/main.scss";
 
 .modal {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
   background-color: var(--color-btn);
   display: flex;
   justify-content: center;
-  overflow-y: hidden;
+  // overflow-y: hidden;
   align-items: center;
   flex-direction: column;
   transition: 0.5s ease;
