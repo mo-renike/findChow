@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleSignIn = async () => {
         await signInWithGoogle();
-        navigate('/favorites')
+        navigate('/')
     };
 
 
@@ -22,7 +22,7 @@ const Login = () => {
                 <p>
                     Save your favourite  spots and share them with your friends.
                 </p>
-                <button onClick={handleSignIn}> <FcGoogle style={{ marginRight: "2rem", fontSize: "1.5rem" }} /> Sign in with Google</button>
+                <button onClick={handleSignIn}> <FcGoogle style={{ marginRight: "1rem", fontSize: "1.5rem" }} /> Sign in with Google</button>
             </div>
         </div>
     )
