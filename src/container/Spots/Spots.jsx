@@ -13,10 +13,6 @@ const Spots = () => {
 
   const {
     foodType,
-    modal,
-    setModalContent,
-    isOpen,
-    setIsOpen,
     latitude,
     longitude,
     setLatitude,
@@ -25,9 +21,7 @@ const Spots = () => {
     setSpots
   } = useContext(AppContext);
 
-  const toggleModal = () => {
-    setIsOpen(false);
-  };
+
 
   // set dynamic spotsPerPage value according to screen size
 
@@ -84,7 +78,7 @@ const Spots = () => {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://localhost:8080/api/place?latitude=${latitude}&longitude=${longitude}&keyword=${foodType}&name=${foodType}`,
+          `https://findchow.onrender.com/api/place?latitude=${latitude}&longitude=${longitude}&keyword=${foodType}&name=${foodType}`,
           {
             method: "GET",
             headers: {
@@ -96,7 +90,7 @@ const Spots = () => {
           throw new Error("Something went wrong");
         } else {
           const data = await res.json();
-          const placesWithDistances = data.results.map(place => {
+          const placesWithDistances = data && data.results.map(place => {
             const distance = haversineDistance(latitude, longitude, place.geometry.location.lat, place.geometry.location.lng);
             return { ...place, distance };
           });
@@ -113,14 +107,7 @@ const Spots = () => {
     getSpots();
   }, [foodType, latitude, longitude, setSpots]);
 
-  useEffect(() => {
-    //prevent background scrolling when modal is open
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [isOpen]);
+
 
   return (
     <div className="spots" id="spots">
@@ -135,10 +122,6 @@ const Spots = () => {
             <SIngleSpot
               key={idx}
               spot={spot}
-              toggleModal={toggleModal}
-              setModalContent={setModalContent}
-              isOpen={isOpen}
-              modal={modal}
             />
           ))}
         </div>

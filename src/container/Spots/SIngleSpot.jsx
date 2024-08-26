@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const SIngleSpot = ({ spot }) => {
 
-    const { favoriteSpots, setFavoriteSpots, currentUser } =
+    const { favoriteSpots, setFavoriteSpots, currentUser, setSelectedSpot } =
         useContext(AppContext);
     const navigate = useNavigate();
 
@@ -36,15 +36,18 @@ const SIngleSpot = ({ spot }) => {
             return;
         }
 
+        const userFavoritesRef = collection(db, "users", currentUser.uid, "favorites");
         const isFavorite = favoriteSpots.some(
             (favoriteSpot) => favoriteSpot.place_id === spot.place_id
         );
         let newFavorites;
+
         if (isFavorite) {
             newFavorites = favoriteSpots.filter(
                 (favoriteSpot) => favoriteSpot.place_id !== spot.place_id
             );
             setFavoriteSpots(newFavorites);
+
             toast.success("Removed from favorites!", {
                 position: "top-right",
                 autoClose: 4000,
@@ -57,12 +60,12 @@ const SIngleSpot = ({ spot }) => {
             });
 
             try {
-                const querySnapshot = await getDocs(collection(db, "favorites"));
+                const querySnapshot = await getDocs(userFavoritesRef);
                 const docId = querySnapshot.docs.find(
-                    (doc) => doc.data().favorites.place_id === spot.place_id
+                    (doc) => doc.data().place_id === spot.place_id
                 )?.id;
                 if (docId) {
-                    await deleteDoc(doc(db, "favorites", docId));
+                    await deleteDoc(doc(db, "users", currentUser.uid, "favorites", docId));
                 }
             } catch (e) {
                 console.error("Error deleting document: ", e);
@@ -81,9 +84,11 @@ const SIngleSpot = ({ spot }) => {
                 progress: undefined,
                 theme: "light",
             });
+
             try {
-                const docRef = await addDoc(collection(db, "favorites"), {
-                    favorites: spot,
+                const docRef = await addDoc(userFavoritesRef, {
+                    place_id: spot.place_id,
+                    name: spot.name,
                 });
                 console.log("Document written with ID: ", docRef.id);
             } catch (e) {
@@ -92,6 +97,10 @@ const SIngleSpot = ({ spot }) => {
         }
     };
 
+    const handleClick = () => {
+        navigate(`/${spot.place_id}`)
+        setSelectedSpot(spot)
+    }
     // Return null if spot is undefined
     if (!spot) {
         return null;
@@ -129,7 +138,7 @@ const SIngleSpot = ({ spot }) => {
                     ))}
                 </div>
             </div>
-            <button onClick={() => navigate(`/${spot.place_id}`)}>
+            <button onClick={handleClick}>
                 More Details <FaChevronRight style={{ marginLeft: "5px" }} />
             </button>
         </div>

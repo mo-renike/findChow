@@ -1,39 +1,38 @@
-@import "../../Stylesheets/main.scss";
+@import "../../../Stylesheets//main.scss";
 
-.modal {
-  background-color: var(--color-btn);
+.details {
   display: flex;
   justify-content: center;
-  // overflow-y: hidden;
+  padding: 5rem 1rem;
   align-items: center;
   flex-direction: column;
   transition: 0.5s ease;
-
+  @include respond(phone) {
+    padding: 1rem;
+  }
   .close {
-    position: absolute;
-    top: 1rem;
-    left: 3rem;
     font-size: 2rem;
     cursor: pointer;
     transition: all 0.5s ease;
-
+    background: none;
+    width: fit-content;
+    padding: 0;
+    border: none;
+    color: var(--color-accent);
     &:hover {
-      color: var(--color-accent);
+      color: var(--color-main);
       transform: rotate(90deg);
-    }
-    @include respond(phone) {
-      left: 1rem;
     }
   }
   .button {
-    background-color: var(--color-main);
-    color: var(--color-btn);
+    background-color: var(--color-accent);
+    color: var(--color-main);
     border: none;
     border-radius: var(--border-radius-btn);
     cursor: pointer;
     transition: all 0.5s ease;
     width: fit-content;
-    padding: 0.6rem 1rem;
+    padding: 0.6rem 1.5rem;
     margin: 1rem 0;
     &:hover {
       background-color: var(--color-accent);
@@ -60,12 +59,12 @@
     width: 100%;
     max-width: 1512px;
     text-align: left;
-    padding: 3rem;
+    padding: 1rem;
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
 
-    color: var(--color-white);
+    color: var(--color-black);
 
     &::-webkit-scrollbar {
       display: none;
@@ -78,7 +77,6 @@
     .subHeading {
       font-family: var(--font-base);
       margin-top: 0;
-      color: var(--color-white);
     }
 
     &-hours {
@@ -123,7 +121,7 @@
 
     &_reviews {
       display: flex;
-      //scroll-snap-type: x mandatory;
+
       scroll-behavior: smooth;
       overflow-x: scroll;
       width: 100%;
@@ -131,15 +129,14 @@
         display: none;
       }
       &-review {
-        //scroll-snap-align: start;
         overflow-y: scroll;
         min-width: 300px;
         max-height: 300px;
-        //scroll-snap-stop: always;
+
         background-color: inherit;
         border-radius: 7px;
-        border: 1px solid var(--color-main);
-        box-shadow: 0px 1px 1px 1px var(--color-main);
+        border: 1px solid var(--color-accent);
+        box-shadow: 0px 1px 1px 1px var(--color-accent);
         padding: 1rem;
         margin: 0.6rem 1rem 1.5rem 0;
         display: flex;
@@ -151,7 +148,7 @@
           display: none;
         }
         .rating {
-          color: var(--color-main);
+          color: var(--color-accent);
           align-items: center;
           margin-bottom: 0.6rem;
           > * {
@@ -169,7 +166,7 @@
 }
 .title {
   font-size: 1.6rem !important;
-  color: var(--color-main);
+  color: var(--color-accent);
   font-weight: bold;
   @include respond(phone) {
     font-size: 1.3rem !important;

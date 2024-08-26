@@ -8,7 +8,7 @@ export const AppProvider = ({ children }) => {
   const [longitude, setLongitude] = useState(0);
   const [favoriteSpots, setFavoriteSpots] = useState([]);
   const [currentUser, setCurrentUser] = React.useState(null);
-
+  const [selectedSpot, setSelectedSpot] = useState(null)
   const [spots, setSpots] = useState([]);
 
 
@@ -23,7 +23,7 @@ export const AppProvider = ({ children }) => {
         setCurrentUser,
         latitude, setLatitude,
         longitude, setLongitude,
-        spots, setSpots
+        spots, setSpots, selectedSpot, setSelectedSpot
       }}
     >
       {children}

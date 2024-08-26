@@ -6,8 +6,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   &__form {
     max-width: 400px;
+
     button {
       margin-top: 1rem;
       background: rgba($color: #ffffff, $alpha: 0.1);

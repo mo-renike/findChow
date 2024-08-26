@@ -24,6 +24,7 @@ body {
   letter-spacing: 0.5px;
   color: var(--color-black);
   font-family: var(--font-alt);
+  position: relative;
 }
 @media screen and (max-width: 768px) {
   body {

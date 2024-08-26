@@ -10,7 +10,6 @@ const App = () => (
     <div style={{
       maxWidth: "1560px",
       margin: "auto",
-
     }}>
       <Learn />
       <Spots />

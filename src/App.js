@@ -9,7 +9,7 @@ import NotFound from "./components/NotFound/NotFound";
 import { ErrorFallback } from "./components/ErrorBoundary/ErrorFallback";
 import { auth, signOut } from "./firebase";
 import Favorites from "./Pages/Favorites/Favorites";
-import Details from './Pages/Details'
+import Details from './Pages/Details/Details'
 import { AppContext } from "./AppContext";
 import { ToastContainer, } from 'react-toastify';
 

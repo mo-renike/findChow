@@ -3,16 +3,16 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBdnaSGn3fq0JRkKsGRDAYkhTYWt8FHND4",
-  authDomain: "findchow-24d1c.firebaseapp.com",
-  databaseURL: "https://findchow-24d1c-default-rtdb.firebaseio.com",
-  projectId: "findchow-24d1c",
-  storageBucket: "findchow-24d1c.appspot.com",
-  messagingSenderId: "54057494086",
-  appId: "1:54057494086:web:705e794bf93da6321c4c47",
-  measurementId: "G-99S6H0EEDM",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
