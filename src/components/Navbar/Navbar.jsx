@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import FoodTypeDropdown from "../FoodType/FoodTypeDropdown";
+import logo from '../../images/fc_logo.png'
 
 const Navbar = ({ signOut, user }) => {
   const [toggle, setToggle] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = ({ signOut, user }) => {
   return (
     <nav className="app__navbar">
       <Link to="/" className="app__navbar-logo">
-        Find Chow
+        <img src={logo} alt="FindChow" />
       </Link>
       {location.pathname === "/" && <FoodTypeDropdown />}
       <div className="app__navbar-links">

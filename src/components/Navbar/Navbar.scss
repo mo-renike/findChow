@@ -56,23 +56,13 @@
       }
     }
     &-logo {
-      font-family: var(--font-base);
-      color: var(--color-black);
-      letter-spacing: 0.04em;
-      font-size: 1.7rem;
-      font-weight: bolder;
-      cursor: pointer;
-      transition: 0.5s ease;
-
-      &:hover {
-        transform: translateX(9px);
-      }
-
-      @include respond(phone) {
-        font-size: 1.1rem;
-      }
-      @include respond(sm) {
-        font-size: 0.84rem;
+      img {
+        cursor: pointer;
+        transition: 0.5s ease;
+        width: 100px;
+        &:hover {
+          transform: translateX(9px);
+        }
       }
     }
 
