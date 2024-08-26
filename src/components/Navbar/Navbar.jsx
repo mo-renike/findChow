@@ -115,5 +115,5 @@ const Navbar = ({ signOut, user }) => {
     </nav>
   );
 };
-
+// comment to trigger rebuild
 export default Navbar;
