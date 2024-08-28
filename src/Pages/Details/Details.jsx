@@ -29,7 +29,7 @@ const Details = () => {
                         },
                     }
                 );
-                console.log(res);
+
 
                 if (res.status === 200) {
                     const data = await res.json();
@@ -55,7 +55,7 @@ const Details = () => {
         e.target.style.display = "none";
         e.target.nextSibling.style.display = "block";
     };
-    console.log(details);
+
 
     return (
         <div className="details">
