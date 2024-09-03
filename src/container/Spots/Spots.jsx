@@ -90,6 +90,7 @@ const Spots = () => {
           throw new Error("Something went wrong");
         } else {
           const data = await res.json();
+          console.log({ data })
           const placesWithDistances = data && data.results.map(place => {
             const distance = haversineDistance(latitude, longitude, place.geometry.location.lat, place.geometry.location.lng);
             return { ...place, distance };

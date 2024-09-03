@@ -9,12 +9,11 @@ const foodTypes = [
     // { label: 'Pizza', value: 'pizza' },
 ];
 
-const FoodTypeDropdown = ({ setToggle }) => {
+const FoodTypeDropdown = () => {
     const { foodType, setFoodType } = useContext(AppContext);
 
     const handleChange = (e) => {
         setFoodType(e.target.value);
-        // setToggle(false); 
     };
     return (
         <select className="app__navbar-button" value={foodType} onChange={handleChange}>

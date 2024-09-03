@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const SIngleSpot = ({ spot }) => {
 
-    const { favoriteSpots, setFavoriteSpots, currentUser, setSelectedSpot } =
+    const { favoriteSpots, setFavoriteSpots, currentUser, setSelectedSpot, selectedSpot } =
         useContext(AppContext);
     const navigate = useNavigate();
 
@@ -98,9 +98,32 @@ const SIngleSpot = ({ spot }) => {
     };
 
     const handleClick = () => {
-        navigate(`/${spot.place_id}`)
-        setSelectedSpot(spot)
+
+        if (!currentUser) {
+            toast.info("Login to view details", {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            navigate("/login");
+            return;
+        } else {
+            setSelectedSpot(spot)
+            navigate(`/${spot.place_id}`)
+        }
     }
+    React.useEffect(() => {
+        if (selectedSpot) {
+            localStorage.setItem('selectedSpot', JSON.stringify(selectedSpot));
+        }
+    }, [selectedSpot]);
+
+
     // Return null if spot is undefined
     if (!spot) {
         return null;
