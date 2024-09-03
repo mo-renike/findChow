@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { SubHeading } from "../../components/Headings/Headings.jsx";
 import "./Details.scss";
 import { FaAngleLeft, FaCheckCircle, FaStar, FaRegStar } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import DetailsSeo from "../../components/SEO/DetailsSeo.jsx";
 import { AppContext } from "../../AppContext.js";
 
+
 const Details = () => {
     const { placeId } = useParams();
     const [details, setDetails] = React.useState([]);
@@ -16,35 +17,44 @@ const Details = () => {
     const navigate = useNavigate();
     const { selectedSpot } = useContext(AppContext);
 
-    useEffect(() => {
-        const fetchExtraData = async () => {
-            setLoading(true);
-            try {
-                const res = await fetch(
-                    `https://findchow.onrender.com/api/details?place_id=${placeId}`,
-                    {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-
-
-                if (res.status === 200) {
-                    const data = await res.json();
-                    setDetails(data.result);
-
-                    setLoading(false);
-                } else {
-                    console.log("error");
+    const fetchExtraData = useCallback(async () => {
+        setLoading(true);
+        try {
+            const res = await fetch(
+                `https://findchow.onrender.com/api/details?place_id=${placeId}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                 }
-            } catch (error) {
-                console.log(error);
+            );
+
+
+            if (res.status === 200) {
+                const data = await res.json();
+                setDetails(data.result);
+
+                setLoading(false);
+            } else {
+                console.log("error");
             }
-        };
-        fetchExtraData();
+        } catch (error) {
+            console.log(error);
+        }
     }, [placeId]);
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const placeId = urlParams.get('placeId');
+        if (placeId) {
+            fetchExtraData(placeId);
+        }
+    }, [fetchExtraData]);
+
+
+    useEffect(() => {
+        fetchExtraData();
+    }, [fetchExtraData, placeId]);
 
     if (!selectedSpot) {
         return null;

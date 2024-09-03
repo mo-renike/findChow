@@ -57,12 +57,14 @@
     }
     &-logo {
       img {
-        cursor: pointer;
-        transition: 0.5s ease;
-        width: 100px;
-        &:hover {
-          transform: translateX(9px);
-        }
+        width: 80px;
+        margin: -16px;
+      }
+      color: var(--color-accent);
+      cursor: pointer;
+      transition: 0.5s ease;
+      &:hover {
+        transform: translateX(9px);
       }
     }
 

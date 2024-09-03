@@ -34,6 +34,16 @@
         font-size: 0.7rem;
         opacity: 0.2;
       }
+      .d-f {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 80px;
+          padding: 0;
+          margin: -14px;
+        }
+      }
     }
   }
   &__address {

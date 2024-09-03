@@ -21,6 +21,7 @@ const Navbar = ({ signOut, user }) => {
     <nav className="app__navbar">
       <Link to="/" className="app__navbar-logo">
         <img src={logo} alt="FindChow" />
+        Find Chow
       </Link>
       {location.pathname === "/" && <FoodTypeDropdown />}
       <div className="app__navbar-links">

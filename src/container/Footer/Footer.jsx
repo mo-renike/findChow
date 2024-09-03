@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowUp } from "react-icons/fa";
-
+import logo from '../../images/fc_logo.png'
 import "./Footer.scss";
 
 const Footer = () => {
@@ -8,8 +8,12 @@ const Footer = () => {
     <div className="footer" id="contact">
       <div className="footer__wrapper">
         <div className="footer__wrapper_copy">
-          <h2> FindChow </h2>
+          <div className="d-f">
+            <img src={logo} alt="Logo" /> <h2> FindChow </h2>
+          </div>
+
           <p>Find food spots in your area</p>
+          <br /> <br />
           <a
             href="https://portfolio-morenikes-projects.vercel.app/"
             target="_blank"
